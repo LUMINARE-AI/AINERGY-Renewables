@@ -1,0 +1,116 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import * as Icons from "lucide-react";
+import { Check, ArrowLeft } from "lucide-react";
+import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/shared/Reveal";
+import { CTASection } from "@/components/CTASection";
+import { SolutionCard } from "@/components/SolutionCard";
+import { Badge } from "@/components/ui/Badge";
+import { ALL_SOLUTIONS } from "@/lib/data";
+
+export function generateStaticParams() {
+  return ALL_SOLUTIONS.map((s) => ({ slug: s.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const solution = ALL_SOLUTIONS.find((s) => s.slug === slug);
+  if (!solution) return {};
+  return {
+    title: `${solution.name} — Solutions`,
+    description: solution.description,
+    alternates: { canonical: `/solutions/${solution.slug}` },
+  };
+}
+
+export default async function SolutionDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const solution = ALL_SOLUTIONS.find((s) => s.slug === slug);
+  if (!solution) notFound();
+
+  const Icon = (Icons as unknown as Record<string, Icons.LucideIcon>)[
+    solution.icon
+  ];
+  const related = ALL_SOLUTIONS.filter((s) => s.slug !== slug).slice(0, 3);
+
+  return (
+    <>
+      <section className="relative overflow-hidden bg-graphite-950 pb-16 pt-36 lg:pt-44">
+        <div className="bg-radial-fade pointer-events-none absolute inset-0" />
+        <Container className="relative">
+          <Link
+            href="/solutions"
+            className="inline-flex items-center gap-1.5 text-sm text-offwhite-300/60 transition-colors hover:text-teal-300"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" /> All solutions
+          </Link>
+
+          <div className="mt-8 flex items-start gap-5">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-400/10 text-emerald-300">
+              {Icon && <Icon className="h-7 w-7" />}
+            </div>
+            <div>
+              <Badge>Solution</Badge>
+              <h1 className="mt-4 text-balance font-display text-3xl font-medium leading-tight text-offwhite-100 sm:text-4xl lg:text-5xl">
+                {solution.name}
+              </h1>
+              <p className="text-balance mt-5 max-w-2xl text-lg leading-relaxed text-offwhite-300/70">
+                {solution.description}
+              </p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-graphite-900/40 py-20">
+        <Container>
+          <Reveal>
+            <div className="grid gap-4 sm:grid-cols-3">
+              {solution.points.map((point) => (
+                <div
+                  key={point}
+                  className="flex items-start gap-3 rounded-2xl border border-white/10 bg-graphite-950/50 p-6"
+                >
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
+                  <p className="text-sm leading-relaxed text-offwhite-200/80">
+                    {point}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
+      <section className="bg-graphite-950 py-24 lg:py-32">
+        <Container>
+          <h2 className="font-display text-2xl font-medium text-offwhite-100">
+            Related solutions
+          </h2>
+          <div className="mt-10 grid gap-5 sm:grid-cols-3">
+            {related.map((s, i) => (
+              <Reveal key={s.slug} delay={i * 0.06}>
+                <SolutionCard solution={s} />
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <CTASection
+        title={`Ready to explore ${solution.name.toLowerCase()} for your business?`}
+        description="Share your requirements and AINERGY will assess where this solution fits into your energy mix."
+      />
+    </>
+  );
+}
