@@ -6,18 +6,18 @@ import { FOOTER_LINKS, LEGAL_LINKS } from "@/lib/data";
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-graphite-950">
+    <footer className="border-t border-white/10 bg-ink-950">
       <Container className="py-16">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <Logo />
+            <Logo tone="dark" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-offwhite-300/60">
               AINERGY Renewable LLP designs, develops and operates renewable-energy
               infrastructure and intelligent energy solutions for Commercial &amp;
               Industrial businesses.
             </p>
-            <p className="mt-6 font-mono-tag text-xs uppercase text-teal-400">
-              The Energy OS for Business
+            <p className="mt-6 font-mono-tag text-xs uppercase text-current-300">
+              The Energy OS for C&amp;I
             </p>
             <div className="mt-6 flex gap-3">
               {[Linkedin, Twitter, Youtube].map((Icon, i) => (
@@ -41,7 +41,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-offwhite-200/80 transition-colors hover:text-teal-300"
+                    className="text-sm text-offwhite-200/80 transition-colors hover:text-current-300"
                   >
                     {link.label}
                   </Link>
@@ -59,7 +59,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-offwhite-200/80 transition-colors hover:text-teal-300"
+                    className="text-sm text-offwhite-200/80 transition-colors hover:text-current-300"
                   >
                     {link.label}
                   </Link>

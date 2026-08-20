@@ -48,11 +48,11 @@ export function WindTurbineScene({ className }: { className?: string }) {
         <circle cx="560" cy="260" r="46" fill="#d4af6a" fillOpacity="0.85" />
 
         {/* distant grid / transmission lines */}
-        <g stroke="#2dd4c8" strokeOpacity="0.25" strokeWidth="1.5">
+        <g stroke="#F0A93E" strokeOpacity="0.25" strokeWidth="1.5">
           <path d="M0 520 L800 460" />
           <path d="M0 560 L800 500" />
         </g>
-        <g className="ainergy-flow" stroke="#2dd4c8" strokeWidth="2" strokeDasharray="6 10" strokeLinecap="round">
+        <g className="ainergy-flow" stroke="#F0A93E" strokeWidth="2" strokeDasharray="6 10" strokeLinecap="round">
           <path d="M40 545 L760 480" fill="none" />
         </g>
 
@@ -77,7 +77,7 @@ export function WindTurbineScene({ className }: { className?: string }) {
           <path d="M120 640 L100 560 L80 640 M85 585 L115 585 M90 605 L110 605" />
           <path d="M240 660 L220 580 L200 660 M205 605 L235 605 M210 625 L230 625" />
         </g>
-        <g className="ainergy-flow" stroke="#34d399" strokeWidth="1.5" strokeDasharray="4 8">
+        <g className="ainergy-flow" stroke="#F0A93E" strokeWidth="1.5" strokeDasharray="4 8">
           <path d="M100 560 L220 580" fill="none" />
         </g>
 
@@ -96,7 +96,7 @@ export function WindTurbineScene({ className }: { className?: string }) {
         </g>
 
         {/* energy particles flowing to the facility */}
-        <g className="ainergy-flow" stroke="#2dd4c8" strokeWidth="2" strokeDasharray="3 9" strokeLinecap="round">
+        <g className="ainergy-flow" stroke="#F0A93E" strokeWidth="2" strokeDasharray="3 9" strokeLinecap="round">
           <path d="M300 520 C 420 560, 480 640, 560 700" fill="none" />
         </g>
 
@@ -131,8 +131,8 @@ export function WindTurbineScene({ className }: { className?: string }) {
           [630, 560],
         ].map(([cx, cy], i) => (
           <g key={i} className="ainergy-pulse" style={{ animationDelay: `${i * 0.6}s` }}>
-            <circle cx={cx} cy={cy} r="5" fill="#2dd4c8" />
-            <circle cx={cx} cy={cy} r="12" fill="none" stroke="#2dd4c8" strokeOpacity="0.4" />
+            <circle cx={cx} cy={cy} r="5" fill="#F0A93E" />
+            <circle cx={cx} cy={cy} r="12" fill="none" stroke="#F0A93E" strokeOpacity="0.4" />
           </g>
         ))}
       </svg>

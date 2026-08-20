@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Reveal } from "@/components/shared/Reveal";
+import { cn } from "@/lib/utils";
 import type { Project } from "@/lib/data";
 
 const FILTERS: Array<Project["category"] | "All" | "Development"> = [
@@ -31,11 +32,12 @@ export function ProjectsFilter({ projects }: { projects: Project[] }) {
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+            className={cn(
+              "rounded-full border px-4 py-2 text-sm font-medium transition-colors",
               filter === f
-                ? "border-emerald-400/50 bg-emerald-400/10 text-emerald-200"
-                : "border-white/15 text-offwhite-300/70 hover:border-white/30"
-            }`}
+                ? "border-current-500/50 bg-current-400/10 text-current-700"
+                : "border-ink-900/15 text-ink-600 hover:border-ink-900/30 hover:text-ink-900"
+            )}
           >
             {f}
           </button>
@@ -52,11 +54,11 @@ export function ProjectsFilter({ projects }: { projects: Project[] }) {
             ))}
           </div>
         ) : (
-          <div className="rounded-3xl border border-dashed border-white/15 p-16 text-center">
-            <p className="font-display text-lg text-offwhite-100">
+          <div className="rounded-3xl border border-dashed border-ink-900/15 p-16 text-center">
+            <p className="font-display text-lg text-ink-900">
               No projects in this category yet
             </p>
-            <p className="mt-2 text-sm text-offwhite-300/55">
+            <p className="mt-2 text-sm text-ink-500">
               AINERGY&apos;s portfolio is growing — check back as new projects
               reach development milestones.
             </p>

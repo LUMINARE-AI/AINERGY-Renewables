@@ -6,7 +6,7 @@ export function ProjectCard({ project }: { project: Project }) {
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="group relative block overflow-hidden rounded-3xl border border-white/10 bg-graphite-900/50 transition-all duration-300 hover:border-teal-400/30"
+      className="group relative block overflow-hidden rounded-3xl border border-ink-900/10 bg-paper-50 transition-all duration-300 hover:-translate-y-1 hover:border-current-500/30 hover:shadow-premium"
     >
       <div className="relative h-56 overflow-hidden bg-gradient-to-br from-forest-800 via-forest-900 to-graphite-950">
         <svg
@@ -39,36 +39,36 @@ export function ProjectCard({ project }: { project: Project }) {
             ))
           )}
         </svg>
-        <div className="absolute right-4 top-4 rounded-full border border-white/20 bg-graphite-950/70 px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-offwhite-100 backdrop-blur">
+        <div className="absolute right-4 top-4 rounded-full border border-white/15 bg-graphite-950/70 px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-offwhite-100 backdrop-blur">
           {project.status}
         </div>
         <ArrowUpRight className="absolute bottom-4 right-4 h-5 w-5 text-offwhite-100/80 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
       </div>
 
       <div className="p-7">
-        <div className="flex items-center gap-2 text-xs text-offwhite-300/50">
+        <div className="flex items-center gap-2 text-xs text-ink-500">
           <MapPin className="h-3.5 w-3.5" />
           {project.location}
         </div>
-        <h3 className="mt-2 font-display text-xl font-medium text-offwhite-100">
+        <h3 className="mt-2 font-display text-xl font-medium text-ink-900">
           {project.name}
         </h3>
-        <div className="mt-5 grid grid-cols-2 gap-4 border-t border-white/10 pt-5 text-sm">
+        <div className="mt-5 grid grid-cols-2 gap-4 border-t border-ink-900/10 pt-5 text-sm">
           <div>
-            <p className="text-offwhite-300/45">Capacity</p>
-            <p className="mt-1 font-medium text-offwhite-200">
+            <p className="text-ink-500">Capacity</p>
+            <p className="mt-1 font-medium text-ink-900">
               {project.capacity}
             </p>
           </div>
           <div>
-            <p className="text-offwhite-300/45">Category</p>
-            <p className="mt-1 font-medium text-offwhite-200">
+            <p className="text-ink-500">Category</p>
+            <p className="mt-1 font-medium text-ink-900">
               {project.category}
             </p>
           </div>
         </div>
         {project.isPlaceholder && (
-          <p className="mt-4 text-[11px] uppercase tracking-wide text-gold-400/70">
+          <p className="mt-4 text-[11px] uppercase tracking-wide text-current-600/80">
             Figures shown are placeholders pending confirmation
           </p>
         )}

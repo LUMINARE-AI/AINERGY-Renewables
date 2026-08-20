@@ -9,7 +9,7 @@ export function SolutionsGrid() {
   const cards = [...SOLUTIONS.slice(0, 4), CLOCK_247, ...SOLUTIONS.slice(4)];
 
   return (
-    <section className="bg-graphite-950 py-24 lg:py-32">
+    <section className="bg-paper-100/50 py-24 lg:py-32">
       <Container>
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <SectionHeader

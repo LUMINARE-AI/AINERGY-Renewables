@@ -41,34 +41,34 @@ export default async function InsightDetailPage({
   return (
     <>
       <article>
-        <section className="relative overflow-hidden bg-graphite-950 pb-16 pt-36 lg:pt-44">
+        <section className="relative overflow-hidden bg-paper-50 pb-16 pt-36 lg:pt-44">
           <div className="bg-radial-fade pointer-events-none absolute inset-0" />
           <Container className="relative max-w-3xl">
             <Link
               href="/insights"
-              className="inline-flex items-center gap-1.5 text-sm text-offwhite-300/60 transition-colors hover:text-teal-300"
+              className="inline-flex items-center gap-1.5 text-sm text-ink-600 transition-colors hover:text-current-600"
             >
               <ArrowLeft className="h-3.5 w-3.5" /> All insights
             </Link>
             <div className="mt-8 flex items-center gap-3">
               <Badge>{insight.category}</Badge>
-              <span className="text-xs text-offwhite-300/45">
+              <span className="text-xs text-ink-500">
                 {insight.readTime}
               </span>
             </div>
-            <h1 className="text-balance mt-5 font-display text-3xl font-medium leading-tight text-offwhite-100 sm:text-4xl">
+            <h1 className="text-balance mt-5 font-display text-3xl font-medium leading-tight text-ink-900 sm:text-4xl">
               {insight.title}
             </h1>
           </Container>
         </section>
 
-        <section className="bg-graphite-950 pb-24">
+        <section className="bg-paper-50 pb-24">
           <Container className="max-w-3xl">
-            <div className="space-y-6 border-t border-white/10 pt-10">
+            <div className="space-y-6 border-t border-ink-900/10 pt-10">
               {insight.body.map((para, i) => (
                 <p
                   key={i}
-                  className="text-lg leading-relaxed text-offwhite-200/80"
+                  className="text-lg leading-relaxed text-ink-700"
                 >
                   {para}
                 </p>
@@ -78,8 +78,9 @@ export default async function InsightDetailPage({
         </section>
       </article>
 
-      <section className="bg-graphite-900/40 py-24 lg:py-32">
-        <Container>
+      <section className="surface-dark relative overflow-hidden bg-ink-950 py-24 lg:py-32">
+        <div className="bg-radial-fade-dark pointer-events-none absolute inset-0" />
+        <Container className="relative">
           <h2 className="font-display text-2xl font-medium text-offwhite-100">
             Related reading
           </h2>

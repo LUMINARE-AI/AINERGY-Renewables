@@ -12,8 +12,8 @@ const METRICS = [
 
 export function Sustainability() {
   return (
-    <section className="relative overflow-hidden bg-forest-950/60 py-24 lg:py-32">
-      <div className="bg-radial-fade pointer-events-none absolute inset-0" />
+    <section className="relative overflow-hidden bg-paper-100 py-24 lg:py-32">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-forest-500/[0.06] via-transparent to-transparent" />
       <Container className="relative">
         <SectionHeader
           eyebrow="Sustainability"
@@ -26,13 +26,11 @@ export function Sustainability() {
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {METRICS.map((metric, i) => (
             <Reveal key={metric.label} delay={i * 0.06}>
-              <div className="flex h-full flex-col items-center rounded-2xl border border-white/10 bg-graphite-950/40 p-6 text-center">
-                <p className="font-display text-xl font-medium text-emerald-300">
+              <div className="flex h-full flex-col items-center rounded-2xl border border-forest-600/15 bg-paper-50 p-6 text-center shadow-premium">
+                <p className="font-display text-xl font-medium text-forest-600">
                   {metric.value}
                 </p>
-                <p className="mt-2 text-xs text-offwhite-300/55">
-                  {metric.label}
-                </p>
+                <p className="mt-2 text-xs text-ink-500">{metric.label}</p>
               </div>
             </Reveal>
           ))}

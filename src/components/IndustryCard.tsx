@@ -6,11 +6,11 @@ export function IndustryCard({ industry }: { industry: Industry }) {
     industry.icon
   ];
   return (
-    <div className="group flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-graphite-900/40 p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-teal-400/30 hover:bg-graphite-900">
-      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white/5 text-offwhite-200 transition-colors group-hover:bg-teal-400/10 group-hover:text-teal-300">
+    <div className="group flex flex-col items-center gap-3 rounded-2xl border border-ink-900/10 bg-paper-50 p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-current-500/30 hover:shadow-premium">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-ink-900/5 text-ink-700 transition-colors group-hover:bg-current-400/15 group-hover:text-current-600">
         {Icon && <Icon className="h-5 w-5" />}
       </div>
-      <span className="text-sm font-medium text-offwhite-200/90">
+      <span className="text-sm font-medium text-ink-800">
         {industry.name}
       </span>
     </div>

@@ -22,7 +22,7 @@ const PILLARS = [
 export default function AboutPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-graphite-950 pb-16 pt-36 lg:pt-44">
+      <section className="relative overflow-hidden bg-paper-50 pb-16 pt-36 lg:pt-44">
         <div className="bg-radial-fade pointer-events-none absolute inset-0" />
         <Container className="relative">
           <SectionHeader
@@ -33,24 +33,24 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="bg-graphite-900/40 py-20">
+      <section className="bg-paper-100/50 py-20">
         <Container>
           <Reveal>
             <div className="grid gap-5 sm:grid-cols-4">
               {PILLARS.map((pillar) => (
                 <div
                   key={pillar.label}
-                  className="flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-graphite-950/50 p-8 text-center"
+                  className="flex flex-col items-center gap-3 rounded-2xl border border-ink-900/10 bg-paper-50 p-8 text-center shadow-premium"
                 >
-                  <pillar.icon className="h-6 w-6 text-teal-300" />
-                  <span className="font-display text-base font-medium text-offwhite-100">
+                  <pillar.icon className="h-6 w-6 text-current-600" />
+                  <span className="font-display text-base font-medium text-ink-900">
                     {pillar.label}
                   </span>
                 </div>
               ))}
             </div>
           </Reveal>
-          <p className="mx-auto mt-8 max-w-2xl text-center text-offwhite-300/60">
+          <p className="mx-auto mt-8 max-w-2xl text-center text-ink-700/90">
             We combine these four elements to help businesses transition from
             fragmented energy decisions to a single, intelligent energy
             ecosystem.
@@ -58,26 +58,26 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="bg-graphite-950 py-24 lg:py-32">
+      <section className="bg-paper-50 py-24 lg:py-32">
         <Container>
           <div className="grid gap-10 lg:grid-cols-2">
             <Reveal>
-              <div className="rounded-3xl border border-white/10 bg-graphite-900/40 p-8 lg:p-10">
-                <span className="font-mono-tag text-xs uppercase text-teal-400">
+              <div className="rounded-3xl border border-ink-900/10 bg-paper-100/50 p-8 lg:p-10">
+                <span className="font-mono-tag text-xs uppercase text-current-600">
                   Vision
                 </span>
-                <p className="text-balance mt-4 font-display text-2xl font-medium leading-snug text-offwhite-100">
+                <p className="text-balance mt-4 font-display text-2xl font-medium leading-snug text-ink-900">
                   To become India&apos;s most intelligent energy platform for
                   businesses.
                 </p>
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="rounded-3xl border border-white/10 bg-graphite-900/40 p-8 lg:p-10">
-                <span className="font-mono-tag text-xs uppercase text-teal-400">
+              <div className="rounded-3xl border border-ink-900/10 bg-paper-100/50 p-8 lg:p-10">
+                <span className="font-mono-tag text-xs uppercase text-current-600">
                   Mission
                 </span>
-                <p className="text-balance mt-4 font-display text-2xl font-medium leading-snug text-offwhite-100">
+                <p className="text-balance mt-4 font-display text-2xl font-medium leading-snug text-ink-900">
                   Make clean energy simpler, more accessible and more
                   intelligent for C&amp;I businesses.
                 </p>
@@ -86,7 +86,7 @@ export default function AboutPage() {
           </div>
 
           <Reveal delay={0.15} className="mt-14 max-w-3xl">
-            <p className="text-lg leading-relaxed text-offwhite-300/70">
+            <p className="text-lg leading-relaxed text-ink-700/90">
               AINERGY is starting with its own renewable-energy projects and
               will progressively evolve into an integrated C&amp;I energy
               platform — spanning solar, wind, hybrid generation, storage,

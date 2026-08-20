@@ -20,11 +20,11 @@ export function CTASection({
   secondaryHref?: string;
 }) {
   return (
-    <section className="relative overflow-hidden bg-graphite-950 py-24 lg:py-32">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
+    <section className="surface-dark relative overflow-hidden bg-ink-950 py-24 lg:py-32">
+      <div className="bg-radial-fade-dark pointer-events-none absolute inset-0" />
       <div className="noise-overlay" />
       <Container className="relative text-center">
-        <span className="font-mono-tag text-xs uppercase text-teal-400">
+        <span className="font-mono-tag text-xs uppercase text-current-300">
           {eyebrow}
         </span>
         <h2 className="text-balance mx-auto mt-5 max-w-3xl font-display text-3xl font-medium leading-[1.15] text-offwhite-100 sm:text-4xl lg:text-5xl">
@@ -36,7 +36,7 @@ export function CTASection({
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             href={primaryHref}
-            className="group inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 px-8 py-4 text-sm font-medium text-graphite-950 transition-all hover:bg-emerald-400 hover:shadow-glow"
+            className="group inline-flex items-center justify-center gap-2 rounded-full bg-current-400 px-8 py-4 text-sm font-medium text-graphite-950 shadow-[0_0_0_1px_rgba(240,169,62,0.35)] transition-all hover:bg-current-300 hover:shadow-glow-dark"
           >
             {primaryLabel}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -44,7 +44,7 @@ export function CTASection({
           {secondaryLabel && secondaryHref && (
             <Link
               href={secondaryHref}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-8 py-4 text-sm font-medium text-offwhite-100 transition-colors hover:border-teal-400/50 hover:bg-white/5"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-8 py-4 text-sm font-medium text-offwhite-100 transition-colors hover:border-current-400/60 hover:bg-white/5"
             >
               {secondaryLabel}
             </Link>

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-graphite-950 pb-16 pt-36 lg:pt-44">
+      <section className="relative overflow-hidden bg-paper-50 pb-16 pt-36 lg:pt-44">
         <div className="bg-radial-fade pointer-events-none absolute inset-0" />
         <Container className="relative">
           <SectionHeader
@@ -25,8 +25,9 @@ export default function ProjectsPage() {
         </Container>
       </section>
 
-      <section className="bg-graphite-950 pb-24 lg:pb-32">
-        <Container>
+      <section className="surface-dark relative overflow-hidden bg-ink-950 pb-24 pt-16 lg:pb-32">
+        <div className="bg-radial-fade-dark pointer-events-none absolute inset-0" />
+        <Container className="relative">
           <ProjectsFilter projects={PROJECTS} />
         </Container>
       </section>

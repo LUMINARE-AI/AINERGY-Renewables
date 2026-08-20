@@ -1,0 +1,289 @@
+// PowerProcure AI data layer — built on top of the AINERGY marketing site.
+// See claude-code-prompt-powerprocure-ai.md for the full product spec this
+// implements. This schema covers the Phase 1 slice: auth, facilities,
+// consumption profiles, the regulatory/tariff layer, scenario + investment
+// modeling, recommendations, and leads. ElectricityBill / Report are modeled
+// now (nullable relations, no upload/OCR code yet) so bill upload and report
+// generation can land later without a schema rework.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Auth / org
+// ---------------------------------------------------------------------------
+
+model User {
+  id             String        @id @default(cuid())
+  email          String        @unique
+  passwordHash   String
+  name           String?
+  organizationId String
+  organization   Organization  @relation(fields: [organizationId], references: [id])
+  leads          Lead[]
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+}
+
+model Organization {
+  id         String     @id @default(cuid())
+  name       String
+  users      User[]
+  facilities Facility[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+// ---------------------------------------------------------------------------
+// Facility + consumption
+// ---------------------------------------------------------------------------
+
+model Facility {
+  id             String   @id @default(cuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  name           String
+  state          String
+  discom         String?
+  consumerType   String   // "commercial" | "industrial"
+  voltageLevel   String   // "11kV" | "33kV" | "66kV" | "132kV"
+  sanctionedLoadKva Float
+
+  consumptionProfiles ConsumptionProfile[]
+  bills               ElectricityBill[]
+  scenarios           OpenAccessScenario[]
+  recommendations     Recommendation[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ConsumptionProfile {
+  id         String   @id @default(cuid())
+  facilityId String
+  facility   Facility @relation(fields: [facilityId], references: [id])
+
+  monthlyConsumptionKwh Float
+  tariffRsPerKwh         Float
+  operatingHoursPerDay   Float
+  renewableTargetPct     Float
+  rooftopAreaSqft        Float
+  groundAreaAcres        Float?
+  considerGround         Boolean @default(false)
+  considerWind           Boolean @default(false)
+  includeOpenAccess      Boolean @default(true)
+  considerBattery        Boolean @default(false)
+
+  source String @default("manual") // "manual" | "bill_extraction" (future)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ---------------------------------------------------------------------------
+// Regulatory / tariff layer — DB evolution of src/lib/regulatory/tariffData.ts
+// ---------------------------------------------------------------------------
+
+model TariffProfile {
+  id                  String   @id @default(cuid())
+  state               String
+  consumerType        String   // "commercial" | "industrial"
+  voltageLevel        String   // "11kV" | "33kV" | "66kV" | "132kV"
+  tariffRsPerKwh      Float
+  crossSubsidySurcharge Float
+
+  source       String
+  sourceUrl    String?
+  effectiveDate DateTime?
+  lastVerified  DateTime?
+  isPlaceholder Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([state, consumerType, voltageLevel])
+}
+
+model OpenAccessCharge {
+  id           String  @id @default(cuid())
+  state        String
+  voltageLevel String  // "11kV" | "33kV" | "66kV" | "132kV"
+  wheelingLossPct       Float
+  wheelingChargeRsPerKwh Float
+  additionalSurchargeRsPerKwh Float @default(0)
+  bankingChargePct            Float @default(0)
+  openAccessThresholdKva Float
+
+  source       String
+  sourceUrl    String?
+  effectiveDate DateTime?
+  lastVerified  DateTime?
+  isPlaceholder Boolean @default(false)
+  notes         String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([state, voltageLevel])
+}
+
+// Audit trail for the regulatory data refresh pipeline — every automatic
+// or manual re-check of OpenAccessCharge/TariffProfile logs a row here so
+// the source of truth is auditable, not a silent overwrite.
+model RegulatoryRefreshLog {
+  id        String   @id @default(cuid())
+  state     String
+  status    String   // "unchanged" | "updated" | "error"
+  summary   String   // plain-language description of what changed (or didn't)
+  changedFields String[]
+  triggeredBy   String @default("scheduled") // "scheduled" | "manual"
+  runAt     DateTime @default(now())
+}
+
+// ---------------------------------------------------------------------------
+// Scenario engine
+// ---------------------------------------------------------------------------
+
+model OpenAccessScenario {
+  id         String   @id @default(cuid())
+  facilityId String
+  facility   Facility @relation(fields: [facilityId], references: [id])
+
+  strategy String // "grid_only" | "third_party_oa" | "captive" | "group_captive" | "solar_wind_hybrid" | "solar_bess" | "rooftop_oa"
+
+  results        ScenarioResult[]
+  investmentModel InvestmentModel?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ScenarioResult {
+  id         String              @id @default(cuid())
+  scenarioId String
+  scenario   OpenAccessScenario  @relation(fields: [scenarioId], references: [id])
+
+  deliveredCostRsPerKwh Float
+  annualCostRs          Float
+  annualSavingsRs        Float
+  savingsPct              Float
+  riskScore               Int // 1 (low) – 5 (high)
+  isPlaceholder            Boolean @default(false)
+
+  createdAt DateTime @default(now())
+}
+
+// Investment Path — own-asset / group-captive project-finance model.
+// All assumptions below are editable inputs (never hard-coded defaults baked
+// into the formula), per the spec's Investment Path section.
+model InvestmentModel {
+  id         String              @id @default(cuid())
+  scenarioId String              @unique
+  scenario   OpenAccessScenario  @relation(fields: [scenarioId], references: [id])
+
+  capexRs          Float
+  debtEquityRatio  Float  // fraction of capex financed by debt, e.g. 0.7
+  debtRatePct      Float
+  debtTenorYears    Int
+  omEscalationPct   Float
+  depreciationPct   Float
+  taxRatePct        Float
+  discountRatePct   Float
+
+  projectIrrPct    Float?
+  equityIrrPct     Float?
+  simplePaybackYrs Float?
+  dscrYear1        Float?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ---------------------------------------------------------------------------
+// Recommendation
+// ---------------------------------------------------------------------------
+
+model Recommendation {
+  id         String   @id @default(cuid())
+  facilityId String
+  facility   Facility @relation(fields: [facilityId], references: [id])
+
+  recommendedStrategy String
+  expectedSavingsRs    Float
+  assumptions          String[] // plain-language, illustrative-language enforced in the engine
+  risks                String[]
+  dataGaps             String[]
+  nextActions          String[]
+
+  createdAt DateTime @default(now())
+}
+
+// ---------------------------------------------------------------------------
+// Deferred-phase tables (schema only — no upload/OCR/report code yet)
+// ---------------------------------------------------------------------------
+
+model ElectricityBill {
+  id         String   @id @default(cuid())
+  facilityId String
+  facility   Facility @relation(fields: [facilityId], references: [id])
+
+  billingPeriodStart DateTime?
+  billingPeriodEnd   DateTime?
+  fileUrl            String?
+
+  lineItems ElectricityBillLineItem[]
+
+  createdAt DateTime @default(now())
+}
+
+model ElectricityBillLineItem {
+  id     String          @id @default(cuid())
+  billId String
+  bill   ElectricityBill @relation(fields: [billId], references: [id])
+
+  field      String // e.g. "contractDemand", "energyCharge"
+  value      Float?
+  unit       String?
+  confidence Float?
+  source     String? // "PDF" | "manual"
+  page       Int?
+}
+
+model Report {
+  id         String @id @default(cuid())
+  facilityId String
+
+  createdAt DateTime @default(now())
+}
+
+// ---------------------------------------------------------------------------
+// Leads — persists the two existing marketing-site forms
+// (EnergyPlanner's LeadCapture + ContactForm.tsx)
+// ---------------------------------------------------------------------------
+
+model Lead {
+  id     String  @id @default(cuid())
+  source String  // "energy_optimizer" | "contact_form"
+
+  name        String
+  email       String
+  phone       String?
+  company     String?
+  city        String?
+  industry    String?
+  consumption String?
+  tariff      String?
+  requirement String?
+  message     String?
+
+  userId String?
+  user   User? @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+}

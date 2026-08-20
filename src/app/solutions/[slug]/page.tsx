@@ -45,26 +45,26 @@ export default async function SolutionDetailPage({
 
   return (
     <>
-      <section className="relative overflow-hidden bg-graphite-950 pb-16 pt-36 lg:pt-44">
+      <section className="relative overflow-hidden bg-paper-50 pb-16 pt-36 lg:pt-44">
         <div className="bg-radial-fade pointer-events-none absolute inset-0" />
         <Container className="relative">
           <Link
             href="/solutions"
-            className="inline-flex items-center gap-1.5 text-sm text-offwhite-300/60 transition-colors hover:text-teal-300"
+            className="inline-flex items-center gap-1.5 text-sm text-ink-600 transition-colors hover:text-current-600"
           >
             <ArrowLeft className="h-3.5 w-3.5" /> All solutions
           </Link>
 
           <div className="mt-8 flex items-start gap-5">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-400/10 text-emerald-300">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-current-400/10 text-current-600">
               {Icon && <Icon className="h-7 w-7" />}
             </div>
             <div>
               <Badge>Solution</Badge>
-              <h1 className="mt-4 text-balance font-display text-3xl font-medium leading-tight text-offwhite-100 sm:text-4xl lg:text-5xl">
+              <h1 className="mt-4 text-balance font-display text-3xl font-medium leading-tight text-ink-900 sm:text-4xl lg:text-5xl">
                 {solution.name}
               </h1>
-              <p className="text-balance mt-5 max-w-2xl text-lg leading-relaxed text-offwhite-300/70">
+              <p className="text-balance mt-5 max-w-2xl text-lg leading-relaxed text-ink-700/90">
                 {solution.description}
               </p>
             </div>
@@ -72,17 +72,17 @@ export default async function SolutionDetailPage({
         </Container>
       </section>
 
-      <section className="bg-graphite-900/40 py-20">
+      <section className="bg-paper-100/50 py-20">
         <Container>
           <Reveal>
             <div className="grid gap-4 sm:grid-cols-3">
               {solution.points.map((point) => (
                 <div
                   key={point}
-                  className="flex items-start gap-3 rounded-2xl border border-white/10 bg-graphite-950/50 p-6"
+                  className="flex items-start gap-3 rounded-2xl border border-ink-900/10 bg-paper-50 p-6"
                 >
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
-                  <p className="text-sm leading-relaxed text-offwhite-200/80">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-forest-500" />
+                  <p className="text-sm leading-relaxed text-ink-700">
                     {point}
                   </p>
                 </div>
@@ -92,8 +92,9 @@ export default async function SolutionDetailPage({
         </Container>
       </section>
 
-      <section className="bg-graphite-950 py-24 lg:py-32">
-        <Container>
+      <section className="surface-dark relative overflow-hidden bg-ink-950 py-24 lg:py-32">
+        <div className="bg-radial-fade-dark pointer-events-none absolute inset-0" />
+        <Container className="relative">
           <h2 className="font-display text-2xl font-medium text-offwhite-100">
             Related solutions
           </h2>

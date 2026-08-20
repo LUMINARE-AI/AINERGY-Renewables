@@ -6,7 +6,7 @@ import { INDUSTRIES } from "@/lib/data";
 
 export function Industries() {
   return (
-    <section className="bg-graphite-900/40 py-24 lg:py-32">
+    <section className="bg-paper-100 py-24 lg:py-32">
       <Container>
         <SectionHeader
           eyebrow="Industries"

@@ -22,18 +22,31 @@
 }
 
 html {
-  background-color: #0a0d0c;
+  background-color: #fcfaf5;
 }
 
 body {
-  background-color: #0a0d0c;
-  color: #f2f0ea;
+  background-color: #fcfaf5;
+  color: #211d15;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
+/* Dark "control room" surfaces (Copilot, authenticated app shell) opt in
+   explicitly via this class rather than a global dark-mode toggle. */
+.surface-dark {
+  background-color: #0a0d0c;
+  color: #f2f0ea;
+  color-scheme: dark;
+}
+
 ::selection {
-  background: #14b8ab;
-  color: #04140e;
+  background: #f0a93e;
+  color: #211d15;
+}
+
+.surface-dark ::selection {
+  background: #d98a1e;
+  color: #0a0d0c;
 }
 
 .text-balance {
@@ -46,8 +59,11 @@ body {
   width: 6px;
 }
 .thin-scroll::-webkit-scrollbar-thumb {
-  background: #2b3531;
+  background: #e2d6b8;
   border-radius: 999px;
+}
+.surface-dark .thin-scroll::-webkit-scrollbar-thumb {
+  background: #2b3531;
 }
 
 .noise-overlay {
@@ -61,7 +77,15 @@ body {
 .bg-radial-fade {
   background: radial-gradient(
     ellipse 80% 60% at 50% 0%,
-    rgba(20, 184, 171, 0.12),
+    rgba(217, 138, 30, 0.14),
+    transparent 70%
+  );
+}
+
+.bg-radial-fade-dark {
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 0%,
+    rgba(240, 169, 62, 0.12),
     transparent 70%
   );
 }
@@ -73,4 +97,25 @@ body {
 .font-mono-tag {
   font-family: var(--font-mono);
   letter-spacing: 0.14em;
+}
+
+/* Subtle warm paper texture for large light surfaces. */
+.paper-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* Shimmering skeleton / "AI is reading" state for the bill extraction flow. */
+.shimmer-bg {
+  background: linear-gradient(
+    90deg,
+    rgba(217, 138, 30, 0.08) 25%,
+    rgba(217, 138, 30, 0.22) 50%,
+    rgba(217, 138, 30, 0.08) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.2s linear infinite;
 }

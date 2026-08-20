@@ -10,12 +10,12 @@ export const metadata: Metadata = {
 
 export default function DisclaimerPage() {
   return (
-    <section className="bg-graphite-950 pb-24 pt-36 lg:pt-44">
+    <section className="bg-paper-50 pb-24 pt-36 lg:pt-44">
       <Container className="max-w-3xl">
         <SectionHeader eyebrow="Legal" title="Disclaimer" />
-        <div className="mt-10 space-y-6 text-sm leading-relaxed text-offwhite-300/70">
+        <div className="mt-10 space-y-6 text-base leading-loose text-ink-700">
           <p>
-            <span className="font-medium text-offwhite-200">
+            <span className="font-medium text-ink-900">
               Project and metric data.
             </span>{" "}
             Where figures on this website are explicitly marked as
@@ -25,7 +25,7 @@ export default function DisclaimerPage() {
             relevant milestones.
           </p>
           <p>
-            <span className="font-medium text-offwhite-200">
+            <span className="font-medium text-ink-900">
               Energy Optimizer demo.
             </span>{" "}
             The interactive energy optimizer on this website produces
@@ -34,7 +34,7 @@ export default function DisclaimerPage() {
             of a site assessment, load-curve analysis or regulatory review.
           </p>
           <p>
-            <span className="font-medium text-offwhite-200">
+            <span className="font-medium text-ink-900">
               Commercial structures.
             </span>{" "}
             Business models described on this website (Own, PPA, Open Access,
@@ -44,7 +44,7 @@ export default function DisclaimerPage() {
             legal, financial or regulatory advice.
           </p>
           <p>
-            <span className="font-medium text-offwhite-200">
+            <span className="font-medium text-ink-900">
               AI capabilities.
             </span>{" "}
             References to AI-driven forecasting, optimization and

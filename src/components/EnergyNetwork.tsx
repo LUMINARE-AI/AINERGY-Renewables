@@ -13,7 +13,7 @@ const NODES = [
 
 export function EnergyNetwork() {
   return (
-    <section className="relative overflow-hidden bg-graphite-900/40 py-24 lg:py-32">
+    <section className="relative overflow-hidden bg-paper-100 py-24 lg:py-32">
       <div className="bg-radial-fade pointer-events-none absolute inset-0" />
       <Container className="relative">
         <SectionHeader
@@ -27,12 +27,6 @@ export function EnergyNetwork() {
         <Reveal delay={0.1} className="mt-16">
           <div className="relative mx-auto aspect-[4/3] w-full max-w-2xl">
             <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100">
-              <defs>
-                <linearGradient id="net-flow" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#2dd4c8" stopOpacity="0.7" />
-                  <stop offset="100%" stopColor="#34d399" stopOpacity="0" />
-                </linearGradient>
-              </defs>
               {NODES.map((n) => (
                 <line
                   key={n.key}
@@ -40,7 +34,7 @@ export function EnergyNetwork() {
                   y1="50"
                   x2={n.x}
                   y2={n.y}
-                  stroke="rgba(45,212,200,0.22)"
+                  stroke="rgba(33,29,21,0.10)"
                   strokeWidth="0.4"
                 />
               ))}
@@ -51,7 +45,7 @@ export function EnergyNetwork() {
                   y1="50"
                   x2={n.x}
                   y2={n.y}
-                  stroke="#2dd4c8"
+                  stroke="#D98A1E"
                   strokeWidth="0.6"
                   strokeDasharray="2 6"
                   strokeLinecap="round"
@@ -61,11 +55,11 @@ export function EnergyNetwork() {
               ))}
             </svg>
 
-            <div className="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border border-emerald-400/40 bg-graphite-950 text-center shadow-glow">
-              <span className="font-display text-xs font-semibold text-offwhite-100 sm:text-sm">
+            <div className="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border border-current-500/40 bg-ink-900 text-center shadow-glow">
+              <span className="font-display text-xs font-semibold text-paper-50 sm:text-sm">
                 AINERGY
               </span>
-              <span className="font-mono-tag text-[9px] text-emerald-300">OS</span>
+              <span className="font-mono-tag text-[9px] text-current-300">OS</span>
             </div>
 
             {NODES.map((n) => (
@@ -74,7 +68,7 @@ export function EnergyNetwork() {
                 style={{ left: `${n.x}%`, top: `${n.y}%` }}
                 className="absolute -translate-x-1/2 -translate-y-1/2"
               >
-                <div className="ainergy-node-pulse flex h-16 w-16 items-center justify-center rounded-full border border-white/15 bg-graphite-900/90 text-xs font-medium text-offwhite-200">
+                <div className="ainergy-node-pulse flex h-16 w-16 items-center justify-center rounded-full border border-ink-900/12 bg-paper-50 text-xs font-medium text-ink-800 shadow-premium">
                   {n.label}
                 </div>
               </div>
@@ -93,8 +87,8 @@ export function EnergyNetwork() {
             animation: ainergy-node-glow 3.2s ease-in-out infinite;
           }
           @keyframes ainergy-node-glow {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(45,212,200,0.15); }
-            50% { box-shadow: 0 0 0 8px rgba(45,212,200,0); }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(217,138,30,0.16); }
+            50% { box-shadow: 0 0 0 8px rgba(217,138,30,0); }
           }
           @media (prefers-reduced-motion: reduce) {
             .ainergy-net-flow, .ainergy-node-pulse { animation: none !important; }

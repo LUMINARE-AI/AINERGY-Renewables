@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <section className="bg-graphite-950 pb-24 pt-36 lg:pt-44">
+    <section className="bg-paper-50 pb-24 pt-36 lg:pt-44">
       <Container className="max-w-3xl">
         <SectionHeader eyebrow="Legal" title="Terms of Use" />
-        <div className="mt-10 space-y-6 text-sm leading-relaxed text-offwhite-300/70">
+        <div className="mt-10 space-y-6 text-base leading-loose text-ink-700">
           <p>
             This website is operated by AINERGY Renewable LLP. By accessing
             or using this website, you agree to use it only for lawful

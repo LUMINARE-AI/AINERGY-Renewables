@@ -6,9 +6,10 @@ import {
   type ConsumerType,
   type VoltageLevel,
   type StateName,
-  WHEELING_BY_VOLTAGE,
   OPEN_ACCESS_THRESHOLD_KVA,
-} from "./tariffData";
+  lookupGenerationYield,
+} from "../regulatory/tariffData";
+import { computeThirdPartyLandedCost, type LandedCostBreakdown } from "./landedCost";
 
 export type PlannerInputs = {
   state: StateName;
@@ -24,6 +25,10 @@ export type PlannerInputs = {
   groundArea: number; // acres
   considerWind: boolean;
   includeOpenAccess: boolean;
+  /** Battery/BESS is an optional add-on, not a forced part of every plan —
+   * only sized when the user explicitly opts in. Defaults to false at every
+   * call site below (UI components must pass it explicitly). */
+  considerBattery: boolean;
 };
 
 export type PlannerResult = {
@@ -53,6 +58,7 @@ export type PlannerResult = {
   wheelingLossPct: number;
   wheelingChargeRsPerKwh: number;
   landedOpenAccessTariff: number;
+  landedCostBreakdown: LandedCostBreakdown;
   projectCostEstimateRs: number;
 };
 
@@ -77,9 +83,15 @@ export function billFromKwh(kwh: number, tariff: number): number {
 }
 
 export function computePlan(inputs: PlannerInputs): PlannerResult {
+  const generationYield = lookupGenerationYield(inputs.state);
+  // Blended yield across the rooftop/ground mix for sizing purposes — actual
+  // per-segment yield (used for CO2/generation detail elsewhere) already
+  // varies by state; this blended figure replaces the old hardcoded flat 4.5.
+  const blendedYield = (generationYield.rooftop + generationYield.ground) / 2;
+
   const dailyKwh = inputs.consumption / 30;
   const targetKwh = (dailyKwh * inputs.renewableTarget) / 100;
-  const targetSolarEquivKw = targetKwh / 4.5;
+  const targetSolarEquivKw = targetKwh / blendedYield;
 
   const share = (kw: number) =>
     targetSolarEquivKw > 0
@@ -124,10 +136,19 @@ export function computePlan(inputs: PlannerInputs): PlannerResult {
   );
   const gridSharePct = Math.max(0, 100 - achievedRenewablePct);
 
-  const { lossPct: wheelingLossPct, chargeRsPerKwh: wheelingChargeRsPerKwh } =
-    WHEELING_BY_VOLTAGE[inputs.voltageLevel];
-  const landedOpenAccessTariff =
-    Math.round((inputs.tariff * (1 - 0.18) + wheelingChargeRsPerKwh) * 100) / 100;
+  const thirdPartyLanded = computeThirdPartyLandedCost({
+    state: inputs.state,
+    consumerType: inputs.consumerType,
+    voltageLevel: inputs.voltageLevel,
+    gridTariffRsPerKwh: inputs.tariff,
+  });
+  const wheelingLineItem = thirdPartyLanded.lineItems.find((i) => i.label === "Wheeling charge");
+  const wheelingLossLineItem = thirdPartyLanded.lineItems.find((i) => i.label.startsWith("Wheeling losses"));
+  const wheelingChargeRsPerKwh = wheelingLineItem?.valueRsPerKwh ?? 0;
+  // Kept as a plain % for backward-compatible display; the itemized
+  // breakdown above (thirdPartyLanded.lineItems) is the source of truth.
+  const wheelingLossPct = Number(wheelingLossLineItem?.label.match(/\(([\d.]+)%\)/)?.[1] ?? 0);
+  const landedOpenAccessTariff = thirdPartyLanded.landedCostRsPerKwh;
 
   const costReductionPct = Math.min(45, Math.round(6 + achievedRenewablePct * 0.35));
   const monthlySavings = Math.round(
@@ -144,10 +165,11 @@ export function computePlan(inputs: PlannerInputs): PlannerResult {
 
   // Battery sized to bridge a ~3-hour window of non-solar/non-wind hours
   // within the site's operating day — a rule-of-thumb starting point, not a
-  // load-curve-based sizing.
-  const batteryKwh = Math.round(
-    (inputs.consumption / 30 / inputs.operatingHours) * BATTERY_BRIDGING_HOURS
-  );
+  // load-curve-based sizing. Only computed when the user opts in; battery is
+  // no longer forced into every plan.
+  const batteryKwh = inputs.considerBattery
+    ? Math.round((inputs.consumption / 30 / inputs.operatingHours) * BATTERY_BRIDGING_HOURS)
+    : 0;
 
   const projectCostEstimateRs = Math.round(
     rooftopSolarKw * CAPEX_RS_PER_KW.rooftop +
@@ -182,6 +204,7 @@ export function computePlan(inputs: PlannerInputs): PlannerResult {
     wheelingLossPct,
     wheelingChargeRsPerKwh,
     landedOpenAccessTariff,
+    landedCostBreakdown: thirdPartyLanded,
     projectCostEstimateRs,
   };
 }

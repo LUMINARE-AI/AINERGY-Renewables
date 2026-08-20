@@ -7,7 +7,7 @@ import { INSIGHTS } from "@/lib/data";
 
 export function InsightsPreview() {
   return (
-    <section className="bg-graphite-900/40 py-24 lg:py-32">
+    <section className="bg-paper-50 py-24 lg:py-32">
       <Container>
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <SectionHeader

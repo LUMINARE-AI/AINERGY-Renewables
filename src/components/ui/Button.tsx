@@ -10,6 +10,8 @@ type ButtonProps = {
   size?: "md" | "lg";
   icon?: boolean;
   className?: string;
+  /** "dark" for buttons placed on a .surface-dark background (Copilot, app shell). */
+  tone?: "light" | "dark";
 };
 
 export function Button({
@@ -19,17 +21,28 @@ export function Button({
   size = "md",
   icon = false,
   className,
+  tone = "light",
 }: ButtonProps) {
   const base =
-    "group relative inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-graphite-950";
+    "group relative inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current-400";
 
-  const variants: Record<string, string> = {
+  const variantsLight: Record<string, string> = {
     primary:
-      "bg-emerald-500 text-graphite-950 hover:bg-emerald-400 shadow-[0_0_0_1px_rgba(52,211,153,0.4)] hover:shadow-glow",
+      "bg-ink-900 text-paper-50 hover:bg-current-600 shadow-[0_0_0_1px_rgba(33,29,21,0.06)] hover:shadow-glow focus-visible:ring-offset-2 focus-visible:ring-offset-paper-50",
     secondary:
-      "bg-transparent text-offwhite-100 border border-white/20 hover:border-teal-400/60 hover:bg-white/5",
-    ghost: "bg-transparent text-offwhite-100 hover:text-teal-300",
+      "bg-transparent text-ink-900 border border-ink-900/15 hover:border-current-500/70 hover:bg-current-400/10",
+    ghost: "bg-transparent text-ink-900 hover:text-current-600",
   };
+
+  const variantsDark: Record<string, string> = {
+    primary:
+      "bg-current-400 text-graphite-950 hover:bg-current-300 shadow-[0_0_0_1px_rgba(240,169,62,0.35)] hover:shadow-glow-dark focus-visible:ring-offset-2 focus-visible:ring-offset-graphite-950",
+    secondary:
+      "bg-transparent text-offwhite-100 border border-white/15 hover:border-current-400/60 hover:bg-white/5",
+    ghost: "bg-transparent text-offwhite-100 hover:text-current-300",
+  };
+
+  const variants = tone === "dark" ? variantsDark : variantsLight;
 
   const sizes: Record<string, string> = {
     md: "px-6 py-3 text-sm",

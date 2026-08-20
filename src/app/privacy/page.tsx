@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <section className="bg-graphite-950 pb-24 pt-36 lg:pt-44">
+    <section className="bg-paper-50 pb-24 pt-36 lg:pt-44">
       <Container className="max-w-3xl">
         <SectionHeader eyebrow="Legal" title="Privacy Policy" />
-        <div className="mt-10 space-y-6 text-sm leading-relaxed text-offwhite-300/70">
+        <div className="mt-10 space-y-6 text-base leading-loose text-ink-700">
           <p>
             AINERGY Renewable LLP (&quot;AINERGY&quot;, &quot;we&quot;,
             &quot;us&quot;) respects your privacy. This policy describes, in

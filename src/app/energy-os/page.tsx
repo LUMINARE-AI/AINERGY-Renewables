@@ -83,7 +83,7 @@ const LAYERS = [
 export default function EnergyOSPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-graphite-950 pb-20 pt-36 lg:pt-44">
+      <section className="relative overflow-hidden bg-paper-50 pb-20 pt-36 lg:pt-44">
         <div className="bg-radial-fade pointer-events-none absolute inset-0" />
         <Container className="relative">
           <SectionHeader
@@ -96,8 +96,9 @@ export default function EnergyOSPage() {
         </Container>
       </section>
 
-      <section className="bg-graphite-900/40 py-20">
-        <Container>
+      <section className="surface-dark relative overflow-hidden bg-ink-950 py-20">
+        <div className="bg-radial-fade-dark pointer-events-none absolute inset-0" />
+        <Container className="relative">
           <Reveal>
             <div className="mx-auto max-w-3xl rounded-3xl border border-white/10 bg-graphite-950/60 p-8 lg:p-12">
               <p className="text-center font-mono-tag text-xs uppercase text-offwhite-300/50">
@@ -122,8 +123,8 @@ export default function EnergyOSPage() {
                 "Business Decisions",
               ].map((stage) => (
                 <div key={stage} className="mt-5 flex flex-col items-center">
-                  <ArrowDown className="h-4 w-4 text-teal-400/50" />
-                  <div className="mt-5 w-full rounded-xl border border-emerald-400/25 bg-emerald-400/[0.05] py-3.5 text-center text-sm font-medium text-emerald-200">
+                  <ArrowDown className="h-4 w-4 text-current-400/50" />
+                  <div className="mt-5 w-full rounded-xl border border-current-400/25 bg-current-400/[0.06] py-3.5 text-center text-sm font-medium text-current-300">
                     {stage}
                   </div>
                 </div>
@@ -133,7 +134,7 @@ export default function EnergyOSPage() {
         </Container>
       </section>
 
-      <section className="bg-graphite-950 py-24 lg:py-32">
+      <section className="bg-paper-50 py-24 lg:py-32">
         <Container>
           <SectionHeader
             eyebrow="Platform Layers"
@@ -142,14 +143,14 @@ export default function EnergyOSPage() {
           <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {LAYERS.map((layer, i) => (
               <Reveal key={layer.title} delay={(i % 3) * 0.08}>
-                <div className="h-full rounded-2xl border border-white/10 bg-graphite-900/40 p-7">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-teal-400/10 text-teal-300">
+                <div className="h-full rounded-2xl border border-ink-900/10 bg-paper-100/50 p-7">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-current-400/10 text-current-600">
                     <layer.icon className="h-5 w-5" />
                   </div>
-                  <h3 className="mt-5 font-display text-lg font-medium text-offwhite-100">
+                  <h3 className="mt-5 font-display text-lg font-medium text-ink-900">
                     {layer.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-offwhite-300/60">
+                  <p className="mt-2 text-sm leading-relaxed text-ink-700/85">
                     {layer.description}
                   </p>
                 </div>

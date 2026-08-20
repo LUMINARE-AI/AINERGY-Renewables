@@ -36,7 +36,7 @@ const CAPABILITIES = [
 export default function ForBusinessPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-graphite-950 pb-16 pt-36 lg:pt-44">
+      <section className="relative overflow-hidden bg-paper-50 pb-16 pt-36 lg:pt-44">
         <div className="bg-radial-fade pointer-events-none absolute inset-0" />
         <Container className="relative">
           <SectionHeader
@@ -47,19 +47,19 @@ export default function ForBusinessPage() {
         </Container>
       </section>
 
-      <section className="bg-graphite-950 pb-24 lg:pb-32">
+      <section className="bg-paper-50 pb-24 lg:pb-32">
         <Container>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {CAPABILITIES.map((cap, i) => (
               <Reveal key={cap.title} delay={(i % 4) * 0.06}>
-                <div className="h-full rounded-2xl border border-white/10 bg-graphite-900/40 p-6">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-400/10 text-emerald-300">
+                <div className="h-full rounded-2xl border border-ink-900/10 bg-paper-100/50 p-6">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-current-400/10 text-current-600">
                     <cap.icon className="h-5 w-5" />
                   </div>
-                  <h3 className="mt-5 font-display text-base font-medium text-offwhite-100">
+                  <h3 className="mt-5 font-display text-base font-medium text-ink-900">
                     {cap.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-offwhite-300/60">
+                  <p className="mt-2 text-sm leading-relaxed text-ink-700/85">
                     {cap.description}
                   </p>
                 </div>

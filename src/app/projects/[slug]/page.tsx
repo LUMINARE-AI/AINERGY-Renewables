@@ -49,12 +49,12 @@ export default async function ProjectDetailPage({
 
   return (
     <>
-      <section className="relative overflow-hidden bg-graphite-950 pb-16 pt-36 lg:pt-44">
+      <section className="relative overflow-hidden bg-paper-50 pb-16 pt-36 lg:pt-44">
         <div className="bg-radial-fade pointer-events-none absolute inset-0" />
         <Container className="relative">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-1.5 text-sm text-offwhite-300/60 transition-colors hover:text-teal-300"
+            className="inline-flex items-center gap-1.5 text-sm text-ink-600 transition-colors hover:text-current-600"
           >
             <ArrowLeft className="h-3.5 w-3.5" /> All projects
           </Link>
@@ -63,14 +63,14 @@ export default async function ProjectDetailPage({
             <Badge>{project.category}</Badge>
             <Badge>{project.status}</Badge>
           </div>
-          <h1 className="text-balance mt-5 font-display text-3xl font-medium leading-tight text-offwhite-100 sm:text-4xl lg:text-5xl">
+          <h1 className="text-balance mt-5 font-display text-3xl font-medium leading-tight text-ink-900 sm:text-4xl lg:text-5xl">
             {project.name}
           </h1>
-          <p className="text-balance mt-5 max-w-2xl text-lg leading-relaxed text-offwhite-300/70">
+          <p className="text-balance mt-5 max-w-2xl text-lg leading-relaxed text-ink-700/90">
             {project.description}
           </p>
           {project.isPlaceholder && (
-            <p className="mt-4 text-xs uppercase tracking-wide text-gold-400/70">
+            <p className="mt-4 text-xs uppercase tracking-wide text-current-600">
               Project figures shown below are placeholders pending official
               confirmation.
             </p>
@@ -78,9 +78,9 @@ export default async function ProjectDetailPage({
         </Container>
       </section>
 
-      <section className="bg-graphite-900/40 py-6">
+      <section className="bg-paper-50 pb-6">
         <Container>
-          <div className="relative h-72 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-forest-800 via-forest-900 to-graphite-950 sm:h-96">
+          <div className="relative h-72 overflow-hidden rounded-3xl border border-ink-900/10 shadow-premium-lg sm:h-96">
             <svg
               viewBox="0 0 800 320"
               className="h-full w-full"
@@ -109,19 +109,19 @@ export default async function ProjectDetailPage({
         </Container>
       </section>
 
-      <section className="bg-graphite-950 py-20">
+      <section className="bg-paper-50 py-20">
         <Container>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {specs.map((spec) => (
               <div
                 key={spec.label}
-                className="rounded-2xl border border-white/10 bg-graphite-900/40 p-6"
+                className="rounded-2xl border border-ink-900/10 bg-paper-100/50 p-6"
               >
-                <spec.icon className="h-4 w-4 text-teal-300" />
-                <p className="mt-4 text-xs text-offwhite-300/45">
+                <spec.icon className="h-4 w-4 text-current-600" />
+                <p className="mt-4 text-xs text-ink-500">
                   {spec.label}
                 </p>
-                <p className="mt-1.5 font-display text-base font-medium text-offwhite-100">
+                <p className="mt-1.5 font-display text-base font-medium text-ink-900">
                   {spec.value}
                 </p>
               </div>

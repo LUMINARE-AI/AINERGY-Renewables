@@ -19,7 +19,7 @@ const TRADITIONAL = ["Grid", "Solar", "Wind", "Battery", "EV", "Procurement", "C
 
 export function WhyAinergy() {
   return (
-    <section className="bg-graphite-950 py-24 lg:py-32">
+    <section className="bg-paper-50 py-24 lg:py-32">
       <Container>
         <SectionHeader
           eyebrow="Why AINERGY"
@@ -31,7 +31,7 @@ export function WhyAinergy() {
           {CHALLENGES.map((c) => (
             <span
               key={c}
-              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-offwhite-300/70"
+              className="rounded-full border border-ink-900/10 bg-paper-100 px-4 py-2 text-sm text-ink-700"
             >
               {c}
             </span>
@@ -40,35 +40,35 @@ export function WhyAinergy() {
 
         <div className="mt-16 grid gap-6 lg:grid-cols-[1fr_auto_1fr] lg:items-stretch">
           <Reveal>
-            <div className="flex h-full flex-col rounded-2xl border border-white/10 bg-graphite-900/50 p-8">
-              <span className="font-mono-tag text-xs uppercase text-offwhite-300/50">
+            <div className="flex h-full flex-col rounded-2xl border border-ink-900/10 bg-paper-100/60 p-8">
+              <span className="font-mono-tag text-xs uppercase text-ink-500">
                 Traditional Energy
               </span>
               <div className="mt-6 grid grid-cols-2 gap-3">
                 {TRADITIONAL.map((t) => (
                   <div
                     key={t}
-                    className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2.5 text-sm text-offwhite-300/70"
+                    className="rounded-lg border border-ink-900/10 bg-paper-50 px-3 py-2.5 text-sm text-ink-700"
                   >
                     {t}
                   </div>
                 ))}
               </div>
-              <div className="mt-6 flex flex-1 flex-col justify-end gap-2 border-t border-white/10 pt-6 text-sm text-offwhite-300/50">
+              <div className="mt-6 flex flex-1 flex-col justify-end gap-2 border-t border-ink-900/10 pt-6 text-sm text-ink-500">
                 <p className="flex items-center gap-2">
-                  <X className="h-3.5 w-3.5 shrink-0 text-red-400/70" /> Multiple
+                  <X className="h-3.5 w-3.5 shrink-0 text-ink-400" /> Multiple
                   vendors
                 </p>
                 <p className="flex items-center gap-2">
-                  <X className="h-3.5 w-3.5 shrink-0 text-red-400/70" /> Multiple
+                  <X className="h-3.5 w-3.5 shrink-0 text-ink-400" /> Multiple
                   contracts
                 </p>
                 <p className="flex items-center gap-2">
-                  <X className="h-3.5 w-3.5 shrink-0 text-red-400/70" /> Multiple
+                  <X className="h-3.5 w-3.5 shrink-0 text-ink-400" /> Multiple
                   dashboards
                 </p>
                 <p className="flex items-center gap-2">
-                  <X className="h-3.5 w-3.5 shrink-0 text-red-400/70" /> Multiple
+                  <X className="h-3.5 w-3.5 shrink-0 text-ink-400" /> Multiple
                   decisions
                 </p>
               </div>
@@ -76,35 +76,35 @@ export function WhyAinergy() {
           </Reveal>
 
           <div className="flex items-center justify-center py-2 lg:rotate-0">
-            <ArrowDown className="h-6 w-6 text-teal-400/60 lg:hidden" />
-            <div className="hidden h-full w-px bg-gradient-to-b from-transparent via-teal-400/40 to-transparent lg:block" />
+            <ArrowDown className="h-6 w-6 text-current-500/60 lg:hidden" />
+            <div className="hidden h-full w-px bg-gradient-to-b from-transparent via-current-500/40 to-transparent lg:block" />
           </div>
 
           <Reveal delay={0.1}>
-            <div className="flex h-full flex-col justify-between rounded-2xl border border-emerald-400/25 bg-gradient-to-b from-emerald-500/10 to-transparent p-8 shadow-glow">
+            <div className="flex h-full flex-col justify-between rounded-2xl border border-current-500/25 bg-gradient-to-b from-current-400/10 to-transparent p-8 shadow-glow">
               <div>
-                <span className="font-mono-tag text-xs uppercase text-emerald-300">
+                <span className="font-mono-tag text-xs uppercase text-current-600">
                   AINERGY
                 </span>
-                <p className="mt-6 font-display text-2xl font-medium text-offwhite-100">
+                <p className="mt-6 font-display text-2xl font-medium text-ink-900">
                   One Energy OS
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-offwhite-300/70">
+                <p className="mt-3 text-sm leading-relaxed text-ink-700">
                   Generation, storage, procurement, EV and carbon tracking —
                   coordinated through a single intelligent platform.
                 </p>
               </div>
-              <div className="mt-8 flex flex-col gap-2 border-t border-white/10 pt-6 text-sm text-offwhite-200/80">
+              <div className="mt-8 flex flex-col gap-2 border-t border-ink-900/10 pt-6 text-sm text-ink-800">
                 <p className="flex items-center gap-2">
-                  <Check className="h-3.5 w-3.5 shrink-0 text-emerald-400" /> One
+                  <Check className="h-3.5 w-3.5 shrink-0 text-forest-600" /> One
                   relationship
                 </p>
                 <p className="flex items-center gap-2">
-                  <Check className="h-3.5 w-3.5 shrink-0 text-emerald-400" /> One
+                  <Check className="h-3.5 w-3.5 shrink-0 text-forest-600" /> One
                   intelligence layer
                 </p>
                 <p className="flex items-center gap-2">
-                  <Check className="h-3.5 w-3.5 shrink-0 text-emerald-400" /> One
+                  <Check className="h-3.5 w-3.5 shrink-0 text-forest-600" /> One
                   view of your energy system
                 </p>
               </div>

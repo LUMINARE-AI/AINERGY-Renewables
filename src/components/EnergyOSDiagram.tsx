@@ -34,18 +34,18 @@ function OrbitDiagram() {
               y1="50"
               x2={x}
               y2={y}
-              stroke={isActive ? "#2dd4c8" : "rgba(45,212,200,0.18)"}
+              stroke={isActive ? "#F0A93E" : "rgba(240,169,62,0.18)"}
               strokeWidth={isActive ? 0.5 : 0.25}
             />
           );
         })}
       </svg>
 
-      <div className="absolute left-1/2 top-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border border-emerald-400/40 bg-graphite-900 text-center shadow-glow sm:h-32 sm:w-32">
+      <div className="absolute left-1/2 top-1/2 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border border-current-400/40 bg-graphite-900 text-center shadow-glow-dark sm:h-32 sm:w-32">
         <span className="font-display text-sm font-semibold text-offwhite-100 sm:text-base">
           AINERGY
         </span>
-        <span className="font-mono-tag text-[10px] text-emerald-300">OS</span>
+        <span className="font-mono-tag text-[10px] text-current-300">OS</span>
       </div>
 
       {OS_NODES.map((node, i) => {
@@ -63,7 +63,7 @@ function OrbitDiagram() {
             style={{ left: `${x}%`, top: `${y}%` }}
             className={`absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border px-3 py-1.5 text-xs font-medium transition-all duration-300 ${
               isActive
-                ? "border-teal-400 bg-teal-400/10 text-teal-200 scale-110"
+                ? "border-current-400 bg-current-400/10 text-current-200 scale-110"
                 : "border-white/15 bg-graphite-900/90 text-offwhite-300/70"
             }`}
           >
@@ -77,8 +77,8 @@ function OrbitDiagram() {
 
 export function EnergyOSDiagram() {
   return (
-    <section className="relative overflow-hidden bg-graphite-900/40 py-24 lg:py-32">
-      <div className="bg-radial-fade pointer-events-none absolute inset-0" />
+    <section className="surface-dark relative overflow-hidden bg-ink-950 py-24 lg:py-32">
+      <div className="bg-radial-fade-dark pointer-events-none absolute inset-0" />
       <Container className="relative">
         <SectionHeader
           eyebrow="AINERGY OS"
@@ -86,6 +86,7 @@ export function EnergyOSDiagram() {
           description="Solar, wind, storage, grid, Open Access, EV and factory load — read alongside weather, tariffs and carbon data — coordinated by a single intelligence layer."
           align="center"
           className="mx-auto"
+          tone="dark"
         />
 
         <Reveal className="mt-16" delay={0.1}>
@@ -99,8 +100,8 @@ export function EnergyOSDiagram() {
             ];
             return (
               <Reveal key={cap.title} delay={i * 0.06}>
-                <div className="group h-full rounded-2xl border border-white/10 bg-graphite-950/60 p-6 transition-colors hover:border-teal-400/30">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-teal-400/10 text-teal-300">
+                <div className="group h-full rounded-2xl border border-white/10 bg-graphite-950/60 p-6 transition-colors hover:border-current-400/30">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-current-400/10 text-current-300">
                     {Icon && <Icon className="h-5 w-5" />}
                   </div>
                   <h3 className="mt-4 font-display text-lg font-medium text-offwhite-100">

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function InsightsPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-graphite-950 pb-16 pt-36 lg:pt-44">
+      <section className="relative overflow-hidden bg-paper-50 pb-16 pt-36 lg:pt-44">
         <div className="bg-radial-fade pointer-events-none absolute inset-0" />
         <Container className="relative">
           <SectionHeader
@@ -26,8 +26,9 @@ export default function InsightsPage() {
         </Container>
       </section>
 
-      <section className="bg-graphite-950 pb-24 lg:pb-32">
-        <Container>
+      <section className="surface-dark relative overflow-hidden bg-ink-950 pb-24 pt-16 lg:pb-32">
+        <div className="bg-radial-fade-dark pointer-events-none absolute inset-0" />
+        <Container className="relative">
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {INSIGHTS.map((insight, i) => (
               <Reveal key={insight.slug} delay={(i % 3) * 0.06}>

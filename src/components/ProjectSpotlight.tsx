@@ -7,7 +7,7 @@ import { PROJECTS } from "@/lib/data";
 
 export function ProjectSpotlight() {
   return (
-    <section className="bg-graphite-950 py-24 lg:py-32">
+    <section className="bg-paper-100/50 py-24 lg:py-32">
       <Container>
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <SectionHeader
@@ -27,11 +27,11 @@ export function ProjectSpotlight() {
             </Reveal>
           ))}
           <Reveal delay={PROJECTS.length * 0.08}>
-            <div className="flex h-full min-h-[280px] flex-col items-start justify-center rounded-3xl border border-dashed border-white/15 p-7">
-              <p className="font-display text-lg font-medium text-offwhite-100">
+            <div className="flex h-full min-h-[280px] flex-col items-start justify-center rounded-3xl border border-dashed border-ink-900/15 p-7">
+              <p className="font-display text-lg font-medium text-ink-900">
                 More projects in development
               </p>
-              <p className="mt-2 text-sm text-offwhite-300/55">
+              <p className="mt-2 text-sm text-ink-500">
                 Solar, wind, hybrid and storage projects will be added here as
                 they reach development milestones.
               </p>
