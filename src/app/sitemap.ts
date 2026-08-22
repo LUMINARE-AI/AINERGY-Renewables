@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/utils";
-import { ALL_SOLUTIONS, PROJECTS, INSIGHTS } from "@/lib/data";
+import { ALL_SOLUTIONS, SERVICES, INSIGHTS } from "@/lib/data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/solutions",
     "/energy-os",
     "/energy-optimizer",
-    "/projects",
+    "/services",
     "/for-business",
     "/insights",
     "/about",
@@ -30,8 +30,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  const projectRoutes = PROJECTS.map((p) => ({
-    url: `${SITE_URL}/projects/${p.slug}`,
+  const serviceRoutes = SERVICES.map((s) => ({
+    url: `${SITE_URL}/services/${s.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.6,
@@ -44,5 +44,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [...staticRoutes, ...solutionRoutes, ...projectRoutes, ...insightRoutes];
+  return [...staticRoutes, ...solutionRoutes, ...serviceRoutes, ...insightRoutes];
 }

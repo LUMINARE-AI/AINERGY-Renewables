@@ -6,7 +6,7 @@ export type NavLink = { label: string; href: string };
 export const NAV_LINKS: NavLink[] = [
   { label: "Solutions", href: "/solutions" },
   { label: "Energy OS", href: "/energy-os" },
-  { label: "Projects", href: "/projects" },
+  { label: "Services", href: "/services" },
   { label: "For Business", href: "/for-business" },
   { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },
@@ -15,7 +15,7 @@ export const NAV_LINKS: NavLink[] = [
 export const FOOTER_LINKS: NavLink[] = [
   { label: "Solutions", href: "/solutions" },
   { label: "Energy OS", href: "/energy-os" },
-  { label: "Projects", href: "/projects" },
+  { label: "Services", href: "/services" },
   { label: "For Business", href: "/for-business" },
   { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },
@@ -161,34 +161,99 @@ export const CLOCK_247: Solution = {
 
 export const ALL_SOLUTIONS: Solution[] = [...SOLUTIONS, CLOCK_247];
 
-export type Project = {
+export type Service = {
   slug: string;
   name: string;
-  category: "Solar" | "Wind" | "Hybrid" | "Storage" | "C&I";
-  status: "In Development" | "Under Construction" | "Operational";
-  capacity: string;
-  location: string;
-  technology: string;
-  expectedGeneration: string;
-  cod: string;
+  short: string;
   description: string;
-  isPlaceholder: boolean;
+  icon: string;
+  points: string[];
 };
 
-export const PROJECTS: Project[] = [
+export const SERVICES: Service[] = [
   {
-    slug: "ainergy-solar-project-5mw",
-    name: "AINERGY Solar Project",
-    category: "Solar",
-    status: "In Development",
-    capacity: "5 MW",
-    location: "Location to be announced",
-    technology: "Ground-mounted crystalline PV",
-    expectedGeneration: "To be confirmed on commissioning",
-    cod: "Commercial operation date to be announced",
+    slug: "solar-plant-development",
+    name: "Solar Plant Development",
+    short: "Rooftop, ground-mount and Open Access solar — designed, built and commissioned.",
     description:
-      "AINERGY's first ground-mounted solar project, developed as the foundation of its own renewable-energy generation base ahead of building out its C&I platform.",
-    isPlaceholder: true,
+      "AINERGY develops solar plants end to end — site assessment, design, EPC and commissioning — with Open Access as the primary route for businesses whose requirement outgrows on-site rooftop or land.",
+    icon: "Sun",
+    points: [
+      "Open Access solar as the core focus — captive and group captive structures",
+      "Rooftop and ground-mounted plants for on-site generation",
+      "Site assessment, design, EPC and commissioning under one team",
+      "Regulatory filings and DISCOM coordination handled end to end",
+    ],
+  },
+  {
+    slug: "ehv-lines-epc",
+    name: "EHV Lines EPC (11 kV – 220 kV)",
+    short: "Transmission and evacuation line EPC from 11 kV up to 220 kV.",
+    description:
+      "End-to-end EPC for extra-high-voltage transmission and evacuation lines from 11 kV to 220 kV — the infrastructure that actually connects an Open Access plant to its consumer, engineered and built in-house rather than outsourced.",
+    icon: "Cable",
+    points: [
+      "Route survey, tower spotting and line design",
+      "Turnkey construction from 11 kV to 220 kV",
+      "Substation interconnection and evacuation infrastructure",
+      "Statutory approvals and right-of-way coordination",
+    ],
+  },
+  {
+    slug: "ev-charger",
+    name: "EV Charger Infrastructure",
+    short: "Fleet and workplace EV charging, coordinated with your energy system.",
+    description:
+      "EV charging infrastructure supplied and installed as a load coordinated with generation, storage and tariffs — not a disconnected add-on bolted on after the fact.",
+    icon: "PlugZap",
+    points: [
+      "Fleet, workplace and facility charging installations",
+      "AC and DC charger supply, installation and commissioning",
+      "Coordinated scheduling with on-site generation and tariffs",
+      "Ongoing maintenance and uptime monitoring",
+    ],
+  },
+  {
+    slug: "bess",
+    name: "BESS",
+    short: "Battery Energy Storage Systems, sized to your load and tariff structure.",
+    description:
+      "Battery Energy Storage Systems supplied, installed and commissioned to shift generation to when it's actually needed — peak shaving, demand-charge management and backup resilience.",
+    icon: "BatteryCharging",
+    points: [
+      "Sizing based on load curve, tariff structure and generation profile",
+      "Peak shaving and demand-charge management",
+      "Extends renewable availability past daylight hours",
+      "Supply, installation and commissioning",
+    ],
+  },
+  {
+    slug: "ai-products",
+    name: "AI Products",
+    short: "The Energy Copilot and the AINERGY OS intelligence layer.",
+    description:
+      "The AI layer that sits on top of every physical asset AINERGY builds — forecasting generation and demand, recommending the lowest-cost energy mix, and turning a bill upload into a bankable plan.",
+    icon: "BrainCircuit",
+    points: [
+      "Energy Procure Copilot — bill upload to recommended energy mix",
+      "Generation and demand forecasting",
+      "Landed-cost modeling across grid, Open Access, captive and group captive",
+      "Continuous monitoring and optimization once assets are live",
+    ],
+  },
+  {
+    slug: "asset-om",
+    name: "Asset O&M & Monitoring",
+    short: "Ongoing operations, maintenance and performance monitoring.",
+    description:
+      "Once a plant, line or storage system is commissioned, AINERGY keeps operating it — performance monitoring, preventive maintenance and regulatory compliance across the asset's operating life.",
+    icon: "Activity",
+    points: [
+      "Preventive and corrective maintenance",
+      "Remote performance monitoring and alerting",
+      "Regulatory and compliance reporting",
+      "Single point of accountability across the asset lifecycle",
+    ],
   },
 ];
 

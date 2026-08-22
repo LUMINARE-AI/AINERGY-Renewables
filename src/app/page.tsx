@@ -4,8 +4,8 @@ import { BrandDifferentiation } from "@/components/BrandDifferentiation";
 import { WhyAinergy } from "@/components/WhyAinergy";
 import { EnergyOSDiagram } from "@/components/EnergyOSDiagram";
 import { SolutionsGrid } from "@/components/SolutionsGrid";
-import { OptimizerDemo } from "@/components/OptimizerDemo";
-import { ProjectSpotlight } from "@/components/ProjectSpotlight";
+import { WhyOpenAccess } from "@/components/WhyOpenAccess";
+import { ServicesGrid } from "@/components/ServicesGrid";
 import { EnergyNetwork } from "@/components/EnergyNetwork";
 import { AISection } from "@/components/AISection";
 import { Industries } from "@/components/Industries";
@@ -23,8 +23,8 @@ export default function Home() {
       <WhyAinergy />
       <EnergyOSDiagram />
       <SolutionsGrid />
-      <OptimizerDemo />
-      <ProjectSpotlight />
+      <WhyOpenAccess />
+      <ServicesGrid />
       <EnergyNetwork />
       <AISection />
       <Industries />

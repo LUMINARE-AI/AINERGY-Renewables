@@ -16,7 +16,7 @@ export function Hero() {
       <div className="paper-grain" />
 
       <Container className="relative grid gap-16 lg:grid-cols-2 lg:items-center lg:gap-8">
-        <div>
+        <div className="min-w-0">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -35,12 +35,10 @@ export function Hero() {
             className="text-balance mt-6 font-display text-4xl font-medium leading-[1.06] text-ink-900 sm:text-5xl lg:text-[3.6rem]"
           >
             The Energy OS for{" "}
-            <span className="relative whitespace-nowrap">
-              <span className="relative z-10">Commercial &amp; Industrial</span>
-              <span
-                className="absolute inset-x-0 bottom-1 h-3 -rotate-1 bg-current-400/40 sm:h-4"
-                aria-hidden="true"
-              />
+            <span
+              className="bg-current-400/40 bg-no-repeat [background-position:0_88%] [background-size:100%_0.3em] [box-decoration-break:clone] [-webkit-box-decoration-break:clone]"
+            >
+              Commercial &amp; Industrial
             </span>
           </motion.h1>
 

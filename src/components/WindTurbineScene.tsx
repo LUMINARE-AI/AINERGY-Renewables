@@ -1,12 +1,14 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Signature hero visual: a realistic, elegant wind turbine set against a
- * distant solar field and C&I facility, rendered as tuned SVG rather than
- * a 3D scene. This keeps the hero fast and consistent on every device
- * (no WebGL cost, no hydration weight) while still reading as a premium,
- * cinematic illustration. Blade rotation is pure CSS and is disabled
- * automatically under prefers-reduced-motion (see globals.css).
+ * Signature hero visual: a wind turbine at golden hour, overlooking a solar
+ * field and a C&I facility, connected by an intelligent energy network.
+ * Rendered as tuned SVG rather than a 3D scene or raster photo — keeps the
+ * hero fast and crisp on every device (no WebGL cost, no image weight)
+ * while reading as a premium, cinematic illustration. Blade rotation is
+ * pure CSS and is disabled automatically under prefers-reduced-motion (see
+ * globals.css). Palette is drawn entirely from the brand's current/forest/
+ * paper tokens (tailwind.config.ts) rather than one-off hex values.
  */
 export function WindTurbineScene({ className }: { className?: string }) {
   return (
@@ -15,120 +17,184 @@ export function WindTurbineScene({ className }: { className?: string }) {
         viewBox="0 0 800 1000"
         className="h-full w-full"
         role="img"
-        aria-label="Illustration of a wind turbine, solar field and business facility connected by an intelligent energy network"
+        aria-label="Illustration of a wind turbine at golden hour, overlooking a solar field and a business facility, connected by an intelligent energy network"
       >
         <defs>
           <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#04140e" />
-            <stop offset="45%" stopColor="#062018" />
+            <stop offset="38%" stopColor="#062018" />
+            <stop offset="66%" stopColor="#0a2e22" />
+            <stop offset="100%" stopColor="#0f4230" />
+          </linearGradient>
+          <radialGradient id="horizonGlow" cx="50%" cy="100%" r="75%">
+            <stop offset="0%" stopColor="#F0A93E" stopOpacity="0.30" />
+            <stop offset="55%" stopColor="#D98A1E" stopOpacity="0.12" />
+            <stop offset="100%" stopColor="#D98A1E" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#F8C976" stopOpacity="0.95" />
+            <stop offset="45%" stopColor="#F0A93E" stopOpacity="0.32" />
+            <stop offset="100%" stopColor="#F0A93E" stopOpacity="0" />
+          </radialGradient>
+          <linearGradient id="hillsFar" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#0f4230" />
             <stop offset="100%" stopColor="#0a2e22" />
           </linearGradient>
-          <radialGradient id="sun" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#d4af6a" stopOpacity="0.9" />
-            <stop offset="45%" stopColor="#c19a4b" stopOpacity="0.35" />
-            <stop offset="100%" stopColor="#c19a4b" stopOpacity="0" />
-          </radialGradient>
           <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#0f4230" />
-            <stop offset="100%" stopColor="#062018" />
-          </linearGradient>
-          <linearGradient id="tower" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#e8e5dc" />
-            <stop offset="50%" stopColor="#c7c4bb" />
-            <stop offset="100%" stopColor="#9a988f" />
+            <stop offset="0%" stopColor="#155a40" />
+            <stop offset="100%" stopColor="#04140e" />
           </linearGradient>
           <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#155a40" />
+            <stop offset="0%" stopColor="#2c9468" stopOpacity="0.9" />
             <stop offset="100%" stopColor="#0a2e22" />
+          </linearGradient>
+          {/* Tower: light-struck left face, shadowed right face — reads as a
+              rounded, cylindrical tube rather than a flat gradient panel. */}
+          <linearGradient id="tower" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#FCFAF5" />
+            <stop offset="35%" stopColor="#F7F2E8" />
+            <stop offset="70%" stopColor="#D8D2C2" />
+            <stop offset="100%" stopColor="#A89C7E" />
+          </linearGradient>
+          <linearGradient id="nacelle" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#FCFAF5" />
+            <stop offset="100%" stopColor="#C7BC9C" />
+          </linearGradient>
+          <linearGradient id="blade" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#F7F2E8" />
+            <stop offset="60%" stopColor="#FCFAF5" />
+            <stop offset="100%" stopColor="#D8D2C2" />
           </linearGradient>
         </defs>
 
         <rect width="800" height="1000" fill="url(#sky)" />
-        <circle cx="560" cy="260" r="230" fill="url(#sun)" />
-        <circle cx="560" cy="260" r="46" fill="#d4af6a" fillOpacity="0.85" />
 
-        {/* distant grid / transmission lines */}
-        <g stroke="#F0A93E" strokeOpacity="0.25" strokeWidth="1.5">
-          <path d="M0 520 L800 460" />
-          <path d="M0 560 L800 500" />
+        {/* soft cloud wisps, high atmosphere */}
+        <g fill="#F7F2E8" opacity="0.05">
+          <ellipse cx="150" cy="140" rx="110" ry="14" />
+          <ellipse cx="640" cy="90" rx="90" ry="11" />
+          <ellipse cx="420" cy="180" rx="70" ry="9" />
+        </g>
+
+        {/* sun + horizon glow, low on the skyline for a golden-hour read */}
+        <ellipse cx="560" cy="560" rx="360" ry="220" fill="url(#horizonGlow)" />
+        <circle cx="560" cy="330" r="230" fill="url(#sun)" />
+        <circle cx="560" cy="330" r="42" fill="#F8C976" fillOpacity="0.9" />
+
+        {/* distant transmission lines, high above the hills */}
+        <g stroke="#F0A93E" strokeOpacity="0.22" strokeWidth="1.5">
+          <path d="M0 500 L800 440" />
+          <path d="M0 540 L800 480" />
         </g>
         <g className="ainergy-flow" stroke="#F0A93E" strokeWidth="2" strokeDasharray="6 10" strokeLinecap="round">
-          <path d="M40 545 L760 480" fill="none" />
+          <path d="M40 525 L760 460" fill="none" />
         </g>
 
-        {/* ground */}
-        <path d="M0 620 L800 560 L800 1000 L0 1000 Z" fill="url(#ground)" />
+        {/* rolling hill horizon — soft curves instead of a hard diagonal cut */}
+        <path
+          d="M0 600 C 140 560, 260 585, 380 555 C 520 520, 620 560, 800 520 L800 1000 L0 1000 Z"
+          fill="url(#hillsFar)"
+          opacity="0.55"
+        />
+        <path
+          d="M0 660 C 160 615, 300 650, 440 610 C 580 575, 660 615, 800 585 L800 1000 L0 1000 Z"
+          fill="url(#ground)"
+        />
 
-        {/* distant solar field */}
-        <g opacity="0.9">
-          {Array.from({ length: 6 }).map((_, i) => {
-            const x = 470 + i * 52;
-            const y = 600 - i * 6;
+        {/* solar field, laid out in receding perspective rows */}
+        <g opacity="0.95">
+          {Array.from({ length: 4 }).map((_, row) => {
+            const rowY = 655 + row * 46;
+            const rowScale = 1 - row * 0.14;
+            const panelsInRow = 6 - row;
             return (
-              <g key={i} transform={`translate(${x} ${y}) skewX(-18)`}>
-                <rect width="40" height="24" rx="1.5" fill="url(#panel)" stroke="#2c9468" strokeWidth="0.75" />
+              <g key={row} transform={`translate(430 ${rowY}) scale(${rowScale})`}>
+                {Array.from({ length: panelsInRow }).map((_, i) => (
+                  <g key={i} transform={`translate(${i * 54} 0) skewX(-16)`}>
+                    <rect width="42" height="22" rx="1.5" fill="url(#panel)" stroke="#4db787" strokeOpacity="0.4" strokeWidth="0.75" />
+                    <line x1="0" y1="11" x2="42" y2="11" stroke="#04140e" strokeOpacity="0.3" strokeWidth="0.75" />
+                  </g>
+                ))}
               </g>
             );
           })}
         </g>
 
-        {/* transmission towers */}
-        <g stroke="#4db787" strokeOpacity="0.5" strokeWidth="2" fill="none">
-          <path d="M120 640 L100 560 L80 640 M85 585 L115 585 M90 605 L110 605" />
-          <path d="M240 660 L220 580 L200 660 M205 605 L235 605 M210 625 L230 625" />
+        {/* transmission towers linking the field to the facility */}
+        <g stroke="#4db787" strokeOpacity="0.55" strokeWidth="2" fill="none">
+          <path d="M120 660 L100 585 L80 660 M85 605 L115 605 M90 625 L110 625" />
+          <path d="M250 675 L230 600 L210 675 M215 620 L245 620 M220 640 L240 640" />
         </g>
         <g className="ainergy-flow" stroke="#F0A93E" strokeWidth="1.5" strokeDasharray="4 8">
-          <path d="M100 560 L220 580" fill="none" />
+          <path d="M100 585 L230 600" fill="none" />
         </g>
 
-        {/* C&I facility silhouette */}
-        <g fill="#0a2e22" stroke="#1c7350" strokeWidth="1.5">
-          <rect x="520" y="700" width="220" height="140" />
-          <rect x="560" y="660" width="70" height="40" />
-          <rect x="660" y="640" width="16" height="60" />
+        {/* C&I facility silhouette, with its own rooftop array */}
+        <g fill="#062018" stroke="#1c7350" strokeWidth="1.5">
+          <rect x="520" y="712" width="220" height="148" />
+          <rect x="560" y="670" width="70" height="42" />
+          <rect x="660" y="648" width="16" height="64" />
         </g>
-        <g fill="#d4af6a" fillOpacity="0.55">
-          <rect x="545" y="740" width="18" height="18" />
-          <rect x="580" y="740" width="18" height="18" />
-          <rect x="615" y="740" width="18" height="18" />
-          <rect x="650" y="740" width="18" height="18" />
-          <rect x="685" y="740" width="18" height="18" />
+        <g transform="translate(538 700) skewX(-10)" opacity="0.9">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <rect key={i} x={i * 21} y="0" width="16" height="9" rx="1" fill="url(#panel)" stroke="#4db787" strokeOpacity="0.4" strokeWidth="0.5" />
+          ))}
+        </g>
+        <g fill="#F8C976" fillOpacity="0.5">
+          <rect x="545" y="752" width="18" height="18" />
+          <rect x="580" y="752" width="18" height="18" />
+          <rect x="615" y="752" width="18" height="18" />
+          <rect x="650" y="752" width="18" height="18" />
+          <rect x="685" y="752" width="18" height="18" />
         </g>
 
-        {/* energy particles flowing to the facility */}
+        {/* energy flowing from the field toward the facility */}
         <g className="ainergy-flow" stroke="#F0A93E" strokeWidth="2" strokeDasharray="3 9" strokeLinecap="round">
-          <path d="M300 520 C 420 560, 480 640, 560 700" fill="none" />
+          <path d="M300 540 C 420 580, 480 650, 560 710" fill="none" />
         </g>
 
-        {/* WIND TURBINE */}
+        {/* ground shadow beneath the turbine, grounds it in the scene */}
+        <ellipse cx="300" cy="905" rx="70" ry="10" fill="#04140e" opacity="0.5" />
+
+        {/* WIND TURBINE — tapered tubular tower, elongated nacelle + spinner,
+            three aerofoil-tapered blades with a subtle twist highlight. */}
         <g>
-          {/* tower */}
-          <path d="M296 900 L286 480 L314 480 L304 900 Z" fill="url(#tower)" />
-          {/* nacelle */}
-          <rect x="272" y="462" width="56" height="26" rx="6" fill="#e8e5dc" />
+          {/* tower: two-segment taper reads as a rounded tube, not a flat cone */}
+          <path d="M283 900 L291 466 L309 466 L317 900 Z" fill="url(#tower)" />
+          <path d="M291 466 L295 466 L301 900 L317 900 L309 466 Z" fill="#A89C7E" opacity="0.35" />
+          <line x1="300" y1="900" x2="300" y2="466" stroke="#FCFAF5" strokeOpacity="0.5" strokeWidth="1" />
+
+          {/* nacelle: elongated pod with a small tail flange */}
+          <path d="M262 462 L336 462 C 340 462 342 464 342 468 L342 482 C 342 486 340 488 336 488 L262 488 C 258 488 256 486 256 482 L256 468 C 256 464 258 462 262 462 Z" fill="url(#nacelle)" />
+          <rect x="332" y="468" width="10" height="14" rx="2" fill="#C7BC9C" />
+
           {/* rotor hub + blades, rotating */}
-          <g className="ainergy-rotor" style={{ transformOrigin: "300px 475px" }}>
-            <circle cx="300" cy="475" r="7" fill="#c7c4bb" />
-            <g fill="#f2f0ea">
-              <path d="M300 475 L292 475 C 280 400 284 340 300 300 C 316 340 320 400 308 475 Z" />
+          <g className="ainergy-rotor" style={{ transformOrigin: "292px 475px" }}>
+            <g fill="url(#blade)">
+              <path d="M292 475 C 288 470, 283 462, 281 448 C 277 415, 277 360, 288 305 C 291 291, 296 285, 300 285 C 304 285, 306 294, 306 308 C 306 360, 302 415, 297 448 C 295 462, 296 470, 292 475 Z" />
               <path
-                d="M300 475 L292 475 C 280 400 284 340 300 300 C 316 340 320 400 308 475 Z"
-                transform="rotate(120 300 475)"
+                d="M292 475 C 288 470, 283 462, 281 448 C 277 415, 277 360, 288 305 C 291 291, 296 285, 300 285 C 304 285, 306 294, 306 308 C 306 360, 302 415, 297 448 C 295 462, 296 470, 292 475 Z"
+                transform="rotate(120 292 475)"
               />
               <path
-                d="M300 475 L292 475 C 280 400 284 340 300 300 C 316 340 320 400 308 475 Z"
-                transform="rotate(240 300 475)"
+                d="M292 475 C 288 470, 283 462, 281 448 C 277 415, 277 360, 288 305 C 291 291, 296 285, 300 285 C 304 285, 306 294, 306 308 C 306 360, 302 415, 297 448 C 295 462, 296 470, 292 475 Z"
+                transform="rotate(240 292 475)"
               />
+              {/* subtle twist-line down each blade for dimensionality */}
+              <path d="M293 460 C 291 400, 293 350, 297 310" fill="none" stroke="#A89C7E" strokeOpacity="0.4" strokeWidth="1" />
+              <path d="M293 460 C 291 400, 293 350, 297 310" fill="none" stroke="#A89C7E" strokeOpacity="0.4" strokeWidth="1" transform="rotate(120 292 475)" />
+              <path d="M293 460 C 291 400, 293 350, 297 310" fill="none" stroke="#A89C7E" strokeOpacity="0.4" strokeWidth="1" transform="rotate(240 292 475)" />
             </g>
+            <circle cx="292" cy="475" r="9" fill="#F7F2E8" stroke="#A89C7E" strokeWidth="1" />
           </g>
         </g>
 
-        {/* distributed nodes */}
+        {/* distributed grid nodes, pulsing */}
         {[
-          [150, 760],
-          [380, 830],
-          [430, 560],
-          [630, 560],
+          [150, 770],
+          [380, 840],
+          [430, 555],
+          [630, 555],
         ].map(([cx, cy], i) => (
           <g key={i} className="ainergy-pulse" style={{ animationDelay: `${i * 0.6}s` }}>
             <circle cx={cx} cy={cy} r="5" fill="#F0A93E" />
