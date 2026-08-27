@@ -1,125 +1,109 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
-import Link from "next/link";
+import { IndianRupee, BrainCircuit, Network } from "lucide-react";
+import { Instrument_Serif } from "next/font/google";
 import { Container } from "@/components/ui/Container";
-import { WindTurbineScene } from "@/components/WindTurbineScene";
-import { Badge } from "@/components/ui/Badge";
 
-const FLOW = ["Solar", "Wind", "Storage", "Grid", "Open Access"];
+const accent = Instrument_Serif({
+  weight: "400",
+  style: "italic",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const CALLOUTS = [
+  { label: "Lower ₹/kWh", icon: IndianRupee },
+  { label: "AI Energy OS", icon: BrainCircuit },
+  { label: "Open Access", icon: Network },
+];
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-paper-50 pb-20 pt-32 lg:pb-28 lg:pt-40">
-      <div className="bg-radial-fade pointer-events-none absolute inset-0" />
-      <div className="paper-grain" />
+    <section className="surface-dark relative flex min-h-dvh items-center overflow-hidden bg-ink-950 pt-24 pb-10 sm:pt-28 lg:pt-24 lg:pb-0">
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: `
+            radial-gradient(ellipse 70% 55% at 70% 55%, rgba(8, 121, 127, 0.42) 0%, transparent 55%),
+            radial-gradient(ellipse 50% 40% at 20% 30%, rgba(201, 137, 58, 0.18) 0%, transparent 50%),
+            radial-gradient(ellipse 90% 55% at 50% 100%, #050A0B 0%, transparent 55%)
+          `,
+        }}
+      />
+      <div className="noise-overlay opacity-[0.04]" />
 
-      <Container className="relative grid gap-16 lg:grid-cols-2 lg:items-center lg:gap-8">
-        <div className="min-w-0">
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <Badge>
-              <Sparkles className="mr-1.5 h-3 w-3" />
-              AINERGY Renewable LLP
-            </Badge>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-balance mt-6 font-display text-4xl font-medium leading-[1.06] text-ink-900 sm:text-5xl lg:text-[3.6rem]"
-          >
-            The Energy OS for{" "}
-            <span
-              className="bg-current-400/40 bg-no-repeat [background-position:0_88%] [background-size:100%_0.3em] [box-decoration-break:clone] [-webkit-box-decoration-break:clone]"
+      <Container className="relative z-10 w-full">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-8 xl:gap-12">
+          {/* Left — copy */}
+          <div className="text-center lg:text-left">
+            <motion.h1
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+              className="text-balance font-display text-[2.35rem] font-medium leading-[1.15] tracking-tight text-offwhite-100 sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1] xl:text-[3.85rem]"
             >
-              Commercial &amp; Industrial
-            </span>
-          </motion.h1>
+              The{" "}
+              <em className={`${accent.className} text-[1.08em] not-italic text-gold-400`}>
+                Energy OS
+              </em>{" "}
+              for{" "}
+              <em className={`${accent.className} text-[1.08em] not-italic`}>
+                Commercial &amp; Industrial
+              </em>
+            </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="text-balance mt-6 max-w-xl text-lg leading-relaxed text-ink-700/90"
-          >
-            AINERGY builds the open access and on-site solar plants that cut
-            C&amp;I energy costs — and runs an AI layer on top that tells you
-            exactly which mix of rooftop, wind, storage and Open Access gets
-            you there fastest.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.34, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center"
-          >
-            <Link
-              href="/energy-optimizer"
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-ink-900 px-7 py-3.5 text-sm font-medium text-paper-50 transition-all hover:bg-current-600 hover:shadow-glow"
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 lg:justify-start lg:gap-x-8"
             >
-              Upload a bill, get a plan
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href="/energy-os"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-ink-900/15 px-7 py-3.5 text-sm font-medium text-ink-900 transition-colors hover:border-current-500/50 hover:bg-current-400/10"
-            >
-              Explore AINERGY OS
-            </Link>
-          </motion.div>
+              {CALLOUTS.map((item) => (
+                <div key={item.label} className="flex items-center gap-2.5">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-forest-800/70 text-current-300 backdrop-blur-sm">
+                    <item.icon className="h-4 w-4" />
+                  </span>
+                  <span className="whitespace-nowrap text-xs font-medium text-offwhite-100/90 sm:text-sm">
+                    {item.label}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
 
+          {/* Right — illustration */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-14 flex flex-wrap items-center gap-x-3 gap-y-3 border-t border-ink-900/10 pt-8"
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.9, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+            className="relative mx-auto w-full max-w-2xl lg:max-w-none"
           >
-            {FLOW.map((item, i) => (
-              <span key={item} className="flex items-center gap-3">
-                <span className="font-mono-tag text-xs text-ink-600">
-                  {item}
-                </span>
-                {i < FLOW.length - 1 && (
-                  <span className="text-current-500/60">/</span>
-                )}
-              </span>
-            ))}
-            <ArrowRight className="mx-1 h-3.5 w-3.5 text-current-600/70" />
-            <span className="font-mono-tag rounded-full border border-forest-600/25 bg-forest-500/8 px-3 py-1 text-xs text-forest-700">
-              Lower ₹/kWh
-            </span>
+            <svg
+              className="pointer-events-none absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 text-white/[0.1]"
+              viewBox="0 0 720 720"
+              fill="none"
+              aria-hidden
+            >
+              <circle cx="360" cy="360" r="170" stroke="currentColor" strokeWidth="1" />
+              <circle cx="360" cy="360" r="250" stroke="currentColor" strokeWidth="1" />
+              <circle cx="360" cy="360" r="330" stroke="currentColor" strokeWidth="1" />
+            </svg>
+
+            <div className="relative z-10 mx-auto aspect-[3/2] w-full min-h-[280px] sm:min-h-[360px] lg:min-h-[420px] xl:min-h-[480px]">
+              <Image
+                src="/mainhero.png"
+                alt="AINERGY Energy OS — solar, wind, storage and facilities on one intelligent network"
+                fill
+                priority
+                quality={92}
+                sizes="(max-width: 1024px) 90vw, 50vw"
+                className="object-contain object-center select-none"
+              />
+            </div>
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative"
-        >
-          <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-current-400/15 via-transparent to-forest-500/10 blur-2xl" />
-          <div className="overflow-hidden rounded-[1.75rem] border border-ink-900/10 shadow-premium-lg">
-            <WindTurbineScene />
-          </div>
-          <div className="absolute -bottom-6 -left-6 hidden w-56 rounded-2xl border border-ink-900/10 bg-paper-50/95 p-4 shadow-premium backdrop-blur sm:block">
-            <p className="font-mono-tag text-[10px] uppercase text-current-600">
-              Energy Copilot
-            </p>
-            <p className="mt-1.5 text-sm font-medium text-ink-900">
-              Est. 38% cost reduction
-            </p>
-            <p className="mt-0.5 text-xs text-ink-600">
-              Rooftop + Open Access · Karnataka
-            </p>
-          </div>
-        </motion.div>
       </Container>
     </section>
   );

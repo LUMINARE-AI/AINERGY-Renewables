@@ -10,75 +10,73 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Light-mode neutrals — warm paper, not clinical white.
+        // Light-mode neutrals — cool off-white from the logo cream.
         paper: {
-          50: "#FCFAF5",
-          100: "#F7F2E8",
-          200: "#EFE7D4",
-          300: "#E2D6B8",
+          50: "#F7F8F6",
+          100: "#EEF2F1",
+          200: "#DCE6E5",
+          300: "#C5D2D1",
         },
-        // Light-mode text / ink family.
+        // Light-mode text / ink family — cool charcoal matching the wordmark.
         ink: {
-          950: "#15130E",
-          900: "#211D15",
-          800: "#332C1F",
-          700: "#4A4130",
-          600: "#665A42",
-          500: "#847758",
-          400: "#A89C7E",
+          950: "#0D1213",
+          900: "#151C1D",
+          800: "#232C2E",
+          700: "#3A4749",
+          600: "#556366",
+          500: "#728082",
+          400: "#94A1A3",
         },
-        // Signature accent — "current": copper/amber, the brand's one
-        // distinctive color. Used for primary CTAs, live/AI moments, focus.
+        // Signature accent — logo teal. CTAs, eyebrows, live/AI moments.
         current: {
-          300: "#F8C976",
-          400: "#F0A93E",
-          500: "#D98A1E",
-          600: "#AD6B14",
-          700: "#7E4E0F",
+          300: "#8FDBDF",
+          400: "#3ABBC2",
+          500: "#08797F",
+          600: "#06666B",
+          700: "#044C50",
         },
-        // Secondary accent — positive/savings/success, also used as the
-        // "green energy" note without leaning on teal like every competitor.
+        // Secondary accent — deeper petrol-teal for success / energy notes.
         forest: {
-          950: "#04140e",
-          900: "#062018",
-          800: "#0a2e22",
-          700: "#0f4230",
-          600: "#155a40",
-          500: "#1c7350",
-          400: "#2c9468",
-          300: "#4db787",
-          200: "#8fd4ac",
+          950: "#031110",
+          900: "#05201E",
+          800: "#08302D",
+          700: "#0B4540",
+          600: "#0E5C56",
+          500: "#147A72",
+          400: "#2A9A91",
+          300: "#5BBDB4",
+          200: "#9FD9D3",
         },
-        // Dark "control room" mode — reserved for the Energy Copilot and
-        // authenticated analysis product, not the marketing chrome.
+        // Dark "control room" mode — teal-tinted graphite.
         graphite: {
-          950: "#0a0d0c",
-          900: "#0f1412",
-          800: "#161c19",
-          700: "#1f2723",
-          600: "#2b3531",
-          500: "#3d4a44",
-          400: "#5c6a63",
+          950: "#071011",
+          900: "#0C1618",
+          800: "#121D1F",
+          700: "#1A2729",
+          600: "#263638",
+          500: "#38494B",
+          400: "#5A6C6E",
         },
-        // Legacy tokens kept for backward compatibility during the
-        // redesign — prefer paper/ink/current/forest in new work.
         emerald: {
-          400: "#34d399",
-          500: "#12b981",
-          600: "#0a9b6c",
+          400: "#3ABBC2",
+          500: "#08797F",
+          600: "#06666B",
         },
         offwhite: {
-          100: "#faf9f6",
-          200: "#f2f0ea",
-          300: "#e8e5dc",
+          100: "#F6F8F7",
+          200: "#E8EEED",
+          300: "#D5DEDD",
         },
         teal: {
-          400: "#2dd4c8",
-          500: "#14b8ab",
+          400: "#3ABBC2",
+          500: "#08797F",
         },
+        // Companion accent — warm copper, complementary to the logo teal.
         gold: {
-          400: "#d4af6a",
-          500: "#c19a4b",
+          300: "#E8C07A",
+          400: "#D4A05A",
+          500: "#C9893A",
+          600: "#A36C28",
         },
       },
       fontFamily: {
@@ -88,8 +86,8 @@ const config: Config = {
       },
       backgroundImage: {
         "grid-glow":
-          "radial-gradient(circle at 50% 0%, rgba(217,138,30,0.10), transparent 60%)",
-        "current-gradient": "linear-gradient(120deg, #F0A93E 0%, #D98A1E 55%, #AD6B14 100%)",
+          "radial-gradient(circle at 50% 0%, rgba(8,121,127,0.10), transparent 60%)",
+        "current-gradient": "linear-gradient(120deg, #3ABBC2 0%, #08797F 55%, #06666B 100%)",
       },
       animation: {
         "spin-slow": "spin 18s linear infinite",
@@ -119,11 +117,11 @@ const config: Config = {
       },
       boxShadow: {
         premium:
-          "0 1px 2px rgba(21,19,14,0.06), 0 16px 40px -16px rgba(21,19,14,0.18)",
+          "0 1px 2px rgba(13,18,19,0.06), 0 16px 40px -16px rgba(13,18,19,0.18)",
         "premium-lg":
-          "0 2px 4px rgba(21,19,14,0.06), 0 30px 60px -20px rgba(21,19,14,0.22)",
-        glow: "0 0 40px -8px rgba(217,138,30,0.45)",
-        "glow-dark": "0 0 40px -8px rgba(240,169,62,0.3)",
+          "0 2px 4px rgba(13,18,19,0.06), 0 30px 60px -20px rgba(13,18,19,0.22)",
+        glow: "0 0 40px -8px rgba(8,121,127,0.45)",
+        "glow-dark": "0 0 40px -8px rgba(58,187,194,0.32)",
       },
     },
   },

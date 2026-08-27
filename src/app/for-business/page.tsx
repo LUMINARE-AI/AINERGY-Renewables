@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
   FileSearch,
   PenTool,
@@ -10,7 +11,6 @@ import {
   FileBarChart,
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/shared/Reveal";
 import { CTASection } from "@/components/CTASection";
 import { Industries } from "@/components/Industries";
@@ -36,14 +36,39 @@ const CAPABILITIES = [
 export default function ForBusinessPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-paper-50 pb-16 pt-36 lg:pt-44">
-        <div className="bg-radial-fade pointer-events-none absolute inset-0" />
-        <Container className="relative">
-          <SectionHeader
-            eyebrow="For Business"
-            title="Your energy. One intelligent platform."
-            description="From first assessment to long-term operation, AINERGY manages the full lifecycle of a business's energy system so your team doesn't have to coordinate it across a dozen vendors."
-          />
+      <section className="relative flex min-h-[70dvh] items-center overflow-hidden bg-ink-900 sm:min-h-[78dvh] lg:min-h-[85dvh]">
+        <Image
+          src="/ForBusinessBG.avif"
+          alt=""
+          fill
+          priority
+          quality={90}
+          sizes="100vw"
+          className="object-cover object-center"
+          aria-hidden
+        />
+        {/* Light vignette for text contrast — photo stays sharp */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(10,13,12,0.18)_0%,rgba(10,13,12,0.45)_100%)]" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink-950/50 to-transparent" />
+
+        <Container className="relative z-10 w-full py-28 sm:py-32">
+          <div className="mx-auto max-w-3xl text-center">
+            <Reveal>
+              <span className="font-mono-tag text-xs uppercase text-current-300">
+                For Business
+              </span>
+              <h1 className="text-balance mt-4 font-display text-[1.85rem] font-semibold tracking-tight text-offwhite-100 sm:text-4xl lg:text-[2.85rem] lg:leading-[1.1]">
+                Your energy. One intelligent platform.
+              </h1>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-balance mx-auto mt-5 max-w-2xl text-base font-medium leading-relaxed text-offwhite-100/85 sm:text-lg">
+                From first assessment to long-term operation, AINERGY manages
+                the full lifecycle of a business&apos;s energy system so your
+                team doesn&apos;t have to coordinate it across a dozen vendors.
+              </p>
+            </Reveal>
+          </div>
         </Container>
       </section>
 

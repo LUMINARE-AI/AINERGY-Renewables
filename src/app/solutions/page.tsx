@@ -2,38 +2,49 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { SolutionCard } from "@/components/SolutionCard";
+import { ServiceCard } from "@/components/ServiceCard";
 import { Reveal } from "@/components/shared/Reveal";
 import { CTASection } from "@/components/CTASection";
-import { SOLUTIONS, CLOCK_247 } from "@/lib/data";
+import { SOLUTIONS, CLOCK_247, SERVICES } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Solutions — Solar, Wind, Storage & Energy Intelligence",
+  title: "Solutions — Solar, Wind, Storage, EPC & Energy Intelligence",
   description:
-    "AINERGY's C&I energy solutions: on-site solar, Open Access, wind-solar hybrid, battery storage, 24×7 clean energy, energy intelligence, EV energy and Energy-as-a-Service.",
+    "AINERGY's C&I solutions: on-site solar, Open Access, hybrid, storage, energy intelligence, EV and Energy-as-a-Service — plus the EPC, BESS, EV charging and AI delivery behind them.",
   alternates: { canonical: "/solutions" },
 };
 
 export default function SolutionsPage() {
-  const cards = [...SOLUTIONS.slice(0, 4), CLOCK_247, ...SOLUTIONS.slice(4)];
+  const offerings = [...SOLUTIONS.slice(0, 4), CLOCK_247, ...SOLUTIONS.slice(4)];
 
   return (
     <>
-      <section className="relative overflow-hidden bg-paper-50 pb-16 pt-36 lg:pt-44">
+      <section className="relative overflow-hidden bg-paper-50 pb-14 pt-32 sm:pb-16 sm:pt-36 lg:pt-44">
         <div className="bg-radial-fade pointer-events-none absolute inset-0" />
         <Container className="relative">
           <SectionHeader
             eyebrow="Solutions"
             title="Every layer of a modern C&I energy system."
-            description="Adopt individually or as one integrated platform — AINERGY's solutions span generation, storage, procurement and the AI that ties them together."
+            description="Adopt the energy mix you need — and the infrastructure, EPC and AI that deliver it — individually or as one integrated platform."
           />
         </Container>
       </section>
 
-      <section className="surface-dark relative overflow-hidden bg-ink-950 pb-24 pt-16 lg:pb-32">
+      <section className="surface-dark relative overflow-hidden bg-ink-950 pb-16 pt-14 sm:pb-20 sm:pt-16 lg:pb-24">
         <div className="bg-radial-fade-dark pointer-events-none absolute inset-0" />
         <Container className="relative">
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {cards.map((solution, i) => (
+          <Reveal>
+            <div className="mb-8 max-w-2xl sm:mb-10">
+              <span className="font-mono-tag text-xs uppercase text-current-300">
+                Energy offerings
+              </span>
+              <h2 className="mt-3 font-display text-2xl font-medium text-offwhite-100 sm:text-3xl">
+                How your business gets cleaner, smarter power.
+              </h2>
+            </div>
+          </Reveal>
+          <div className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+            {offerings.map((solution, i) => (
               <Reveal key={solution.slug} delay={(i % 3) * 0.06}>
                 <SolutionCard solution={solution} />
               </Reveal>
@@ -42,9 +53,37 @@ export default function SolutionsPage() {
         </Container>
       </section>
 
+      <section className="relative overflow-hidden bg-paper-50 py-16 sm:py-20 lg:py-24">
+        <div className="bg-radial-fade pointer-events-none absolute inset-0 opacity-50" />
+        <Container className="relative">
+          <Reveal>
+            <div className="mb-8 max-w-2xl sm:mb-10">
+              <span className="font-mono-tag text-xs uppercase text-current-600">
+                Delivery &amp; infrastructure
+              </span>
+              <h2 className="mt-3 font-display text-2xl font-medium text-ink-900 sm:text-3xl">
+                What AINERGY builds and operates.
+              </h2>
+              <p className="mt-3 text-base leading-relaxed text-ink-700/85 sm:text-lg">
+                From Open Access solar plants and the EHV lines that connect
+                them, to EV charging, storage and the AI layer that runs on top
+                — engineered and delivered end to end.
+              </p>
+            </div>
+          </Reveal>
+          <div className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+            {SERVICES.map((service, i) => (
+              <Reveal key={service.slug} delay={(i % 3) * 0.06}>
+                <ServiceCard service={service} />
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
       <CTASection
         title="Not sure which combination fits your business?"
-        description="Share your electricity bill and load profile — AINERGY will design an energy mix around it."
+        description="Share your electricity bill and load profile — AINERGY will design an energy mix and delivery plan around it."
         primaryLabel="Get Your Energy Assessment"
         primaryHref="/for-business"
       />

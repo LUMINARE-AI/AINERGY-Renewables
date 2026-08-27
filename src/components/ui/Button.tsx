@@ -28,7 +28,7 @@ export function Button({
 
   const variantsLight: Record<string, string> = {
     primary:
-      "bg-ink-900 text-paper-50 hover:bg-current-600 shadow-[0_0_0_1px_rgba(33,29,21,0.06)] hover:shadow-glow focus-visible:ring-offset-2 focus-visible:ring-offset-paper-50",
+      "bg-ink-900 text-paper-50 hover:bg-current-600 shadow-[0_0_0_1px_rgba(21,28,29,0.06)] hover:shadow-glow focus-visible:ring-offset-2 focus-visible:ring-offset-paper-50",
     secondary:
       "bg-transparent text-ink-900 border border-ink-900/15 hover:border-current-500/70 hover:bg-current-400/10",
     ghost: "bg-transparent text-ink-900 hover:text-current-600",
@@ -36,7 +36,7 @@ export function Button({
 
   const variantsDark: Record<string, string> = {
     primary:
-      "bg-current-400 text-graphite-950 hover:bg-current-300 shadow-[0_0_0_1px_rgba(240,169,62,0.35)] hover:shadow-glow-dark focus-visible:ring-offset-2 focus-visible:ring-offset-graphite-950",
+      "bg-current-400 text-graphite-950 hover:bg-current-300 shadow-[0_0_0_1px_rgba(58,187,194,0.40)] hover:shadow-glow-dark focus-visible:ring-offset-2 focus-visible:ring-offset-graphite-950",
     secondary:
       "bg-transparent text-offwhite-100 border border-white/15 hover:border-current-400/60 hover:bg-white/5",
     ghost: "bg-transparent text-offwhite-100 hover:text-current-300",

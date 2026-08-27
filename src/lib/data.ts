@@ -6,7 +6,6 @@ export type NavLink = { label: string; href: string };
 export const NAV_LINKS: NavLink[] = [
   { label: "Solutions", href: "/solutions" },
   { label: "Energy OS", href: "/energy-os" },
-  { label: "Services", href: "/services" },
   { label: "For Business", href: "/for-business" },
   { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },
@@ -15,7 +14,6 @@ export const NAV_LINKS: NavLink[] = [
 export const FOOTER_LINKS: NavLink[] = [
   { label: "Solutions", href: "/solutions" },
   { label: "Energy OS", href: "/energy-os" },
-  { label: "Services", href: "/services" },
   { label: "For Business", href: "/for-business" },
   { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },

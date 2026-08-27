@@ -34,7 +34,7 @@ export function EnergyNetwork() {
                   y1="50"
                   x2={n.x}
                   y2={n.y}
-                  stroke="rgba(33,29,21,0.10)"
+                  stroke="rgba(21,28,29,0.10)"
                   strokeWidth="0.4"
                 />
               ))}
@@ -45,7 +45,7 @@ export function EnergyNetwork() {
                   y1="50"
                   x2={n.x}
                   y2={n.y}
-                  stroke="#D98A1E"
+                  stroke="#08797F"
                   strokeWidth="0.6"
                   strokeDasharray="2 6"
                   strokeLinecap="round"
@@ -87,8 +87,8 @@ export function EnergyNetwork() {
             animation: ainergy-node-glow 3.2s ease-in-out infinite;
           }
           @keyframes ainergy-node-glow {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(217,138,30,0.16); }
-            50% { box-shadow: 0 0 0 8px rgba(217,138,30,0); }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(8,121,127,0.16); }
+            50% { box-shadow: 0 0 0 8px rgba(8,121,127,0); }
           }
           @media (prefers-reduced-motion: reduce) {
             .ainergy-net-flow, .ainergy-node-pulse { animation: none !important; }

@@ -192,11 +192,11 @@ const inputClass =
   "w-full rounded-xl border border-ink-900/15 bg-paper-100/70 px-3.5 py-2.5 text-sm text-ink-900 placeholder:text-ink-400 transition-colors focus:border-current-500/60 focus:outline-none";
 
 const SEGMENT_META = {
-  rooftop: { label: "Rooftop Solar", color: "#F0A93E" },
-  ground: { label: "Ground-Mounted Solar", color: "#155A40" },
-  wind: { label: "On-site Wind", color: "#2dd4c8" },
-  openAccess: { label: "Open Access", color: "#AD6B14" },
-  grid: { label: "Grid", color: "#C7BC9C" },
+  rooftop: { label: "Rooftop Solar", color: "#C9893A" },
+  ground: { label: "Ground-Mounted Solar", color: "#08797F" },
+  wind: { label: "On-site Wind", color: "#3ABBC2" },
+  openAccess: { label: "Open Access", color: "#06666B" },
+  grid: { label: "Grid", color: "#94A1A3" },
 } as const;
 
 function ResultCard({

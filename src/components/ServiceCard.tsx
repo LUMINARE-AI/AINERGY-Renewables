@@ -10,7 +10,7 @@ export function ServiceCard({ service }: { service: Service }) {
 
   return (
     <Link
-      href={`/services/${service.slug}`}
+      href={`/solutions/${service.slug}`}
       className="group relative flex h-full flex-col rounded-2xl border border-ink-900/10 bg-paper-50 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-current-500/30 hover:shadow-premium"
     >
       <div className="flex items-center justify-between">

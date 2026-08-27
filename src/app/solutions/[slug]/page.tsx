@@ -7,11 +7,23 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/shared/Reveal";
 import { CTASection } from "@/components/CTASection";
 import { SolutionCard } from "@/components/SolutionCard";
+import { ServiceCard } from "@/components/ServiceCard";
 import { Badge } from "@/components/ui/Badge";
-import { ALL_SOLUTIONS } from "@/lib/data";
+import { ALL_SOLUTIONS, SERVICES } from "@/lib/data";
+
+function resolveItem(slug: string) {
+  const solution = ALL_SOLUTIONS.find((s) => s.slug === slug);
+  if (solution) return { kind: "solution" as const, item: solution };
+  const service = SERVICES.find((s) => s.slug === slug);
+  if (service) return { kind: "service" as const, item: service };
+  return null;
+}
 
 export function generateStaticParams() {
-  return ALL_SOLUTIONS.map((s) => ({ slug: s.slug }));
+  return [
+    ...ALL_SOLUTIONS.map((s) => ({ slug: s.slug })),
+    ...SERVICES.map((s) => ({ slug: s.slug })),
+  ];
 }
 
 export async function generateMetadata({
@@ -20,12 +32,12 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const solution = ALL_SOLUTIONS.find((s) => s.slug === slug);
-  if (!solution) return {};
+  const resolved = resolveItem(slug);
+  if (!resolved) return {};
   return {
-    title: `${solution.name} — Solutions`,
-    description: solution.description,
-    alternates: { canonical: `/solutions/${solution.slug}` },
+    title: `${resolved.item.name} — Solutions`,
+    description: resolved.item.description,
+    alternates: { canonical: `/solutions/${resolved.item.slug}` },
   };
 }
 
@@ -35,17 +47,26 @@ export default async function SolutionDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const solution = ALL_SOLUTIONS.find((s) => s.slug === slug);
-  if (!solution) notFound();
+  const resolved = resolveItem(slug);
+  if (!resolved) notFound();
 
+  const { kind, item } = resolved;
   const Icon = (Icons as unknown as Record<string, Icons.LucideIcon>)[
-    solution.icon
+    item.icon
   ];
-  const related = ALL_SOLUTIONS.filter((s) => s.slug !== slug).slice(0, 3);
+
+  const relatedSolutions =
+    kind === "solution"
+      ? ALL_SOLUTIONS.filter((s) => s.slug !== slug).slice(0, 3)
+      : [];
+  const relatedServices =
+    kind === "service"
+      ? SERVICES.filter((s) => s.slug !== slug).slice(0, 3)
+      : [];
 
   return (
     <>
-      <section className="relative overflow-hidden bg-paper-50 pb-16 pt-36 lg:pt-44">
+      <section className="relative overflow-hidden bg-paper-50 pb-14 pt-32 sm:pb-16 sm:pt-36 lg:pt-44">
         <div className="bg-radial-fade pointer-events-none absolute inset-0" />
         <Container className="relative">
           <Link
@@ -55,36 +76,38 @@ export default async function SolutionDetailPage({
             <ArrowLeft className="h-3.5 w-3.5" /> All solutions
           </Link>
 
-          <div className="mt-8 flex items-start gap-5">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-current-400/10 text-current-600">
-              {Icon && <Icon className="h-7 w-7" />}
+          <div className="mt-8 flex items-start gap-4 sm:gap-5">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-current-400/10 text-current-600 sm:h-14 sm:w-14">
+              {Icon && <Icon className="h-6 w-6 sm:h-7 sm:w-7" />}
             </div>
-            <div>
-              <Badge>Solution</Badge>
-              <h1 className="mt-4 text-balance font-display text-3xl font-medium leading-tight text-ink-900 sm:text-4xl lg:text-5xl">
-                {solution.name}
+            <div className="min-w-0">
+              <Badge>{kind === "solution" ? "Offering" : "Delivery"}</Badge>
+              <h1 className="mt-3 text-balance font-display text-2xl font-medium leading-tight text-ink-900 sm:mt-4 sm:text-4xl lg:text-5xl">
+                {item.name}
               </h1>
-              <p className="text-balance mt-5 max-w-2xl text-lg leading-relaxed text-ink-700/90">
-                {solution.description}
+              <p className="text-balance mt-4 max-w-2xl text-base leading-relaxed text-ink-700/90 sm:mt-5 sm:text-lg">
+                {item.description}
               </p>
             </div>
           </div>
         </Container>
       </section>
 
-      <section className="bg-paper-100/50 py-20">
+      <section className="bg-paper-100/50 py-14 sm:py-20">
         <Container>
           <Reveal>
-            <div className="grid gap-4 sm:grid-cols-3">
-              {solution.points.map((point) => (
+            <div
+              className={`grid gap-4 ${
+                kind === "solution" ? "sm:grid-cols-3" : "sm:grid-cols-2"
+              }`}
+            >
+              {item.points.map((point) => (
                 <div
                   key={point}
-                  className="flex items-start gap-3 rounded-2xl border border-ink-900/10 bg-paper-50 p-6"
+                  className="flex items-start gap-3 rounded-2xl border border-ink-900/10 bg-paper-50 p-5 sm:p-6"
                 >
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-forest-500" />
-                  <p className="text-sm leading-relaxed text-ink-700">
-                    {point}
-                  </p>
+                  <p className="text-sm leading-relaxed text-ink-700">{point}</p>
                 </div>
               ))}
             </div>
@@ -92,25 +115,39 @@ export default async function SolutionDetailPage({
         </Container>
       </section>
 
-      <section className="surface-dark relative overflow-hidden bg-ink-950 py-24 lg:py-32">
+      <section className="surface-dark relative overflow-hidden bg-ink-950 py-16 sm:py-24 lg:py-32">
         <div className="bg-radial-fade-dark pointer-events-none absolute inset-0" />
         <Container className="relative">
-          <h2 className="font-display text-2xl font-medium text-offwhite-100">
-            Related solutions
+          <h2 className="font-display text-xl font-medium text-offwhite-100 sm:text-2xl">
+            {kind === "solution" ? "Related solutions" : "Related delivery"}
           </h2>
-          <div className="mt-10 grid gap-5 sm:grid-cols-3">
-            {related.map((s, i) => (
-              <Reveal key={s.slug} delay={i * 0.06}>
-                <SolutionCard solution={s} />
-              </Reveal>
-            ))}
+          <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-3 sm:gap-5">
+            {kind === "solution"
+              ? relatedSolutions.map((s, i) => (
+                  <Reveal key={s.slug} delay={i * 0.06}>
+                    <SolutionCard solution={s} />
+                  </Reveal>
+                ))
+              : relatedServices.map((s, i) => (
+                  <Reveal key={s.slug} delay={i * 0.06}>
+                    <ServiceCard service={s} />
+                  </Reveal>
+                ))}
           </div>
         </Container>
       </section>
 
       <CTASection
-        title={`Ready to explore ${solution.name.toLowerCase()} for your business?`}
-        description="Share your requirements and AINERGY will assess where this solution fits into your energy mix."
+        title={
+          kind === "solution"
+            ? `Ready to explore ${item.name.toLowerCase()} for your business?`
+            : `Ready to talk through ${item.name.toLowerCase()}?`
+        }
+        description={
+          kind === "solution"
+            ? "Share your requirements and AINERGY will assess where this fits into your energy mix."
+            : "Share your requirements and AINERGY will scope how this fits your project."
+        }
       />
     </>
   );

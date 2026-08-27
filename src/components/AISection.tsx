@@ -21,13 +21,7 @@ export function AISection() {
             <SectionHeader
               eyebrow="Intelligence"
               title="Energy intelligence, built in."
-              description="AINERGY OS continuously analyzes weather, generation, demand, tariffs, battery state, grid conditions and energy prices — then recommends how a business should generate, store, procure and consume energy."
             />
-            <p className="mt-6 max-w-lg text-sm leading-relaxed text-ink-500">
-              These are decision-support recommendations for the people who
-              operate a business&apos;s energy system, not unsupervised
-              control of physical assets.
-            </p>
           </div>
 
           <Reveal delay={0.1}>

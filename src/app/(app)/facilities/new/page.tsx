@@ -86,7 +86,7 @@ export default function NewFacilityPage() {
 
           <button
             type="submit"
-            className="mt-2 inline-flex items-center justify-center rounded-full bg-current-400 px-7 py-3.5 text-sm font-medium text-graphite-950 shadow-[0_0_0_1px_rgba(240,169,62,0.35)] transition-all hover:bg-current-300 hover:shadow-glow-dark"
+            className="mt-2 inline-flex items-center justify-center rounded-full bg-current-400 px-7 py-3.5 text-sm font-medium text-graphite-950 shadow-[0_0_0_1px_rgba(58,187,194,0.40)] transition-all hover:bg-current-300 hover:shadow-glow-dark"
           >
             Create facility
           </button>

@@ -24,7 +24,6 @@ export function WhyAinergy() {
         <SectionHeader
           eyebrow="Why AINERGY"
           title="Energy is no longer just a utility. It's a strategic advantage."
-          description="Businesses are navigating rising energy costs, unpredictable demand, grid dependency and mounting sustainability targets — with renewable complexity and storage decisions layered on top. AINERGY brings all of it together into one intelligent platform."
         />
 
         <div className="mt-10 flex flex-wrap gap-2.5">

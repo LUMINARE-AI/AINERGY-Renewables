@@ -8,7 +8,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/solutions",
     "/energy-os",
     "/energy-optimizer",
-    "/services",
     "/for-business",
     "/insights",
     "/about",
@@ -23,15 +22,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === "" ? 1 : 0.7,
   }));
 
-  const solutionRoutes = ALL_SOLUTIONS.map((s) => ({
+  const solutionRoutes = [...ALL_SOLUTIONS, ...SERVICES].map((s) => ({
     url: `${SITE_URL}/solutions/${s.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
-
-  const serviceRoutes = SERVICES.map((s) => ({
-    url: `${SITE_URL}/services/${s.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.6,
@@ -44,5 +36,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [...staticRoutes, ...solutionRoutes, ...serviceRoutes, ...insightRoutes];
+  return [...staticRoutes, ...solutionRoutes, ...insightRoutes];
 }

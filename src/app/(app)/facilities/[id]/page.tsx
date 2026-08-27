@@ -16,7 +16,7 @@ const fieldClass =
   "w-full rounded-xl border border-white/15 bg-graphite-950/60 px-4 py-3 text-sm text-offwhite-100 transition-colors focus:border-current-400/60 focus:outline-none focus:ring-1 focus:ring-current-400/20";
 const labelClass = "mb-2 block text-sm text-offwhite-300/70";
 const primaryButtonClass =
-  "inline-flex items-center justify-center rounded-full bg-current-400 px-7 py-3.5 text-sm font-medium text-graphite-950 shadow-[0_0_0_1px_rgba(240,169,62,0.35)] transition-all hover:bg-current-300 hover:shadow-glow-dark";
+  "inline-flex items-center justify-center rounded-full bg-current-400 px-7 py-3.5 text-sm font-medium text-graphite-950 shadow-[0_0_0_1px_rgba(58,187,194,0.40)] transition-all hover:bg-current-300 hover:shadow-glow-dark";
 const secondaryButtonClass =
   "rounded-full border border-white/15 px-5 py-2.5 text-xs font-medium text-offwhite-200 transition-colors hover:border-current-400/60 hover:bg-white/5";
 

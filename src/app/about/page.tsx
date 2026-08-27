@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Layers, Zap, BrainCircuit, Database } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/shared/Reveal";
 import { CTASection } from "@/components/CTASection";
 
@@ -19,38 +19,81 @@ const PILLARS = [
   { label: "Data", icon: Database },
 ];
 
+const FOUNDERS = [
+  {
+    name: "Arin Danish",
+    role: "Co-Founder | Technology & Energy Strategy",
+    image: "/founders/arin-danish.svg",
+    bios: [
+      "Arin brings extensive experience across the energy sector, including Solar, Wind, Thermal and Oil & Gas, with expertise in project development, contracts management and project management. He has been involved in delivering projects across renewable energy and EHV infrastructure.",
+      "At AINERGY, Arin focuses on technology, AI and digital energy solutions, driving the development of the intelligence layer behind AINERGY's Energy OS for C&I. His focus is on using technology to simplify energy decisions, optimize renewable-energy procurement and create smarter energy solutions.",
+    ],
+  },
+  {
+    name: "Asif Mustafa",
+    role: "Co-Founder | Execution & Project Delivery",
+    image: "/founders/asif-mustafa.svg",
+    bios: [
+      "Asif brings extensive experience across Solar, Wind and Thermal energy, with strong expertise in project management and execution. He has been involved in delivering multiple renewable-energy and EHV projects, with a strong focus on translating plans into successful project outcomes.",
+      "At AINERGY, Asif focuses on execution, project delivery and renewable-energy infrastructure, ensuring that the company's energy solutions are built and delivered with strong operational discipline and quality.",
+    ],
+  },
+];
+
 export default function AboutPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-paper-50 pb-16 pt-36 lg:pt-44">
-        <div className="bg-radial-fade pointer-events-none absolute inset-0" />
-        <Container className="relative">
-          <SectionHeader
-            eyebrow="About AINERGY"
-            title="We believe businesses should have simpler, smarter and cleaner energy."
-            description="AINERGY Renewable LLP develops and operates renewable-energy infrastructure and intelligent energy solutions for Commercial & Industrial businesses in India."
-          />
+      <section className="relative flex min-h-[78dvh] items-center overflow-hidden bg-paper-50 sm:min-h-[85dvh] lg:min-h-dvh">
+        <Image
+          src="/AboutBG.avif"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[center_30%] sm:object-center"
+          aria-hidden
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-paper-50/60 via-paper-50/35 to-paper-50/70" />
+        <Container className="relative z-10 w-full px-5 py-24 sm:px-6 sm:py-28 lg:py-32">
+          <div className="mx-auto max-w-4xl text-center">
+            <Reveal>
+              <h1 className="text-balance font-display text-[2rem] font-semibold tracking-tight text-ink-900 sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1]">
+                We are AINERGY
+              </h1>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <p className="text-balance mx-auto mt-4 max-w-2xl text-base font-medium leading-relaxed text-ink-700/85 sm:mt-6 sm:text-xl sm:leading-relaxed">
+                Renewable infrastructure and intelligent energy for India&apos;s{" "}
+                <span className="bg-current-400/45 bg-no-repeat px-0.5 font-semibold text-ink-900 [background-position:0_88%] [background-size:100%_0.35em] [box-decoration-break:clone] [-webkit-box-decoration-break:clone]">
+                  C&amp;I businesses
+                </span>
+                .
+              </p>
+            </Reveal>
+          </div>
         </Container>
       </section>
 
-      <section className="bg-paper-100/50 py-20">
-        <Container>
+      <section className="surface-dark relative overflow-hidden bg-ink-950 py-14 sm:py-20 lg:py-24">
+        <div className="bg-radial-fade-dark pointer-events-none absolute inset-0" />
+        <div className="noise-overlay" />
+        <Container className="relative px-5 sm:px-6">
           <Reveal>
-            <div className="grid gap-5 sm:grid-cols-4">
+            <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
               {PILLARS.map((pillar) => (
                 <div
                   key={pillar.label}
-                  className="flex flex-col items-center gap-3 rounded-2xl border border-ink-900/10 bg-paper-50 p-8 text-center shadow-premium"
+                  className="flex flex-col items-center gap-2.5 rounded-xl border border-white/10 bg-graphite-950/60 px-3 py-5 text-center transition-colors hover:border-current-400/30 sm:gap-3 sm:rounded-2xl sm:p-8"
                 >
-                  <pillar.icon className="h-6 w-6 text-current-600" />
-                  <span className="font-display text-base font-medium text-ink-900">
+                  <pillar.icon className="h-5 w-5 text-current-400 sm:h-6 sm:w-6" />
+                  <span className="font-display text-sm font-medium text-offwhite-100 sm:text-base">
                     {pillar.label}
                   </span>
                 </div>
               ))}
             </div>
           </Reveal>
-          <p className="mx-auto mt-8 max-w-2xl text-center text-ink-700/90">
+          <p className="mx-auto mt-6 max-w-2xl text-center text-sm leading-relaxed text-offwhite-300/70 sm:mt-8 sm:text-base">
             We combine these four elements to help businesses transition from
             fragmented energy decisions to a single, intelligent energy
             ecosystem.
@@ -58,42 +101,65 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="bg-paper-50 py-24 lg:py-32">
-        <Container>
-          <div className="grid gap-10 lg:grid-cols-2">
-            <Reveal>
-              <div className="rounded-3xl border border-ink-900/10 bg-paper-100/50 p-8 lg:p-10">
-                <span className="font-mono-tag text-xs uppercase text-current-600">
-                  Vision
-                </span>
-                <p className="text-balance mt-4 font-display text-2xl font-medium leading-snug text-ink-900">
-                  To become India&apos;s most intelligent energy platform for
-                  businesses.
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div className="rounded-3xl border border-ink-900/10 bg-paper-100/50 p-8 lg:p-10">
-                <span className="font-mono-tag text-xs uppercase text-current-600">
-                  Mission
-                </span>
-                <p className="text-balance mt-4 font-display text-2xl font-medium leading-snug text-ink-900">
-                  Make clean energy simpler, more accessible and more
-                  intelligent for C&amp;I businesses.
-                </p>
-              </div>
-            </Reveal>
+      <section className="relative overflow-hidden bg-paper-50 py-16 sm:py-24 lg:py-32">
+        <div className="bg-radial-fade pointer-events-none absolute inset-0 opacity-60" />
+        <Container className="relative px-5 sm:px-6">
+          <Reveal>
+            <div className="mx-auto max-w-2xl text-center">
+              <span className="font-mono-tag text-xs uppercase text-current-600">
+                Leadership
+              </span>
+              <h2 className="text-balance mt-3 font-display text-[1.75rem] font-semibold tracking-tight text-ink-900 sm:mt-4 sm:text-4xl lg:text-[2.75rem]">
+                Meet the Founders
+              </h2>
+            </div>
+          </Reveal>
+
+          <div className="mt-10 flex flex-col gap-12 sm:mt-14 sm:gap-16 lg:mt-16 lg:gap-20">
+            {FOUNDERS.map((founder, index) => (
+              <Reveal key={founder.name} delay={index * 0.08}>
+                <article className="group flex flex-col items-center gap-6 md:flex-row md:items-start md:gap-8 lg:gap-10">
+                  <div className="relative aspect-[4/5] w-40 shrink-0 overflow-hidden bg-ink-900 sm:w-48 md:w-52 lg:w-56">
+                    <Image
+                      src={founder.image}
+                      alt={founder.name}
+                      fill
+                      unoptimized
+                      sizes="(max-width: 768px) 160px, 224px"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    />
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink-950/55 to-transparent" />
+                  </div>
+                  <div className="min-w-0 flex-1 text-center md:pt-1 md:text-left">
+                    <h3 className="font-display text-xl font-semibold tracking-tight text-ink-900 sm:text-2xl">
+                      {founder.name}
+                    </h3>
+                    <p className="mt-1.5 text-sm font-medium text-current-600 sm:mt-2">
+                      {founder.role}
+                    </p>
+                    <div className="mt-4 space-y-3 text-sm leading-relaxed text-ink-700/90 sm:mt-5 sm:space-y-4 sm:text-[15px]">
+                      {founder.bios.map((bio) => (
+                        <p key={bio.slice(0, 48)}>{bio}</p>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
           </div>
 
-          <Reveal delay={0.15} className="mt-14 max-w-3xl">
-            <p className="text-lg leading-relaxed text-ink-700/90">
-              AINERGY is starting with its own renewable-energy projects and
-              will progressively evolve into an integrated C&amp;I energy
-              platform — spanning solar, wind, hybrid generation, storage,
-              Open Access, Energy-as-a-Service and AI-powered energy
-              intelligence. The long-term direction is a single, intelligent
-              operating system for a company&apos;s entire energy ecosystem.
-            </p>
+          <Reveal delay={0.15}>
+            <div className="mx-auto mt-14 max-w-3xl border-t border-ink-900/10 pt-10 text-center sm:mt-20 sm:pt-14">
+              <p className="text-balance font-display text-xl font-semibold leading-snug text-ink-900 sm:text-2xl lg:text-3xl">
+                Technology that thinks.{" "}
+                <span className="text-current-600">Execution that delivers.</span>
+              </p>
+              <p className="text-balance mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-ink-700/85 sm:mt-5 sm:text-base lg:text-lg">
+                AINERGY brings together technology-led energy intelligence and
+                strong project execution to build smarter, scalable energy
+                solutions for C&amp;I businesses.
+              </p>
+            </div>
           </Reveal>
         </Container>
       </section>

@@ -36,7 +36,7 @@ export function CTASection({
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             href={primaryHref}
-            className="group inline-flex items-center justify-center gap-2 rounded-full bg-current-400 px-8 py-4 text-sm font-medium text-graphite-950 shadow-[0_0_0_1px_rgba(240,169,62,0.35)] transition-all hover:bg-current-300 hover:shadow-glow-dark"
+            className="group inline-flex items-center justify-center gap-2 rounded-full bg-current-400 px-8 py-4 text-sm font-medium text-graphite-950 shadow-[0_0_0_1px_rgba(58,187,194,0.40)] transition-all hover:bg-current-300 hover:shadow-glow-dark"
           >
             {primaryLabel}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

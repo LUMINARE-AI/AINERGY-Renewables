@@ -3,8 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-display: "Inter", system-ui, sans-serif;
+  --font-display: var(--font-sans);
   --font-mono: "IBM Plex Mono", monospace;
 }
 
@@ -22,31 +21,30 @@
 }
 
 html {
-  background-color: #fcfaf5;
+  background-color: #f7f8f6;
 }
 
 body {
-  background-color: #fcfaf5;
-  color: #211d15;
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  background-color: #f7f8f6;
+  color: #151c1d;
 }
 
 /* Dark "control room" surfaces (Copilot, authenticated app shell) opt in
    explicitly via this class rather than a global dark-mode toggle. */
 .surface-dark {
-  background-color: #0a0d0c;
-  color: #f2f0ea;
+  background-color: #071011;
+  color: #e8eeed;
   color-scheme: dark;
 }
 
 ::selection {
-  background: #f0a93e;
-  color: #211d15;
+  background: #3abbc2;
+  color: #151c1d;
 }
 
 .surface-dark ::selection {
-  background: #d98a1e;
-  color: #0a0d0c;
+  background: #08797f;
+  color: #f6f8f7;
 }
 
 .text-balance {
@@ -59,11 +57,11 @@ body {
   width: 6px;
 }
 .thin-scroll::-webkit-scrollbar-thumb {
-  background: #e2d6b8;
+  background: #c5d2d1;
   border-radius: 999px;
 }
 .surface-dark .thin-scroll::-webkit-scrollbar-thumb {
-  background: #2b3531;
+  background: #263638;
 }
 
 .noise-overlay {
@@ -77,7 +75,7 @@ body {
 .bg-radial-fade {
   background: radial-gradient(
     ellipse 80% 60% at 50% 0%,
-    rgba(217, 138, 30, 0.14),
+    rgba(8, 121, 127, 0.12),
     transparent 70%
   );
 }
@@ -85,7 +83,7 @@ body {
 .bg-radial-fade-dark {
   background: radial-gradient(
     ellipse 80% 60% at 50% 0%,
-    rgba(240, 169, 62, 0.12),
+    rgba(58, 187, 194, 0.12),
     transparent 70%
   );
 }
@@ -112,9 +110,9 @@ body {
 .shimmer-bg {
   background: linear-gradient(
     90deg,
-    rgba(217, 138, 30, 0.08) 25%,
-    rgba(217, 138, 30, 0.22) 50%,
-    rgba(217, 138, 30, 0.08) 75%
+    rgba(8, 121, 127, 0.08) 25%,
+    rgba(8, 121, 127, 0.22) 50%,
+    rgba(8, 121, 127, 0.08) 75%
   );
   background-size: 200% 100%;
   animation: shimmer 2.2s linear infinite;

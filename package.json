@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "vitest run",
+    "postinstall": "prisma generate",
     "db:up": "docker-compose up -d",
     "db:migrate": "prisma migrate dev",
     "db:seed": "tsx prisma/seed.ts",

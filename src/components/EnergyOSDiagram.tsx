@@ -34,7 +34,7 @@ function OrbitDiagram() {
               y1="50"
               x2={x}
               y2={y}
-              stroke={isActive ? "#F0A93E" : "rgba(240,169,62,0.18)"}
+              stroke={isActive ? "#3ABBC2" : "rgba(8,121,127,0.22)"}
               strokeWidth={isActive ? 0.5 : 0.25}
             />
           );
