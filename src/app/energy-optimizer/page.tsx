@@ -33,7 +33,6 @@ export default function EnergyOptimizerPage() {
 
       <CTASection
         title="Turn this into an actual energy plan."
-        description="This tool is a simplified demonstration. Sign in to run a full Open Access analysis across scenarios, or talk to the AINERGY team about a real proposal built on your electricity bills, load curve and a site assessment."
         primaryLabel="Run a Full Analysis"
         primaryHref="/analysis"
         secondaryLabel="Get Your Energy Assessment"

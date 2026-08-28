@@ -1,11 +1,3 @@
-import {
-  TrendingDown,
-  ShieldCheck,
-  Leaf,
-  FileCheck2,
-  Landmark,
-  Users,
-} from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Reveal } from "@/components/shared/Reveal";
@@ -29,45 +21,6 @@ const COST_STATS = [
     unit: "",
     label: "Typical cost reduction",
     note: "Illustrative — the Copilot models your actual numbers",
-  },
-] as const;
-
-const BENEFITS = [
-  {
-    icon: TrendingDown,
-    title: "Lower landed cost, locked in",
-    description:
-      "Every charge — wheeling, losses, cross-subsidy surcharge, additional surcharge, banking — is itemized up front, not folded into a vague discount.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Protected from DISCOM hikes",
-    description:
-      "Retail tariffs have climbed 5–8% a year in most states. A renewable PPA locks your rate for the life of the contract.",
-  },
-  {
-    icon: Leaf,
-    title: "ESG and RE100-ready",
-    description:
-      "Verified renewable consumption supports BRSR disclosures and the RE100-style commitments global supply chains increasingly ask for.",
-  },
-  {
-    icon: FileCheck2,
-    title: "Ahead of your RCO",
-    description:
-      "Renewable Consumption Obligations are rising toward ~43% by FY2029–30. Open Access is the most direct way to stay ahead of them.",
-  },
-  {
-    icon: Landmark,
-    title: "Zero-capex options",
-    description:
-      "Third-party PPA and Group Captive structures mean you can switch without funding a plant yourself.",
-  },
-  {
-    icon: Users,
-    title: "Built and managed for you",
-    description:
-      "AINERGY designs, builds and operates the plant — no in-house energy team or fresh RFP required.",
   },
 ] as const;
 
@@ -96,23 +49,13 @@ export function WhyOpenAccess() {
           ))}
         </div>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {BENEFITS.map((benefit, i) => (
-            <Reveal key={benefit.title} delay={(i % 3) * 0.06}>
-              <div className="flex h-full flex-col gap-3 rounded-2xl border border-ink-900/10 bg-paper-100/40 p-6 transition-colors hover:border-current-500/30 hover:bg-paper-100/70">
-                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-current-400/12 text-current-600">
-                  <benefit.icon className="h-4.5 w-4.5" />
-                </div>
-                <h3 className="font-display text-base font-medium text-ink-900">
-                  {benefit.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-ink-600">
-                  {benefit.description}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal delay={0.08}>
+          <div className="mt-14 flex justify-center">
+            <Button href="/solutions/open-access" size="lg" icon variant="secondary">
+              Explore Open Access
+            </Button>
+          </div>
+        </Reveal>
 
         <Reveal delay={0.1}>
           <div className="mt-10 flex flex-col items-center justify-between gap-6 rounded-3xl border border-current-500/25 bg-gradient-to-br from-current-400/10 to-transparent p-8 text-center sm:flex-row sm:text-left lg:p-10">

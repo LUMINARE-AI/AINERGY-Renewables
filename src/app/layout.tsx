@@ -3,6 +3,7 @@ import { Montserrat, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { CopilotFab } from "@/components/copilot/CopilotFab";
 import { AuthProvider } from "@/components/auth/SessionProviderWrapper";
 import { SITE_URL } from "@/lib/utils";
 
@@ -81,8 +82,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${plexMono.variable}`}>
-      <body className="font-sans antialiased">
+    <html lang="en" className={`${montserrat.variable} ${plexMono.variable}`} suppressHydrationWarning>
+      <body className="font-sans antialiased" suppressHydrationWarning>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
@@ -91,6 +92,7 @@ export default function RootLayout({
           <Navbar />
           <main>{children}</main>
           <Footer />
+          <CopilotFab />
         </AuthProvider>
       </body>
     </html>

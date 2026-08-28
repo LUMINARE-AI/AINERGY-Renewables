@@ -94,7 +94,6 @@ export default async function InsightDetailPage({
 
       <CTASection
         title="Ready to move from reading to planning?"
-        description="Talk to AINERGY about what an intelligent energy system could look like for your business."
       />
     </>
   );

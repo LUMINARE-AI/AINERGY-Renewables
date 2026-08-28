@@ -1,13 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export function Logo({
-  className = "",
-  tone = "light",
-}: {
-  className?: string;
-  tone?: "light" | "dark";
-}) {
+export function Logo({ className = "" }: { className?: string }) {
   return (
     <Link
       href="/"
@@ -15,13 +9,13 @@ export function Logo({
       className={`group inline-flex shrink-0 items-center ${className}`}
     >
       <Image
-        src={tone === "dark" ? "/logo-light.png" : "/logo.png"}
+        src="/logo.png"
         alt="AINERGY Renewables"
-        width={392}
-        height={304}
+        width={1536}
+        height={1024}
         priority
         unoptimized
-        className="h-14 w-auto sm:h-16"
+        className="h-16 w-auto sm:h-[4.5rem]"
         style={{ width: "auto" }}
       />
     </Link>

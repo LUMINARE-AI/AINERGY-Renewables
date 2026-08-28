@@ -19,7 +19,6 @@ export function EnergyNetwork() {
         <SectionHeader
           eyebrow="Energy Network"
           title="From individual assets to an intelligent energy network."
-          description="As more generation, storage and demand points come online, AINERGY OS coordinates them as one interoperable, decentralized network rather than isolated installations."
           align="center"
           className="mx-auto"
         />

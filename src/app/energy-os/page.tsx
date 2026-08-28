@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ArrowDown, Database, Cpu, SlidersHorizontal, LayoutGrid, Landmark } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -83,9 +84,17 @@ const LAYERS = [
 export default function EnergyOSPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-paper-50 pb-20 pt-36 lg:pt-44">
-        <div className="bg-radial-fade pointer-events-none absolute inset-0" />
-        <Container className="relative">
+      <section className="relative flex min-h-[55dvh] items-center overflow-hidden bg-paper-50 sm:min-h-[62dvh] lg:min-h-[68dvh]">
+        <Image
+          src="/EnergyOS.avif"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+          aria-hidden
+        />
+        <Container className="relative z-10 py-28 sm:py-32 lg:py-36">
           <SectionHeader
             eyebrow="Energy OS"
             title="The technology layer beneath every AINERGY solution."
@@ -162,7 +171,6 @@ export default function EnergyOSPage() {
 
       <CTASection
         title="See what AINERGY OS could recommend for your business."
-        description="Run the illustrative energy planner or talk to us about a full assessment."
         secondaryLabel="Open the energy planner"
         secondaryHref="/energy-optimizer"
       />

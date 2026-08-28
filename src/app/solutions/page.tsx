@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { SolutionCard } from "@/components/SolutionCard";
@@ -19,11 +20,18 @@ export default function SolutionsPage() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-paper-50 pb-14 pt-32 sm:pb-16 sm:pt-36 lg:pt-44">
-        <div className="bg-radial-fade pointer-events-none absolute inset-0" />
-        <Container className="relative">
+      <section className="relative flex min-h-[55dvh] items-center overflow-hidden bg-paper-50 sm:min-h-[62dvh] lg:min-h-[68dvh]">
+        <Image
+          src="/solutions.avif"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+          aria-hidden
+        />
+        <Container className="relative z-10 py-28 sm:py-32 lg:py-36">
           <SectionHeader
-            eyebrow="Solutions"
             title="Every layer of a modern C&I energy system."
             description="Adopt the energy mix you need — and the infrastructure, EPC and AI that deliver it — individually or as one integrated platform."
           />
@@ -83,7 +91,6 @@ export default function SolutionsPage() {
 
       <CTASection
         title="Not sure which combination fits your business?"
-        description="Share your electricity bill and load profile — AINERGY will design an energy mix and delivery plan around it."
         primaryLabel="Get Your Energy Assessment"
         primaryHref="/for-business"
       />

@@ -6,24 +6,24 @@ import { FOOTER_LINKS, LEGAL_LINKS } from "@/lib/data";
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-ink-950">
-      <Container className="py-16">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr]">
+    <footer className="border-t border-ink-900/8 bg-white">
+      <Container className="pt-12 pb-8">
+        <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-10">
           <div>
-            <Logo tone="dark" />
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-offwhite-300/60">
+            <Logo />
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-600">
               AINERGY Renewable LLP designs, develops and operates renewable-energy
               infrastructure and intelligent energy solutions for Commercial &amp;
               Industrial businesses.
             </p>
-            <p className="mt-6 font-mono-tag text-xs uppercase text-current-300">
+            <p className="mt-4 font-mono-tag text-xs uppercase text-current-600">
               The Energy OS for C&amp;I
             </p>
-            <div className="mt-6 flex gap-3">
+            <div className="mt-4 flex gap-3">
               {[Linkedin, Twitter, Youtube].map((Icon, i) => (
                 <span
                   key={i}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-offwhite-300/50"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-ink-900/10 text-ink-500 transition-colors hover:border-current-400/40 hover:bg-current-400/5 hover:text-current-600"
                   aria-hidden="true"
                 >
                   <Icon className="h-4 w-4" />
@@ -33,15 +33,15 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-mono-tag text-xs uppercase text-offwhite-300/50">
+            <h3 className="font-mono-tag text-xs uppercase tracking-wide text-ink-500">
               Navigate
             </h3>
-            <ul className="mt-5 space-y-3">
+            <ul className="mt-4 space-y-2.5">
               {FOOTER_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-offwhite-200/80 transition-colors hover:text-current-300"
+                    className="text-sm text-ink-700 transition-colors hover:text-current-600"
                   >
                     {link.label}
                   </Link>
@@ -51,28 +51,31 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-mono-tag text-xs uppercase text-offwhite-300/50">
+            <h3 className="font-mono-tag text-xs uppercase tracking-wide text-ink-500">
               Legal
             </h3>
-            <ul className="mt-5 space-y-3">
+            <ul className="mt-4 space-y-2.5">
               {LEGAL_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-offwhite-200/80 transition-colors hover:text-current-300"
+                    className="text-sm text-ink-700 transition-colors hover:text-current-600"
                   >
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
-            <p className="mt-6 text-sm text-offwhite-300/50">
+            <a
+              href="mailto:hello@ainergy.in"
+              className="mt-4 inline-block text-sm text-ink-600 transition-colors hover:text-current-600"
+            >
               hello@ainergy.in
-            </p>
+            </a>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 text-xs text-offwhite-300/40 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-3 border-t border-ink-900/8 pt-5 text-xs text-ink-500 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} AINERGY Renewable LLP. All rights
             reserved.

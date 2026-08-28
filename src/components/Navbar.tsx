@@ -4,14 +4,18 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, LayoutDashboard, ArrowRight } from "lucide-react";
+import { Menu, X, LayoutDashboard } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { Logo } from "@/components/shared/Logo";
 import { NAV_LINKS } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
-/** Routes whose hero is a dark / photo backdrop — need light nav at top. */
-const DARK_HERO_ROUTES = ["/for-business"];
+/** Routes whose hero is a dark photo backdrop — need light nav at top. */
+const DARK_HERO_ROUTES: string[] = [];
+
+function isNavActive(pathname: string, href: string) {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -19,11 +23,9 @@ export function Navbar() {
   const pathname = usePathname();
   const { status } = useSession();
 
-  const onDarkHero =
-    pathname === "/" ||
-    DARK_HERO_ROUTES.some(
-      (route) => pathname === route || pathname.startsWith(`${route}/`)
-    );
+  const onDarkHero = DARK_HERO_ROUTES.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`)
+  );
   const lightNav = onDarkHero && !scrolled && !open;
 
   useEffect(() => {
@@ -54,59 +56,53 @@ export function Navbar() {
       )}
     >
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
-        <Logo tone={lightNav ? "dark" : "light"} />
+        <Logo />
 
-        <div className="hidden items-center gap-9 lg:flex">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "relative text-sm transition-colors",
-                lightNav
-                  ? "text-offwhite-100/80 hover:text-offwhite-100"
-                  : "text-ink-700 hover:text-ink-900",
-                pathname === link.href &&
-                  (lightNav ? "text-offwhite-100" : "text-ink-900")
-              )}
-            >
-              {link.label}
-              {pathname === link.href && (
-                <span
+        <div className="hidden items-center gap-5 lg:flex">
+          <div className="flex items-center gap-1">
+            {NAV_LINKS.map((link) => {
+              const active = isNavActive(pathname, link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
                   className={cn(
-                    "absolute -bottom-1.5 left-0 h-px w-full",
-                    lightNav ? "bg-current-300" : "bg-current-500"
+                    "group relative rounded-lg px-3.5 py-2 text-[13px] font-medium tracking-[0.01em] transition-colors duration-200",
+                    lightNav
+                      ? active
+                        ? "text-offwhite-100"
+                        : "text-offwhite-100/70 hover:text-offwhite-100"
+                      : active
+                        ? "text-current-500"
+                        : "text-ink-900 hover:text-current-500"
                   )}
-                />
-              )}
-            </Link>
-          ))}
-        </div>
-
-        <div className="hidden items-center gap-4 lg:flex">
+                >
+                  {link.label}
+                  <span
+                    aria-hidden
+                    className={cn(
+                      "absolute bottom-0 left-3.5 h-[2px] rounded-full transition-all duration-300 ease-out",
+                      active
+                        ? "w-[calc(100%-1.75rem)] opacity-100"
+                        : "w-0 opacity-0 group-hover:w-[calc(100%-1.75rem)] group-hover:opacity-100",
+                      lightNav ? "bg-current-400" : "bg-current-500"
+                    )}
+                  />
+                </Link>
+              );
+            })}
+          </div>
           <Link
             href={status === "authenticated" ? "/dashboard" : "/login"}
             className={cn(
               "inline-flex items-center gap-1.5 text-sm transition-colors",
               lightNav
                 ? "text-offwhite-100/80 hover:text-offwhite-100"
-                : "text-ink-700 hover:text-ink-900"
+                : "text-ink-900 hover:text-current-500"
             )}
           >
             <LayoutDashboard className="h-4 w-4" />
             {status === "authenticated" ? "Dashboard" : "Sign in"}
-          </Link>
-          <Link
-            href="/energy-optimizer"
-            className={cn(
-              "group inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-medium transition-all",
-              lightNav
-                ? "bg-current-400 text-graphite-950 shadow-[0_0_0_1px_rgba(58,187,194,0.40)] hover:bg-current-300 hover:shadow-glow-dark"
-                : "bg-ink-900 text-paper-50 hover:bg-current-600 hover:shadow-glow"
-            )}
-          >
-            Try the Copilot
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
           </Link>
         </div>
 
@@ -144,7 +140,12 @@ export function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className="block rounded-lg px-3 py-3 text-lg text-ink-900/90 hover:bg-current-400/10"
+                    className={cn(
+                      "block rounded-lg px-4 py-3 text-[15px] font-medium tracking-[0.01em] transition-colors",
+                      isNavActive(pathname, link.href)
+                        ? "bg-current-400/10 text-current-500"
+                        : "text-ink-900 hover:bg-current-400/10 hover:text-current-500"
+                    )}
                   >
                     {link.label}
                   </Link>
@@ -152,15 +153,9 @@ export function Navbar() {
               ))}
               <Link
                 href={status === "authenticated" ? "/dashboard" : "/login"}
-                className="block rounded-lg px-3 py-3 text-lg text-ink-900/90 hover:bg-current-400/10"
+                className="block rounded-lg px-4 py-3 text-[15px] font-medium text-ink-900 transition-colors hover:bg-current-400/10 hover:text-current-500"
               >
                 {status === "authenticated" ? "Dashboard" : "Sign in"}
-              </Link>
-              <Link
-                href="/energy-optimizer"
-                className="mt-4 inline-flex items-center justify-center rounded-full bg-ink-900 px-5 py-3 text-center text-sm font-medium text-paper-50"
-              >
-                Try the Copilot
               </Link>
             </div>
           </motion.div>

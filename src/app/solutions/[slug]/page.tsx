@@ -143,11 +143,6 @@ export default async function SolutionDetailPage({
             ? `Ready to explore ${item.name.toLowerCase()} for your business?`
             : `Ready to talk through ${item.name.toLowerCase()}?`
         }
-        description={
-          kind === "solution"
-            ? "Share your requirements and AINERGY will assess where this fits into your energy mix."
-            : "Share your requirements and AINERGY will scope how this fits your project."
-        }
       />
     </>
   );

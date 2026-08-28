@@ -166,7 +166,6 @@ export default function AboutPage() {
 
       <CTASection
         title="Building the future energy system, together."
-        description="Whether you're a business, a partner or an investor — we'd like to hear from you."
       />
     </>
   );
