@@ -5,17 +5,15 @@ export type NavLink = { label: string; href: string };
 
 export const NAV_LINKS: NavLink[] = [
   { label: "Solutions", href: "/solutions" },
-  { label: "Energy OS", href: "/energy-os" },
-  { label: "For Business", href: "/for-business" },
-  { label: "Insights", href: "/insights" },
+  { label: "Services", href: "/services" },
+  { label: "Products", href: "/products" },
   { label: "About", href: "/about" },
 ];
 
 export const FOOTER_LINKS: NavLink[] = [
   { label: "Solutions", href: "/solutions" },
-  { label: "Energy OS", href: "/energy-os" },
-  { label: "For Business", href: "/for-business" },
-  { label: "Insights", href: "/insights" },
+  { label: "Services", href: "/services" },
+  { label: "Products", href: "/products" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -26,6 +24,51 @@ export const LEGAL_LINKS: NavLink[] = [
   { label: "Disclaimer", href: "/disclaimer" },
 ];
 
+export const WATTPE_URL = "https://wattpe.com";
+
+export type InfrastructureService = {
+  name: string;
+  description: string;
+  icon: string;
+};
+
+export const INFRASTRUCTURE_SERVICES: InfrastructureService[] = [
+  {
+    name: "Solar EPC",
+    description:
+      "Ground-mounted and commercial solar engineering, procurement and construction.",
+    icon: "Sun",
+  },
+  {
+    name: "EHV EPC",
+    description:
+      "Evacuation, substations, high-voltage systems and grid interconnection infrastructure.",
+    icon: "Cable",
+  },
+  {
+    name: "Rooftop EPC",
+    description: "Commercial and industrial rooftop solar.",
+    icon: "Building2",
+  },
+  {
+    name: "BESS",
+    description: "Battery storage integration, EMS and project execution.",
+    icon: "BatteryCharging",
+  },
+  {
+    name: "EV Charging",
+    description:
+      "Commercial EV charging infrastructure and energy integration.",
+    icon: "PlugZap",
+  },
+  {
+    name: "O&M",
+    description:
+      "Monitoring, preventive maintenance, corrective maintenance and operational support.",
+    icon: "Activity",
+  },
+];
+
 export type Metric = {
   value: string;
   label: string;
@@ -33,7 +76,6 @@ export type Metric = {
 };
 
 export const TRUST_METRICS: Metric[] = [
-  { value: "5 MW", label: "Initial renewable project", isPlaceholder: true },
   { value: "C&I", label: "Focused energy solutions" },
   { value: "24×7", label: "Future-ready clean energy" },
   { value: "AI", label: "Energy intelligence layer" },
@@ -252,6 +294,37 @@ export const SERVICES: Service[] = [
       "Regulatory and compliance reporting",
       "Single point of accountability across the asset lifecycle",
     ],
+  },
+];
+
+export type Project = {
+  slug: string;
+  name: string;
+  category: "Solar" | "Wind" | "Hybrid" | "Storage" | "C&I";
+  status: "In Development" | "Under Construction" | "Operational";
+  capacity: string;
+  location: string;
+  technology: string;
+  expectedGeneration: string;
+  cod: string;
+  description: string;
+  isPlaceholder: boolean;
+};
+
+export const PROJECTS: Project[] = [
+  {
+    slug: "ainergy-solar-project-5mw",
+    name: "AINERGY Solar Project",
+    category: "Solar",
+    status: "In Development",
+    capacity: "5 MW",
+    location: "Location to be announced",
+    technology: "Ground-mounted crystalline PV",
+    expectedGeneration: "To be confirmed on commissioning",
+    cod: "Commercial operation date to be announced",
+    description:
+      "AINERGY's first ground-mounted solar project, developed as the foundation of its own renewable-energy generation base ahead of building out its C&I platform.",
+    isPlaceholder: true,
   },
 ];
 

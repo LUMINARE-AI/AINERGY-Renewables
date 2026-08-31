@@ -13,6 +13,7 @@ import {
   Zap,
   Sparkles,
   MousePointerClick,
+  User,
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/shared/Reveal";
@@ -287,7 +288,7 @@ function SvgFlowSegments({
               strokeWidth={variant === "solid" ? 2 : 1.75}
               strokeLinecap="round"
               strokeDasharray="4 22"
-              opacity={highlighted ? 0.75 : 0.45}
+              opacity={highlighted ? 0.88 : 0.62}
               className="transition-opacity duration-300"
             >
               <animate
@@ -367,7 +368,7 @@ function MovingPulseDots({
         const trailOffsets = [-0.018, -0.035, -0.052];
 
         return (
-          <g key={`${pulse.pathKey}-${pulse.delay}-${i}`} opacity={Math.min(0.85, fade * 0.75)}>
+          <g key={`${pulse.pathKey}-${pulse.delay}-${i}`} opacity={Math.min(1, fade * 0.95)}>
             {trailOffsets.map((offset, ti) => {
               const trailProgress = Math.max(0, progress + offset);
               const trailPoint = geom.path.getPointAtLength(trailProgress * geom.length);
@@ -376,16 +377,16 @@ function MovingPulseDots({
                   key={ti}
                   cx={trailPoint.x}
                   cy={trailPoint.y}
-                  r={1.2 - ti * 0.25}
+                  r={1.4 - ti * 0.25}
                   fill="#3ABBC2"
-                  opacity={0.08 + (2 - ti) * 0.06}
+                  opacity={0.18 + (2 - ti) * 0.1}
                 />
               );
             })}
             <g transform={`translate(${point.x}, ${point.y})`}>
-              <circle cx="0" cy="0" r="4" fill="#3ABBC2" opacity="0.12" />
-              <circle cx="0" cy="0" r="2.2" fill="#B8E8EA" opacity="0.9" />
-              <circle cx="0" cy="0" r="1" fill="#ffffff" opacity="0.85" />
+              <circle cx="0" cy="0" r="5" fill="#3ABBC2" opacity="0.22" />
+              <circle cx="0" cy="0" r="2.6" fill="#B8E8EA" opacity="0.98" />
+              <circle cx="0" cy="0" r="1.2" fill="#ffffff" opacity="0.95" />
             </g>
           </g>
         );
@@ -422,7 +423,7 @@ function NodeArrivalFlash({
             >
               <animate
                 attributeName="opacity"
-                values="0;0;0.28;0"
+                values="0;0;0.48;0"
                 keyTimes="0;0.88;0.96;1"
                 dur={`${dur}s`}
                 begin={`${begin}s`}
@@ -547,7 +548,7 @@ function StageNode({
       tabIndex={0}
       aria-label={id}
     >
-      {showArrival && flashPulses && (
+      {showArrival && flashPulses && variant !== "output" && (
         <NodeArrivalFlash
           size={size}
           pulses={flashPulses}
@@ -610,6 +611,29 @@ function StageNode({
         />
       </g>
 
+      <foreignObject
+        x={-size / 2}
+        y={-size / 2}
+        width={size}
+        height={size}
+        className="pointer-events-none overflow-visible"
+      >
+        <div
+          {...({ xmlns: "http://www.w3.org/1999/xhtml" } as React.HTMLAttributes<HTMLDivElement>)}
+          className={cn(
+            "flex h-full w-full items-center justify-center transition-[transform,filter] duration-300",
+            isHovered && "scale-105",
+            isActive && "brightness-110"
+          )}
+        >
+          {children}
+        </div>
+      </foreignObject>
+
+      {showArrival && flashPulses && variant === "output" && (
+        <NodeArrivalFlash size={size} pulses={flashPulses} />
+      )}
+
       {showArrival &&
         variant === "output" &&
         flashPulses!.map((pulse, i) => (
@@ -624,7 +648,7 @@ function StageNode({
           >
             <animate
               attributeName="opacity"
-              values="0;0;0.35;0"
+              values="0;0;0.55;0"
               keyTimes="0;0.9;0.95;1"
               dur={`${pulse.duration}s`}
               begin={`${pulse.delay}s`}
@@ -640,25 +664,6 @@ function StageNode({
             />
           </circle>
         ))}
-
-      <foreignObject
-        x={-size / 2}
-        y={-size / 2}
-        width={size}
-        height={size}
-        className="pointer-events-none overflow-visible"
-      >
-        <div
-          xmlns="http://www.w3.org/1999/xhtml"
-          className={cn(
-            "flex h-full w-full items-center justify-center transition-[transform,filter] duration-300",
-            isHovered && "scale-105",
-            isActive && "brightness-110"
-          )}
-        >
-          {children}
-        </div>
-      </foreignObject>
     </g>
   );
 }
@@ -958,14 +963,30 @@ function DesktopFlow({
         <StaticFlowLine d={paths.credToBill} pathKey="credToBill" variant="solid" hovered={hovered} reducedMotion={reducedMotion} />
         <StaticFlowLine d={paths.credToEv} pathKey="credToEv" variant="solid" hovered={hovered} reducedMotion={reducedMotion} />
 
-        {/* Branch split accent */}
-        <path
-          d="M 680 138 L 680 158"
-          fill="none"
-          stroke="rgba(8,121,127,0.2)"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
+        {/* User split — credits branch to bill / EV */}
+        <StageNode
+          id="use"
+          x={680}
+          y={148}
+          size={40}
+          variant="output"
+          active={
+            activeStage === "use" ||
+            activeStage === "credits" ||
+            activeStage === "bill" ||
+            activeStage === "ev"
+          }
+          hovered={hovered}
+          onHover={setHovered}
+          reducedMotion={reducedMotion}
+          animate={reveal}
+          arrivalPulses={MAIN_PULSES.slice(0, 2).map((p) => ({
+            ...p,
+            delay: p.delay + 1.15,
+          }))}
+        >
+          <User className="h-5 w-5 text-current-600" strokeWidth={2} />
+        </StageNode>
 
         {/* Dotted arrows overlay */}
         <path
@@ -1061,7 +1082,7 @@ function DesktopFlow({
         {/* Spark above generation */}
         <line x1="148" y1="112" x2="148" y2="122" stroke="#3ABBC2" strokeWidth="1" opacity={0.5} />
         <foreignObject x="136" y="92" width="24" height="24">
-          <div xmlns="http://www.w3.org/1999/xhtml" className="flex h-full w-full items-center justify-center">
+          <div {...({ xmlns: "http://www.w3.org/1999/xhtml" } as React.HTMLAttributes<HTMLDivElement>)} className="flex h-full w-full items-center justify-center">
             <Sparkles className="h-4 w-4 text-current-500" strokeWidth={1.75} />
           </div>
         </foreignObject>
@@ -1353,6 +1374,30 @@ function MobileFlow({
           </StageNode>
 
           <StageNode
+            id="use"
+            x={572}
+            y={130}
+            size={36}
+            variant="output"
+            active={
+              hovered === "use" ||
+              hovered === "credits" ||
+              hovered === "bill" ||
+              hovered === "ev"
+            }
+            hovered={hovered}
+            onHover={setHovered}
+            reducedMotion={reducedMotion}
+            animate={reveal}
+            arrivalPulses={MAIN_PULSES.slice(0, 2).map((p) => ({
+              ...p,
+              delay: p.delay + 1.15,
+            }))}
+          >
+            <User className="h-4 w-4 text-current-600" strokeWidth={2} />
+          </StageNode>
+
+          <StageNode
             id="bill"
             x={668}
             y={72}
@@ -1579,7 +1624,7 @@ export function BusinessModelFlow() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-paper-50 py-24 lg:py-28"
+      className="relative overflow-hidden bg-paper-50 pt-24 pb-12 lg:pt-28 lg:pb-16"
     >
       <div className="bg-radial-fade pointer-events-none absolute inset-0" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_55%,rgba(58,187,194,0.07),transparent_70%)]" />

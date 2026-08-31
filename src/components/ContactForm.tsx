@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, CheckCircle2, AlertTriangle } from "lucide-react";
+import { ArrowRight, AlertTriangle } from "lucide-react";
+
+const WHATSAPP_NUMBER = "919887270041";
 
 const INDUSTRIES = [
   "Manufacturing",
@@ -23,7 +25,6 @@ const fieldClass =
   "w-full rounded-xl border border-ink-900/15 bg-paper-100/60 px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 transition-colors focus:border-current-500/60 focus:outline-none";
 
 export function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -33,8 +34,25 @@ export function ContactForm() {
     setError(null);
 
     const form = new FormData(e.currentTarget);
+    const message = [
+      "Hi AINERGY, I'd like to build my energy plan.",
+      "",
+      `Name: ${form.get("name")}`,
+      `Company: ${form.get("company")}`,
+      `Email: ${form.get("email")}`,
+      `Phone: ${form.get("phone")}`,
+      `City: ${form.get("city")}`,
+      `Industry: ${form.get("industry")}`,
+      form.get("consumption") ? `Monthly consumption: ${form.get("consumption")}` : null,
+      form.get("tariff") ? `Current tariff: ${form.get("tariff")}` : null,
+      form.get("requirement") ? `Requirement: ${form.get("requirement")}` : null,
+      form.get("message") ? `Message: ${form.get("message")}` : null,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
     try {
-      const res = await fetch("/api/leads", {
+      await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -51,28 +69,11 @@ export function ContactForm() {
           message: form.get("message"),
         }),
       });
-      if (!res.ok) throw new Error("submit failed");
-      setSubmitted(true);
     } catch {
-      setError("Something went wrong sending your details. Please try again.");
-    } finally {
-      setSubmitting(false);
+      // Continue to WhatsApp even if lead API fails
     }
-  }
 
-  if (submitted) {
-    return (
-      <div className="flex h-full flex-col items-center justify-center rounded-3xl border border-forest-500/25 bg-forest-500/[0.06] p-12 text-center">
-        <CheckCircle2 className="h-10 w-10 text-forest-600" />
-        <h3 className="mt-5 font-display text-xl font-medium text-ink-900">
-          Thank you — we&apos;ve received your details.
-        </h3>
-        <p className="mt-2 max-w-sm text-sm text-ink-600">
-          A member of the AINERGY team will get in touch shortly to discuss
-          your energy requirements.
-        </p>
-      </div>
-    );
+    window.location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
   }
 
   return (

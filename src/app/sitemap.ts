@@ -1,15 +1,14 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/utils";
-import { ALL_SOLUTIONS, SERVICES, INSIGHTS } from "@/lib/data";
+import { ALL_SOLUTIONS, SERVICES } from "@/lib/data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/solutions",
-    "/energy-os",
+    "/services",
     "/energy-optimizer",
-    "/for-business",
-    "/insights",
+    "/products",
     "/about",
     "/contact",
     "/privacy",
@@ -29,12 +28,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  const insightRoutes = INSIGHTS.map((i) => ({
-    url: `${SITE_URL}/insights/${i.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.5,
-  }));
-
-  return [...staticRoutes, ...solutionRoutes, ...insightRoutes];
+  return [...staticRoutes, ...solutionRoutes];
 }

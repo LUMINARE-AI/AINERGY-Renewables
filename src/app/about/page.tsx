@@ -74,30 +74,32 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="surface-dark relative overflow-hidden bg-ink-950 py-14 sm:py-20 lg:py-24">
-        <div className="bg-radial-fade-dark pointer-events-none absolute inset-0" />
-        <div className="noise-overlay" />
+      <section className="relative overflow-hidden bg-gradient-to-br from-current-600 via-current-500 to-current-700 py-10 sm:py-12 lg:py-14">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(255,255,255,0.18),transparent_55%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(8,121,127,0.45),transparent_45%)]" />
         <Container className="relative px-5 sm:px-6">
           <Reveal>
-            <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
-              {PILLARS.map((pillar) => (
+            <div className="relative grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute left-[12.5%] right-[12.5%] top-1/2 hidden h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-white/25 to-transparent lg:block"
+              />
+              {PILLARS.map((pillar, i) => (
                 <div
                   key={pillar.label}
-                  className="flex flex-col items-center gap-2.5 rounded-xl border border-white/10 bg-graphite-950/60 px-3 py-5 text-center transition-colors hover:border-current-400/30 sm:gap-3 sm:rounded-2xl sm:p-8"
+                  className="group relative flex flex-col items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-3 py-4 text-center shadow-[0_8px_32px_rgba(8,121,127,0.25)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/35 hover:bg-white/15 hover:shadow-[0_12px_40px_rgba(8,121,127,0.35)] sm:gap-2.5 sm:px-4 sm:py-5"
+                  style={{ animationDelay: `${i * 0.05}s` }}
                 >
-                  <pillar.icon className="h-5 w-5 text-current-400 sm:h-6 sm:w-6" />
-                  <span className="font-display text-sm font-medium text-offwhite-100 sm:text-base">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-white/15 text-paper-50 transition-transform duration-300 group-hover:scale-105 sm:h-11 sm:w-11">
+                    <pillar.icon className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={1.75} />
+                  </div>
+                  <span className="font-display text-sm font-medium text-paper-50 sm:text-base">
                     {pillar.label}
                   </span>
                 </div>
               ))}
             </div>
           </Reveal>
-          <p className="mx-auto mt-6 max-w-2xl text-center text-sm leading-relaxed text-offwhite-300/70 sm:mt-8 sm:text-base">
-            We combine these four elements to help businesses transition from
-            fragmented energy decisions to a single, intelligent energy
-            ecosystem.
-          </p>
         </Container>
       </section>
 

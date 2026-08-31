@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Linkedin, Twitter, Youtube } from "lucide-react";
+import { Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 import { Logo } from "@/components/shared/Logo";
 import { Container } from "@/components/ui/Container";
 import { FOOTER_LINKS, LEGAL_LINKS } from "@/lib/data";
@@ -20,11 +20,18 @@ export function Footer() {
               The Energy OS for C&amp;I
             </p>
             <div className="mt-4 flex gap-3">
-              {[Linkedin, Twitter, Youtube].map((Icon, i) => (
+              {(
+                [
+                  { Icon: Linkedin, label: "LinkedIn" },
+                  { Icon: Twitter, label: "Twitter" },
+                  { Icon: Youtube, label: "YouTube" },
+                  { Icon: Instagram, label: "Instagram" },
+                ] as const
+              ).map(({ Icon, label }) => (
                 <span
-                  key={i}
+                  key={label}
                   className="flex h-9 w-9 items-center justify-center rounded-full border border-ink-900/10 text-ink-500 transition-colors hover:border-current-400/40 hover:bg-current-400/5 hover:text-current-600"
-                  aria-hidden="true"
+                  aria-label={label}
                 >
                   <Icon className="h-4 w-4" />
                 </span>
@@ -67,10 +74,10 @@ export function Footer() {
               ))}
             </ul>
             <a
-              href="mailto:hello@ainergy.in"
+              href="mailto:contact@aienergy.in"
               className="mt-4 inline-block text-sm text-ink-600 transition-colors hover:text-current-600"
             >
-              hello@ainergy.in
+              contact@aienergy.in
             </a>
           </div>
         </div>

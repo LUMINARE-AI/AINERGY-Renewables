@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, LayoutDashboard } from "lucide-react";
-import { useSession } from "next-auth/react";
+import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/shared/Logo";
 import { NAV_LINKS } from "@/lib/data";
 import { cn } from "@/lib/utils";
@@ -21,7 +20,6 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const { status } = useSession();
 
   const onDarkHero = DARK_HERO_ROUTES.some(
     (route) => pathname === route || pathname.startsWith(`${route}/`)
@@ -93,16 +91,10 @@ export function Navbar() {
             })}
           </div>
           <Link
-            href={status === "authenticated" ? "/dashboard" : "/login"}
-            className={cn(
-              "inline-flex items-center gap-1.5 text-sm transition-colors",
-              lightNav
-                ? "text-offwhite-100/80 hover:text-offwhite-100"
-                : "text-ink-900 hover:text-current-500"
-            )}
+            href="/contact"
+            className="inline-flex items-center justify-center rounded-full bg-current-500 px-5 py-2.5 text-sm font-medium text-paper-50 shadow-[0_0_0_1px_rgba(58,187,194,0.25)] transition-colors hover:bg-current-600 hover:shadow-glow"
           >
-            <LayoutDashboard className="h-4 w-4" />
-            {status === "authenticated" ? "Dashboard" : "Sign in"}
+            Contact us
           </Link>
         </div>
 
@@ -152,10 +144,10 @@ export function Navbar() {
                 </motion.div>
               ))}
               <Link
-                href={status === "authenticated" ? "/dashboard" : "/login"}
-                className="block rounded-lg px-4 py-3 text-[15px] font-medium text-ink-900 transition-colors hover:bg-current-400/10 hover:text-current-500"
+                href="/contact"
+                className="mt-2 block rounded-full bg-current-500 px-4 py-3 text-center text-[15px] font-medium text-paper-50 transition-colors hover:bg-current-600"
               >
-                {status === "authenticated" ? "Dashboard" : "Sign in"}
+                Contact us
               </Link>
             </div>
           </motion.div>

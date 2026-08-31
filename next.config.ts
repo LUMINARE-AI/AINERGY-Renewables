@@ -11,13 +11,38 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/services",
-        destination: "/solutions",
+        source: "/insights",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/insights/:slug",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/energy-os",
+        destination: "/services",
         permanent: true,
       },
       {
         source: "/services/:slug",
         destination: "/solutions/:slug",
+        permanent: true,
+      },
+      {
+        source: "/for-business",
+        destination: "/products",
+        permanent: true,
+      },
+      {
+        source: "/projects",
+        destination: "/products",
+        permanent: true,
+      },
+      {
+        source: "/projects/:slug",
+        destination: "/products",
         permanent: true,
       },
     ];

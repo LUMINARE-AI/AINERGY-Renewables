@@ -12,6 +12,7 @@ type ButtonProps = {
   className?: string;
   /** "dark" for buttons placed on a .surface-dark background (Copilot, app shell). */
   tone?: "light" | "dark";
+  external?: boolean;
 };
 
 export function Button({
@@ -22,6 +23,7 @@ export function Button({
   icon = false,
   className,
   tone = "light",
+  external = false,
 }: ButtonProps) {
   const base =
     "group relative inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current-400";
@@ -52,6 +54,8 @@ export function Button({
   return (
     <Link
       href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
       className={cn(base, variants[variant], sizes[size], className)}
     >
       {children}

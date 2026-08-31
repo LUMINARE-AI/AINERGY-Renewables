@@ -2,7 +2,6 @@ import { Hero } from "@/components/Hero";
 import { MetricStrip } from "@/components/MetricStrip";
 import { WhyAinergy } from "@/components/WhyAinergy";
 import { BusinessModelFlow } from "@/components/BusinessModelFlow";
-import { EnergyNetwork } from "@/components/EnergyNetwork";
 import { AISection } from "@/components/AISection";
 import { CTASection } from "@/components/CTASection";
 
@@ -11,14 +10,13 @@ export default function Home() {
     <>
       <Hero />
       <MetricStrip />
-      <WhyAinergy />
       <BusinessModelFlow />
-      <EnergyNetwork />
+      <WhyAinergy />
       <AISection />
       <CTASection
         title="Your energy system is bigger than solar."
-        secondaryLabel="Explore AINERGY OS"
-        secondaryHref="/energy-os"
+        secondaryLabel="Explore Services"
+        secondaryHref="/services"
       />
     </>
   );

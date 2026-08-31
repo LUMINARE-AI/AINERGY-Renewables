@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { IndianRupee, BrainCircuit, Network } from "lucide-react";
 import { Instrument_Serif } from "next/font/google";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 
 const accent = Instrument_Serif({
   weight: "400",
@@ -83,25 +82,6 @@ export function Hero() {
                 </span>
               </div>
             ))}
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.28 }}
-            className="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center lg:justify-start"
-          >
-            <Button href="/contact" size="lg" icon className="w-full sm:w-auto">
-              Build My Energy Plan
-            </Button>
-            <Button
-              href="/energy-os"
-              variant="secondary"
-              size="lg"
-              className="w-full sm:w-auto"
-            >
-              Explore AINERGY OS
-            </Button>
           </motion.div>
         </div>
       </Container>

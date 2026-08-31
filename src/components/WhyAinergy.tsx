@@ -19,7 +19,7 @@ const TRADITIONAL = ["Grid", "Solar", "Wind", "Battery", "EV", "Procurement", "C
 
 export function WhyAinergy() {
   return (
-    <section className="bg-paper-50 py-24 lg:py-32">
+    <section className="bg-paper-50 pt-12 pb-24 lg:pt-16 lg:pb-32">
       <Container>
         <SectionHeader
           eyebrow="Why AINERGY"

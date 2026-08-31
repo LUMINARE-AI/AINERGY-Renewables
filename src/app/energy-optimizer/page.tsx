@@ -35,8 +35,8 @@ export default function EnergyOptimizerPage() {
         title="Turn this into an actual energy plan."
         primaryLabel="Run a Full Analysis"
         primaryHref="/analysis"
-        secondaryLabel="Get Your Energy Assessment"
-        secondaryHref="/for-business"
+        secondaryLabel="Explore Products"
+        secondaryHref="/products"
       />
     </>
   );

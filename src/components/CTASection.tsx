@@ -50,6 +50,12 @@ export function CTASection({
             {secondaryLabel && secondaryHref && (
               <Link
                 href={secondaryHref}
+                target={secondaryHref.startsWith("http") ? "_blank" : undefined}
+                rel={
+                  secondaryHref.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
                 className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/10 px-5 py-2.5 text-sm font-medium text-paper-50 transition-colors hover:bg-white/20"
               >
                 {secondaryLabel}

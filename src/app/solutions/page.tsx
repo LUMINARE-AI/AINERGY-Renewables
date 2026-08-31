@@ -6,6 +6,7 @@ import { SolutionCard } from "@/components/SolutionCard";
 import { ServiceCard } from "@/components/ServiceCard";
 import { Reveal } from "@/components/shared/Reveal";
 import { CTASection } from "@/components/CTASection";
+import { Industries } from "@/components/Industries";
 import { SOLUTIONS, CLOCK_247, SERVICES } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -89,10 +90,12 @@ export default function SolutionsPage() {
         </Container>
       </section>
 
+      <Industries />
+
       <CTASection
         title="Not sure which combination fits your business?"
         primaryLabel="Get Your Energy Assessment"
-        primaryHref="/for-business"
+        primaryHref="/energy-optimizer"
       />
     </>
   );

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { MessageCircle, Mail, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ContactForm } from "@/components/ContactForm";
 
 export const metadata: Metadata = {
@@ -14,20 +14,22 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-paper-50 pb-16 pt-36 lg:pt-44">
+      <section className="relative min-h-[42dvh] overflow-hidden bg-paper-50 sm:min-h-[48dvh] lg:min-h-[52dvh]">
+        <Image
+          src="/contactBG.avif"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+          aria-hidden
+        />
         <div className="bg-radial-fade pointer-events-none absolute inset-0" />
-        <Container className="relative">
-          <SectionHeader
-            eyebrow="Contact"
-            title="Let's design your energy future."
-            description="Share a few details about your business and current energy setup — AINERGY will follow up to design a plan around it."
-          />
-        </Container>
       </section>
 
       <section className="surface-dark relative overflow-hidden bg-ink-950 pb-24 lg:pb-32">
         <div className="bg-radial-fade-dark pointer-events-none absolute inset-0" />
-        <Container className="relative">
+        <Container className="relative pt-12 lg:pt-16">
           <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr]">
             <div className="space-y-5">
               <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-graphite-900/40 p-6">
@@ -35,7 +37,7 @@ export default function ContactPage() {
                 <div>
                   <p className="text-sm font-medium text-offwhite-100">Email</p>
                   <p className="mt-1 text-sm text-offwhite-300/60">
-                    hello@ainergy.in
+                    contact@aienergy.in
                   </p>
                 </div>
               </div>
@@ -46,8 +48,14 @@ export default function ContactPage() {
                     WhatsApp
                   </p>
                   <p className="mt-1 text-sm text-offwhite-300/60">
-                    Available once configured — reach us by email in the
-                    meantime.
+                    <a
+                      href="https://wa.me/919887270041"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-colors hover:text-current-300"
+                    >
+                      +91 98872 70041
+                    </a>
                   </p>
                 </div>
               </div>
