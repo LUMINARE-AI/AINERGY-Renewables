@@ -26,16 +26,16 @@ export function CopilotMockDashboard() {
   }, [reducedMotion]);
 
   return (
-    <div className="rounded-3xl border border-white/10 bg-graphite-950/60 p-5 shadow-premium backdrop-blur-md sm:p-6">
-      <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-4">
+    <div className="rounded-3xl border border-ink-900/10 bg-paper-50/78 p-5 shadow-premium backdrop-blur-md sm:p-6">
+      <div className="flex items-center justify-between gap-3 border-b border-ink-900/10 pb-4">
         <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-current-400" />
-          <span className="font-mono-tag text-xs uppercase text-current-300">
+          <Sparkles className="h-4 w-4 text-current-600" />
+          <span className="font-mono-tag text-xs uppercase text-current-600">
             Copilot Analysis
           </span>
         </div>
         <span
-          className={`rounded-full border border-current-500/30 bg-current-400/10 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-current-300 ${
+          className={`rounded-full border border-current-500/30 bg-current-400/10 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-current-700 ${
             pulse && !reducedMotion ? "animate-pulse" : ""
           }`}
         >
@@ -44,28 +44,28 @@ export function CopilotMockDashboard() {
       </div>
 
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
-        <div className="rounded-2xl border border-dashed border-current-500/30 bg-current-400/5 p-4">
-          <div className="flex items-center gap-2 text-current-300">
+        <div className="rounded-2xl border border-dashed border-current-500/35 bg-current-400/5 p-4">
+          <div className="flex items-center gap-2 text-current-700">
             <UploadCloud className="h-4 w-4" />
             <span className="text-xs font-medium">Bill uploaded</span>
           </div>
-          <div className="mt-3 flex items-center gap-2 rounded-lg border border-white/10 bg-graphite-900/50 px-3 py-2">
-            <FileText className="h-4 w-4 shrink-0 text-offwhite-300/60" />
-            <span className="truncate text-xs text-offwhite-200">
+          <div className="mt-3 flex items-center gap-2 rounded-lg border border-ink-900/10 bg-paper-50/90 px-3 py-2">
+            <FileText className="h-4 w-4 shrink-0 text-ink-500" />
+            <span className="truncate text-xs text-ink-800">
               electricity_bill.pdf
             </span>
           </div>
         </div>
 
-        <div className="rounded-2xl border border-white/10 bg-graphite-900/40 p-4">
-          <p className="font-mono-tag text-[10px] uppercase text-offwhite-300/50">
+        <div className="rounded-2xl border border-ink-900/10 bg-paper-100/60 p-4">
+          <p className="font-mono-tag text-[10px] uppercase text-ink-500">
             Scenarios evaluated
           </p>
           <div className="mt-3 flex flex-wrap gap-1.5">
             {["Grid", "OA", "Group Captive", "Captive", "Hybrid"].map((s) => (
               <span
                 key={s}
-                className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-offwhite-200"
+                className="rounded-full border border-ink-900/10 bg-paper-50 px-2 py-0.5 text-[10px] text-ink-700"
               >
                 {s}
               </span>
@@ -78,18 +78,18 @@ export function CopilotMockDashboard() {
         {MOCK_EXTRACTED_FIELDS.map((field) => (
           <div
             key={field.label}
-            className="flex items-center justify-between rounded-xl border border-white/8 bg-graphite-900/30 px-3 py-2.5 transition-colors hover:border-current-500/25"
+            className="flex items-center justify-between rounded-xl border border-ink-900/10 bg-paper-50/90 px-3 py-2.5 transition-colors hover:border-current-500/30"
           >
-            <span className="font-mono-tag text-[10px] uppercase text-offwhite-300/45">
+            <span className="font-mono-tag text-[10px] uppercase text-ink-500">
               {field.label}
             </span>
-            <span className="text-xs text-offwhite-200">{field.value}</span>
+            <span className="text-xs text-ink-800">{field.value}</span>
           </div>
         ))}
       </div>
 
       <div className="mt-4 rounded-xl border border-forest-500/25 bg-forest-500/10 px-4 py-3 text-center">
-        <p className="text-xs text-forest-200">
+        <p className="text-xs font-medium text-forest-700">
           Indicative scenario comparison ready
         </p>
       </div>

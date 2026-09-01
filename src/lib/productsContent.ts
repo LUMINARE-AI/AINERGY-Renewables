@@ -12,28 +12,6 @@ export const COPILOT_CAPABILITIES = [
   "Recommends the next assessment step",
 ] as const;
 
-export const COMPARISON_SCENARIOS = [
-  { id: "grid", label: "Current Grid Cost", short: "Grid" },
-  { id: "oa", label: "Third-Party OA Landed Cost", short: "OA" },
-  { id: "group-captive", label: "Group Captive", short: "Group" },
-  { id: "captive", label: "Captive", short: "Captive" },
-  { id: "hybrid", label: "Hybrid + BESS", short: "Hybrid" },
-] as const;
-
-export const AI_INSIGHT_TEXT =
-  "Under the assumptions used, your estimated OA landed cost is below your current effective cost. The result is most sensitive to wheeling, banking, surcharge, losses and project location.";
-
-export const AI_INSIGHT_HIGHLIGHTS = [
-  "wheeling",
-  "banking",
-  "surcharge",
-  "losses",
-  "project location",
-];
-
-export const COPILOT_DISCLAIMER =
-  "The Copilot is an initial analytical tool, not a binding tariff quote, financial guarantee, legal opinion or final OA/captive eligibility determination.";
-
 export const WATTPE_TEASER_TAGS = [
   "Apartment residents",
   "Renters",

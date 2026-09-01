@@ -4,6 +4,7 @@ import { Layers, Zap, BrainCircuit, Database } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/shared/Reveal";
 import { CTASection } from "@/components/CTASection";
+import { FoundersSection } from "@/components/FoundersSection";
 
 export const metadata: Metadata = {
   title: "About — AINERGY Renewable LLP",
@@ -17,27 +18,6 @@ const PILLARS = [
   { label: "Energy", icon: Zap },
   { label: "AI", icon: BrainCircuit },
   { label: "Data", icon: Database },
-];
-
-const FOUNDERS = [
-  {
-    name: "Arin Danish",
-    role: "Co-Founder | Technology & Energy Strategy",
-    image: "/founders/arin-danish.svg",
-    bios: [
-      "Arin brings extensive experience across the energy sector, including Solar, Wind, Thermal and Oil & Gas, with expertise in project development, contracts management and project management. He has been involved in delivering projects across renewable energy and EHV infrastructure.",
-      "At AINERGY, Arin focuses on technology, AI and digital energy solutions, driving the development of the intelligence layer behind AINERGY's Energy OS for C&I. His focus is on using technology to simplify energy decisions, optimize renewable-energy procurement and create smarter energy solutions.",
-    ],
-  },
-  {
-    name: "Asif Mustafa",
-    role: "Co-Founder | Execution & Project Delivery",
-    image: "/founders/asif-mustafa.svg",
-    bios: [
-      "Asif brings extensive experience across Solar, Wind and Thermal energy, with strong expertise in project management and execution. He has been involved in delivering multiple renewable-energy and EHV projects, with a strong focus on translating plans into successful project outcomes.",
-      "At AINERGY, Asif focuses on execution, project delivery and renewable-energy infrastructure, ensuring that the company's energy solutions are built and delivered with strong operational discipline and quality.",
-    ],
-  },
 ];
 
 export default function AboutPage() {
@@ -103,7 +83,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="relative overflow-hidden bg-paper-50 py-16 sm:py-24 lg:py-32">
+      <section className="relative overflow-hidden bg-paper-50 pt-8 pb-16 sm:pt-10 sm:pb-24 lg:pt-12 lg:pb-32">
         <div className="bg-radial-fade pointer-events-none absolute inset-0 opacity-60" />
         <Container className="relative px-5 sm:px-6">
           <Reveal>
@@ -117,38 +97,7 @@ export default function AboutPage() {
             </div>
           </Reveal>
 
-          <div className="mt-10 flex flex-col gap-12 sm:mt-14 sm:gap-16 lg:mt-16 lg:gap-20">
-            {FOUNDERS.map((founder, index) => (
-              <Reveal key={founder.name} delay={index * 0.08}>
-                <article className="group flex flex-col items-center gap-6 md:flex-row md:items-start md:gap-8 lg:gap-10">
-                  <div className="relative aspect-[4/5] w-40 shrink-0 overflow-hidden bg-ink-900 sm:w-48 md:w-52 lg:w-56">
-                    <Image
-                      src={founder.image}
-                      alt={founder.name}
-                      fill
-                      unoptimized
-                      sizes="(max-width: 768px) 160px, 224px"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    />
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink-950/55 to-transparent" />
-                  </div>
-                  <div className="min-w-0 flex-1 text-center md:pt-1 md:text-left">
-                    <h3 className="font-display text-xl font-semibold tracking-tight text-ink-900 sm:text-2xl">
-                      {founder.name}
-                    </h3>
-                    <p className="mt-1.5 text-sm font-medium text-current-600 sm:mt-2">
-                      {founder.role}
-                    </p>
-                    <div className="mt-4 space-y-3 text-sm leading-relaxed text-ink-700/90 sm:mt-5 sm:space-y-4 sm:text-[15px]">
-                      {founder.bios.map((bio) => (
-                        <p key={bio.slice(0, 48)}>{bio}</p>
-                      ))}
-                    </div>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
+          <FoundersSection />
 
           <Reveal delay={0.15}>
             <div className="mx-auto mt-14 max-w-3xl border-t border-ink-900/10 pt-10 text-center sm:mt-20 sm:pt-14">

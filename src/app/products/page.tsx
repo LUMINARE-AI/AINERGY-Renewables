@@ -6,7 +6,6 @@ import { CTASection } from "@/components/CTASection";
 import { ProductsNav } from "@/components/products/ProductsNav";
 import { CopilotProductSection } from "@/components/products/CopilotProductSection";
 import { WattPeSection } from "@/components/products/WattPeSection";
-import { ProductsEcosystem } from "@/components/products/ProductsEcosystem";
 import { WATTPE_URL } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -21,7 +20,7 @@ export default function ProductsPage() {
     <>
       <section className="relative flex min-h-[48dvh] items-center overflow-hidden bg-paper-50 sm:min-h-[54dvh] lg:min-h-[58dvh]">
         <Image
-          src="/ForBusinessBG.avif"
+          src="/insights.avif"
           alt=""
           fill
           priority
@@ -32,11 +31,8 @@ export default function ProductsPage() {
         <div className="bg-radial-fade pointer-events-none absolute inset-0" />
         <Container className="relative z-10 py-24 sm:py-28 lg:py-32">
           <SectionHeader
-            eyebrow="Products"
             title="Digital Products That Make Energy Decisions Simpler"
             description="AINERGY's Products layer contains proprietary digital experiences that connect customers to the Energy OS."
-            align="center"
-            className="mx-auto"
           />
         </Container>
       </section>
@@ -44,7 +40,6 @@ export default function ProductsPage() {
       <ProductsNav />
       <CopilotProductSection />
       <WattPeSection />
-      <ProductsEcosystem />
 
       <CTASection
         title="Make Your Next Energy Decision Simpler."

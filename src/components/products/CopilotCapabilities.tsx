@@ -8,10 +8,10 @@ import { COPILOT_CAPABILITIES } from "@/lib/productsContent";
 
 export function CopilotCapabilities() {
   return (
-    <div className="border-t border-white/10 py-16 lg:py-20">
+    <div className="border-t border-ink-900/8 py-16 lg:py-20">
       <Container>
         <Reveal>
-          <h3 className="font-display text-2xl font-medium text-offwhite-100 sm:text-3xl">
+          <h3 className="font-display text-2xl font-medium text-ink-900 sm:text-3xl">
             What it does
           </h3>
         </Reveal>
@@ -30,12 +30,12 @@ export function CopilotCapabilities() {
             <motion.div
               key={capability}
               variants={revealItem}
-              className="group flex items-start gap-4 rounded-2xl border border-white/8 bg-graphite-900/30 px-5 py-4 transition-all duration-300 hover:border-current-500/30 hover:bg-graphite-900/50"
+              className="group flex items-start gap-4 rounded-2xl border border-ink-900/10 bg-paper-100/50 px-5 py-4 transition-all duration-300 hover:border-current-500/30 hover:shadow-premium"
             >
-              <span className="font-mono-tag shrink-0 text-xs text-current-400/70">
+              <span className="font-mono-tag shrink-0 text-xs text-current-600/80">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <p className="text-sm leading-relaxed text-offwhite-200/90 group-hover:text-offwhite-100">
+              <p className="text-sm leading-relaxed text-ink-700/90 group-hover:text-ink-900">
                 {capability}
               </p>
             </motion.div>

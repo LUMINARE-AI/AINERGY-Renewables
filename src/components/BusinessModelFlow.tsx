@@ -1624,7 +1624,7 @@ export function BusinessModelFlow() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-paper-50 pt-24 pb-12 lg:pt-28 lg:pb-16"
+      className="relative overflow-hidden bg-paper-50 pt-12 pb-12 lg:pt-16 lg:pb-16"
     >
       <div className="bg-radial-fade pointer-events-none absolute inset-0" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_55%,rgba(58,187,194,0.07),transparent_70%)]" />

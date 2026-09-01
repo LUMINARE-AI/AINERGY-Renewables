@@ -4,7 +4,6 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CopilotFab } from "@/components/copilot/CopilotFab";
-import { AuthProvider } from "@/components/auth/SessionProviderWrapper";
 import { SITE_URL } from "@/lib/utils";
 
 const montserrat = Montserrat({
@@ -88,12 +87,10 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
         />
-        <AuthProvider>
-          <Navbar />
+        <Navbar />
           <main>{children}</main>
           <Footer />
           <CopilotFab />
-        </AuthProvider>
       </body>
     </html>
   );

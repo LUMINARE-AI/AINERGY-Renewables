@@ -3,11 +3,10 @@ import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { SolutionCard } from "@/components/SolutionCard";
-import { ServiceCard } from "@/components/ServiceCard";
 import { Reveal } from "@/components/shared/Reveal";
 import { CTASection } from "@/components/CTASection";
 import { Industries } from "@/components/Industries";
-import { SOLUTIONS, CLOCK_247, SERVICES } from "@/lib/data";
+import { SOLUTIONS, CLOCK_247 } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Solutions — Solar, Wind, Storage, EPC & Energy Intelligence",
@@ -56,34 +55,6 @@ export default function SolutionsPage() {
             {offerings.map((solution, i) => (
               <Reveal key={solution.slug} delay={(i % 3) * 0.06}>
                 <SolutionCard solution={solution} />
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <section className="relative overflow-hidden bg-paper-50 py-16 sm:py-20 lg:py-24">
-        <div className="bg-radial-fade pointer-events-none absolute inset-0 opacity-50" />
-        <Container className="relative">
-          <Reveal>
-            <div className="mb-8 max-w-2xl sm:mb-10">
-              <span className="font-mono-tag text-xs uppercase text-current-600">
-                Delivery &amp; infrastructure
-              </span>
-              <h2 className="mt-3 font-display text-2xl font-medium text-ink-900 sm:text-3xl">
-                What AINERGY builds and operates.
-              </h2>
-              <p className="mt-3 text-base leading-relaxed text-ink-700/85 sm:text-lg">
-                From Open Access solar plants and the EHV lines that connect
-                them, to EV charging, storage and the AI layer that runs on top
-                — engineered and delivered end to end.
-              </p>
-            </div>
-          </Reveal>
-          <div className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-            {SERVICES.map((service, i) => (
-              <Reveal key={service.slug} delay={(i % 3) * 0.06}>
-                <ServiceCard service={service} />
               </Reveal>
             ))}
           </div>

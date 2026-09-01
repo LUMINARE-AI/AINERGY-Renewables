@@ -29,17 +29,18 @@ export default function ServicesPage() {
         />
         <div className="bg-radial-fade pointer-events-none absolute inset-0" />
         <Container className="relative z-10 py-28 sm:py-32 lg:py-36">
-          <SectionHeader
-            eyebrow="Services"
-            title="From Energy Strategy to Physical Infrastructure"
-            description="AINERGY combines energy intelligence with engineering and execution capabilities."
-            align="center"
-            className="mx-auto"
-          />
+          <div className="max-w-3xl">
+            <SectionHeader title="From Energy Strategy to Physical Infrastructure" />
+            <p className="mt-5 text-lg leading-relaxed text-ink-700/85">
+              AINERGY combines energy intelligence with engineering
+              <br />
+              and execution capabilities.
+            </p>
+          </div>
         </Container>
       </section>
 
-      <section className="relative overflow-hidden bg-paper-50 py-16 sm:py-20 lg:py-28">
+      <section className="relative overflow-hidden bg-paper-50 pt-8 pb-16 sm:pt-10 sm:pb-20 lg:pt-12 lg:pb-28">
         <div className="bg-radial-fade pointer-events-none absolute inset-0 opacity-40" />
         <Container className="relative">
           <Reveal>
