@@ -25,7 +25,7 @@ export default function ProductsPage() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-cover object-top lg:object-[50%_18%]"
           aria-hidden
         />
         <div className="bg-radial-fade pointer-events-none absolute inset-0" />

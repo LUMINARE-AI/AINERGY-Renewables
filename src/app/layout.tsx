@@ -1,23 +1,15 @@
-import type { Metadata } from "next";
-import { Montserrat, IBM_Plex_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CopilotFab } from "@/components/copilot/CopilotFab";
+import { instrumentSerif, montserrat, plexMono } from "@/lib/fonts";
 import { SITE_URL } from "@/lib/utils";
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono",
-  display: "swap",
-});
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -81,7 +73,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${plexMono.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${montserrat.variable} ${instrumentSerif.variable} ${plexMono.variable}`}
+      suppressHydrationWarning
+    >
       <body className="font-sans antialiased" suppressHydrationWarning>
         <script
           type="application/ld+json"

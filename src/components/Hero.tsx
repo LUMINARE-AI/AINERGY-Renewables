@@ -3,15 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { IndianRupee, BrainCircuit, Network } from "lucide-react";
-import { Instrument_Serif } from "next/font/google";
 import { Container } from "@/components/ui/Container";
-
-const accent = Instrument_Serif({
-  weight: "400",
-  style: "italic",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 const CALLOUTS = [
   { label: "Lower ₹/kWh", icon: IndianRupee },
@@ -41,19 +33,13 @@ export function Hero() {
             className="font-display text-[2rem] font-medium leading-[1.15] tracking-tight text-ink-900 sm:text-5xl lg:text-[3.5rem] lg:leading-[1.1] xl:text-[3.85rem]"
           >
             The{" "}
-            <em
-              className={`${accent.className} text-[1.08em] not-italic text-gold-600`}
-            >
+            <em className="font-accent text-[1.08em] not-italic text-gold-600">
               Energy OS
             </em>{" "}
             for{" "}
-            <em className={`${accent.className} text-[1.08em] not-italic`}>
-              Commercial
-            </em>{" "}
+            <em className="font-accent text-[1.08em] not-italic">Commercial</em>{" "}
             &amp;{" "}
-            <em className={`${accent.className} text-[1.08em] not-italic`}>
-              Industrial
-            </em>
+            <em className="font-accent text-[1.08em] not-italic">Industrial</em>
           </motion.h1>
 
           <motion.p
