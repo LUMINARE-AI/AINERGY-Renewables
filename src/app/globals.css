@@ -119,3 +119,51 @@ body {
   background-size: 200% 100%;
   animation: shimmer 2.2s linear infinite;
 }
+
+/* Sweeping scan line across the bill silhouette in the optimizer intake. */
+.bill-scan-line {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(58, 187, 194, 0.15) 15%,
+    #3abbc2 50%,
+    rgba(58, 187, 194, 0.15) 85%,
+    transparent 100%
+  );
+  box-shadow: 0 0 18px 2px rgba(58, 187, 194, 0.45);
+  animation: bill-scan 2.8s ease-in-out infinite;
+}
+
+.bill-scan-line.is-reading {
+  animation-duration: 1.15s;
+}
+
+@keyframes bill-scan {
+  0% {
+    top: 14%;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    top: 86%;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bill-scan-line {
+    animation: none;
+    top: 42%;
+    opacity: 0.7;
+  }
+}

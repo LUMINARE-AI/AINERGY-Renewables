@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Info,
@@ -15,7 +16,6 @@ import {
   Mail,
   PhoneCall,
   AlertTriangle,
-  Bot,
   Pencil,
   BatteryCharging,
   Landmark,
@@ -52,6 +52,7 @@ import {
   BillUploadStep,
   type ConfirmedBillProfile,
 } from "@/components/copilot/BillUploadStep";
+import { cn } from "@/lib/utils";
 
 // ---------------------------------------------------------------------------
 // Small shared UI primitives
@@ -259,8 +260,16 @@ function AssistantBubble({
       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
       className="flex gap-3.5"
     >
-      <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-current-gradient text-paper-50 shadow-glow">
-        <Bot className="h-4.5 w-4.5" />
+      <div className="mt-0.5 h-10 w-10 shrink-0 overflow-hidden rounded-full shadow-glow ring-1 ring-ink-900/10">
+        <Image
+          src="/copilot.png"
+          alt="AINERGY Copilot"
+          width={80}
+          height={80}
+          quality={100}
+          unoptimized
+          className="h-full w-full object-cover"
+        />
       </div>
       <div className="min-w-0 flex-1 space-y-5 rounded-3xl rounded-tl-md border border-ink-900/10 bg-paper-50 p-6 shadow-premium lg:p-7">
         <p className="font-display text-base font-medium text-ink-900">
@@ -336,6 +345,67 @@ type TurnId =
   | "onsite"
   | "offsite"
   | "results";
+
+const TURN_LABELS: Record<TurnId, string> = {
+  bill: "Bill",
+  facility: "Facility",
+  tariff: "Tariff",
+  usage: "Usage",
+  details: "Site",
+  battery: "Battery",
+  strategy: "Strategy",
+  onsite: "On-site",
+  offsite: "Open Access",
+  results: "Plan",
+};
+
+function CopilotProgress({
+  turnIds,
+  activeTurnId,
+  onReopen,
+}: {
+  turnIds: TurnId[];
+  activeTurnId: TurnId;
+  onReopen: (id: TurnId) => void;
+}) {
+  const activeIndex = Math.max(0, turnIds.indexOf(activeTurnId));
+
+  return (
+    <div className="overflow-x-auto thin-scroll">
+      <ol className="flex min-w-max items-center gap-0.5 rounded-full border border-ink-900/10 bg-paper-50/80 px-2 py-1.5 shadow-sm backdrop-blur-sm">
+        {turnIds.map((id, i) => {
+          const done = i < activeIndex;
+          const active = i === activeIndex;
+          return (
+            <li key={id} className="flex items-center">
+              <button
+                type="button"
+                disabled={i > activeIndex}
+                onClick={() => onReopen(id)}
+                className={cn(
+                  "rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors",
+                  active && "bg-ink-900 text-paper-50",
+                  done && "text-current-700 hover:bg-current-400/10",
+                  !active && !done && "cursor-default text-ink-400"
+                )}
+              >
+                {TURN_LABELS[id]}
+              </button>
+              {i < turnIds.length - 1 && (
+                <span
+                  className={cn(
+                    "mx-0.5 h-px w-3",
+                    done ? "bg-current-500/50" : "bg-ink-900/12"
+                  )}
+                />
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  );
+}
 
 export function EnergyPlanner() {
   // --- Facility -----------------------------------------------------------
@@ -488,7 +558,19 @@ export function EnergyPlanner() {
   const strategyLabel = { onsite: "Onsite / Rooftop", offsite: "Offsite / Open Access", both: "Onsite + Offsite" }[strategy];
 
   return (
-    <div className="mx-auto max-w-3xl space-y-4">
+    <div
+      className={cn(
+        "mx-auto space-y-4",
+        activeTurnId === "bill" ? "max-w-5xl" : "max-w-3xl"
+      )}
+    >
+      {activeTurnId !== "bill" && (
+        <CopilotProgress
+          turnIds={turnIds}
+          activeTurnId={activeTurnId}
+          onReopen={reopen}
+        />
+      )}
       <AnimatePresence initial={false}>
         {visibleTurns.map((id) => {
           const isActive = id === activeTurnId;

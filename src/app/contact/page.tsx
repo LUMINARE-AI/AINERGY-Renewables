@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { MessageCircle, Mail, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/Container";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ContactForm } from "@/components/ContactForm";
 
 export const metadata: Metadata = {
@@ -13,69 +13,65 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <>
-      <section className="relative min-h-[42dvh] overflow-hidden bg-paper-50 sm:min-h-[48dvh] lg:min-h-[52dvh]">
-        <Image
-          src="/contactBG.avif"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-          aria-hidden
-        />
-        <div className="bg-radial-fade pointer-events-none absolute inset-0" />
-      </section>
+    <section className="relative overflow-hidden bg-paper-50 pb-24 pt-32 sm:pb-28 sm:pt-36 lg:pt-44">
+      <div className="bg-radial-fade pointer-events-none absolute inset-0" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-24 top-24 h-80 w-80 rounded-full bg-current-400/20 blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-16 bottom-0 h-64 w-64 rounded-full bg-current-400/10 blur-3xl"
+      />
 
-      <section className="surface-dark relative overflow-hidden bg-ink-950 pb-24 lg:pb-32">
-        <div className="bg-radial-fade-dark pointer-events-none absolute inset-0" />
-        <Container className="relative pt-12 lg:pt-16">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr]">
-            <div className="space-y-5">
-              <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-graphite-900/40 p-6">
-                <Mail className="mt-0.5 h-5 w-5 text-current-300" />
-                <div>
-                  <p className="text-sm font-medium text-offwhite-100">Email</p>
-                  <p className="mt-1 text-sm text-offwhite-300/60">
-                    contact@aienergy.in
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-graphite-900/40 p-6">
-                <MessageCircle className="mt-0.5 h-5 w-5 text-current-300" />
-                <div>
-                  <p className="text-sm font-medium text-offwhite-100">
-                    WhatsApp
-                  </p>
-                  <p className="mt-1 text-sm text-offwhite-300/60">
-                    <a
-                      href="https://wa.me/919887270041"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="transition-colors hover:text-current-300"
-                    >
-                      +91 98872 70041
-                    </a>
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4 rounded-2xl border border-white/10 bg-graphite-900/40 p-6">
-                <MapPin className="mt-0.5 h-5 w-5 text-current-300" />
-                <div>
-                  <p className="text-sm font-medium text-offwhite-100">
-                    AINERGY Renewable LLP
-                  </p>
-                  <p className="mt-1 text-sm text-offwhite-300/60">
-                    Registered office address to be published.
-                  </p>
-                </div>
+      <Container className="relative">
+        <SectionHeader
+          eyebrow="Contact"
+          title="Build My Energy Plan"
+          description="Tell us about your business's electricity consumption and requirements. We'll start designing from there."
+        />
+
+        <div className="mt-12 grid gap-10 lg:mt-16 lg:grid-cols-[1fr_1.3fr]">
+          <div className="space-y-4">
+            <div className="flex items-start gap-4 rounded-2xl border border-ink-900/10 bg-white/80 p-6 shadow-sm backdrop-blur-md">
+              <Mail className="mt-0.5 h-5 w-5 text-current-600" />
+              <div>
+                <p className="text-sm font-medium text-ink-900">Email</p>
+                <p className="mt-1 text-sm text-ink-600">contact@aienergy.in</p>
               </div>
             </div>
-
-            <ContactForm />
+            <div className="flex items-start gap-4 rounded-2xl border border-ink-900/10 bg-white/80 p-6 shadow-sm backdrop-blur-md">
+              <MessageCircle className="mt-0.5 h-5 w-5 text-current-600" />
+              <div>
+                <p className="text-sm font-medium text-ink-900">WhatsApp</p>
+                <p className="mt-1 text-sm text-ink-600">
+                  <a
+                    href="https://wa.me/919887270041"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-colors hover:text-current-600"
+                  >
+                    +91 98872 70041
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 rounded-2xl border border-ink-900/10 bg-white/80 p-6 shadow-sm backdrop-blur-md">
+              <MapPin className="mt-0.5 h-5 w-5 text-current-600" />
+              <div>
+                <p className="text-sm font-medium text-ink-900">
+                  AINERGY Renewable LLP
+                </p>
+                <p className="mt-1 text-sm text-ink-600">
+                  Registered office address to be published.
+                </p>
+              </div>
+            </div>
           </div>
-        </Container>
-      </section>
-    </>
+
+          <ContactForm />
+        </div>
+      </Container>
+    </section>
   );
 }
