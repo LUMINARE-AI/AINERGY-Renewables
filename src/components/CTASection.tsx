@@ -42,6 +42,12 @@ export function CTASection({
           <div className="mt-7 flex flex-wrap items-center gap-3 sm:mt-8">
             <Link
               href={primaryHref}
+              target={primaryHref.startsWith("http") ? "_blank" : undefined}
+              rel={
+                primaryHref.startsWith("http")
+                  ? "noopener noreferrer"
+                  : undefined
+              }
               className="group inline-flex items-center justify-center gap-2 rounded-lg bg-paper-50 px-5 py-2.5 text-sm font-medium text-ink-900 transition-colors hover:bg-white"
             >
               {primaryLabel}

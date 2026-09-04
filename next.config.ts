@@ -46,6 +46,26 @@ const nextConfig: NextConfig = {
         destination: "/products",
         permanent: true,
       },
+      {
+        source: "/solutions/solar",
+        destination: "/solutions",
+        permanent: true,
+      },
+      {
+        source: "/solutions/energy-intelligence",
+        destination: "/solutions",
+        permanent: true,
+      },
+      {
+        source: "/solutions/ev",
+        destination: "/solutions",
+        permanent: true,
+      },
+      {
+        source: "/products/wattpe",
+        destination: "https://watt-pe-two.vercel.app/",
+        permanent: false,
+      },
     ];
   },
 };

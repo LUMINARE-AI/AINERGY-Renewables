@@ -116,7 +116,7 @@ export function CopilotFab() {
       aria-label="Open AINERGY Copilot"
       className="group fixed bottom-4 right-4 z-40 sm:bottom-6 sm:right-6"
     >
-      <div className="relative h-[3.75rem] w-[3.75rem] sm:h-16 sm:w-16">
+      <div className="relative h-[4.5rem] w-[4.5rem] sm:h-20 sm:w-20">
         <AnimatePresence mode="wait">
           {typing && (
             <motion.div

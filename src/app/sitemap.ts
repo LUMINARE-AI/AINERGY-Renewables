@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/utils";
 import { ALL_SOLUTIONS, SERVICES } from "@/lib/data";
+import { PRODUCTS } from "@/lib/productsContent";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
@@ -28,5 +29,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...solutionRoutes];
+  const productRoutes = PRODUCTS.filter((product) => !product.ctaExternal).map(
+    (product) => ({
+      url: `${SITE_URL}/products/${product.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.65,
+    })
+  );
+
+  return [...staticRoutes, ...solutionRoutes, ...productRoutes];
 }

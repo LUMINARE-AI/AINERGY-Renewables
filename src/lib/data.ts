@@ -24,47 +24,65 @@ export const LEGAL_LINKS: NavLink[] = [
   { label: "Disclaimer", href: "/disclaimer" },
 ];
 
-export const WATTPE_URL = "https://wattpe.com";
+export const WATTPE_URL = "https://watt-pe-two.vercel.app/";
 
 export type InfrastructureService = {
   name: string;
+  short: string;
   description: string;
+  capabilities: string;
   icon: string;
 };
 
 export const INFRASTRUCTURE_SERVICES: InfrastructureService[] = [
   {
     name: "Solar EPC",
+    short: "Utility-Scale Solar, Built for Performance",
     description:
-      "Ground-mounted and commercial solar engineering, procurement and construction.",
+      "End-to-end engineering, procurement and construction for ground-mounted and C&I solar projects — from design and procurement to commissioning.",
+    capabilities: "Engineering • Procurement • Construction • Commissioning",
     icon: "Sun",
   },
   {
     name: "EHV EPC",
+    short: "Power Infrastructure That Connects",
     description:
-      "Evacuation, substations, high-voltage systems and grid interconnection infrastructure.",
+      "High-voltage evacuation and grid-interconnection infrastructure for renewable-energy projects and C&I customers.",
+    capabilities: "Substations • Transmission • Evacuation • Grid Interconnection",
     icon: "Cable",
   },
   {
     name: "Rooftop EPC",
-    description: "Commercial and industrial rooftop solar.",
+    short: "Solar Where You Operate",
+    description:
+      "Commercial and industrial rooftop solar designed around your available space, energy consumption and electrical infrastructure.",
+    capabilities: "Design • Engineering • Installation • Commissioning",
     icon: "Building2",
   },
   {
     name: "BESS",
-    description: "Battery storage integration, EMS and project execution.",
+    short: "Store Energy. Deploy It Smarter.",
+    description:
+      "Battery Energy Storage System integration for energy shifting, peak management, renewable integration and evolving C&I energy needs.",
+    capabilities: "BESS • EMS • Integration • Commissioning",
     icon: "BatteryCharging",
   },
   {
     name: "EV Charging",
+    short: "Energy Infrastructure for Electric Mobility",
     description:
-      "Commercial EV charging infrastructure and energy integration.",
+      "Commercial EV charging infrastructure integrated with your site's electrical system and broader energy strategy.",
+    capabilities:
+      "Charging Infrastructure • Electrical Integration • Energy Management",
     icon: "PlugZap",
   },
   {
     name: "O&M",
+    short: "Keep Your Energy Assets Performing",
     description:
-      "Monitoring, preventive maintenance, corrective maintenance and operational support.",
+      "Technology-enabled monitoring, preventive maintenance and corrective support to improve reliability, availability and long-term asset performance.",
+    capabilities:
+      "Monitoring • Preventive Maintenance • Corrective Maintenance • Performance Support",
     icon: "Activity",
   },
 ];
@@ -89,117 +107,135 @@ export type Solution = {
   description: string;
   icon: string;
   points: string[];
+  cta?: string;
+  featured?: boolean;
+  /** Optional override; defaults to `/solutions/${slug}`. */
+  href?: string;
 };
 
 export const SOLUTIONS: Solution[] = [
   {
-    slug: "solar",
-    name: "On-site Solar",
-    short: "Rooftop, ground-mounted and behind-the-meter generation.",
+    slug: "open-access",
+    name: "Green Energy Open Access",
+    short: "Your gateway to large-scale renewable energy",
     description:
-      "AINERGY designs and operates on-site solar systems sized to your load profile — rooftop, ground-mounted or carport — so generation is consumed where it's produced.",
-    icon: "Sun",
+      "Access renewable power from off-site solar and wind projects through Green Energy Open Access, with AINERGY evaluating the complete landed cost against your existing electricity cost.",
+    icon: "Network",
+    featured: true,
+    cta: "Explore OA",
     points: [
-      "Rooftop, ground-mount and carport formats",
-      "Sized against real load and consumption data",
-      "Behind-the-meter, minimal grid dependency",
+      "Off-site solar and wind for large C&I loads",
+      "Full landed-cost comparison vs current electricity cost",
+      "Built for the 100 kW+ C&I proposition",
     ],
   },
   {
-    slug: "open-access",
-    name: "Open Access",
-    short: "Off-site renewable energy for larger requirements.",
+    slug: "captive",
+    name: "Captive Energy",
+    short: "Own your renewable energy",
     description:
-      "For businesses whose energy needs exceed available rooftop or land, Open Access routes renewable power from off-site generation assets through the grid to your facility.",
-    icon: "Network",
+      "Develop dedicated renewable-energy assets linked to your energy requirements, giving businesses greater control over their clean-energy supply and long-term energy economics.",
+    icon: "Building2",
+    cta: "Explore Captive",
     points: [
-      "Off-site solar or wind capacity",
-      "Suited to high, steady industrial loads",
-      "Subject to state regulations and eligibility",
+      "Dedicated assets sized to your load",
+      "Greater control over clean-energy supply",
+      "Long-term energy economics under your ownership",
+    ],
+  },
+  {
+    slug: "group-captive",
+    name: "Group Captive",
+    short: "Share ownership. Share clean energy.",
+    description:
+      "Participate in renewable-energy projects through a Group Captive structure, combining shared ownership with long-term renewable energy supply.",
+    icon: "Users",
+    cta: "Explore Group Captive",
+    points: [
+      "Shared ownership of renewable projects",
+      "Long-term renewable energy supply",
+      "Suited to businesses pooling demand",
     ],
   },
   {
     slug: "hybrid",
-    name: "Wind + Solar Hybrid",
-    short: "Complementary generation profiles, improved utilization.",
+    name: "Solar + Wind Hybrid",
+    short: "Balance generation. Strengthen supply.",
     description:
-      "Wind and solar generate on different daily and seasonal patterns. Combining them at a single site improves capacity utilization and evens out the supply curve.",
+      "Combine solar and wind generation to create a more complementary renewable-energy profile and improve utilization across different generation periods.",
     icon: "Wind",
+    cta: "Explore Hybrid",
     points: [
-      "Higher combined capacity utilization factor",
-      "Smoother generation across day and season",
-      "Reduced dependence on a single resource",
+      "Complementary solar and wind profiles",
+      "Improved utilization across periods",
+      "Stronger, more balanced supply",
     ],
   },
   {
     slug: "storage",
-    name: "Battery Storage",
-    short: "Store energy when abundant, deploy when it matters.",
+    name: "Battery Energy Storage",
+    short: "Store energy when it matters",
     description:
-      "Battery Energy Storage Systems shift renewable generation to when your business actually needs it — smoothing demand charges and extending clean-energy hours.",
+      "Use BESS to store energy, manage demand and shift consumption to the periods where energy has the greatest value.",
     icon: "BatteryCharging",
+    cta: "Explore BESS",
     points: [
-      "Peak shaving and demand-charge management",
-      "Extends renewable availability past daylight",
-      "Grid stability and backup resilience",
+      "Store and shift energy to high-value periods",
+      "Demand and peak management",
+      "Extends clean energy beyond generation hours",
     ],
   },
   {
-    slug: "energy-intelligence",
-    name: "Energy Intelligence",
-    short: "AI-powered forecasting, optimization and decisions.",
+    slug: "247-clean-energy",
+    name: "24×7 Clean Energy",
+    short: "Move beyond daytime solar",
     description:
-      "AINERGY OS continuously analyzes generation, demand, tariffs and weather to recommend how a business should generate, store, procure and consume energy.",
-    icon: "BrainCircuit",
+      "Combine renewable generation, storage and intelligent energy management to move toward a more reliable, round-the-clock clean-energy strategy.",
+    icon: "Clock",
+    cta: "Explore 24×7",
     points: [
-      "Generation and demand forecasting",
-      "Lowest-cost energy mix recommendations",
-      "Continuous, data-driven optimization",
-    ],
-  },
-  {
-    slug: "ev",
-    name: "EV Energy",
-    short: "Charging infrastructure connected to your energy system.",
-    description:
-      "EV charging is treated as a load like any other — coordinated with generation, storage and tariffs rather than managed as a disconnected add-on.",
-    icon: "Zap",
-    points: [
-      "Fleet and workplace charging",
-      "Coordinated with on-site generation",
-      "Load-aware scheduling",
+      "Generation + storage + intelligent management",
+      "Toward round-the-clock clean energy",
+      "A long-term strategy, not a same-day guarantee",
     ],
   },
   {
     slug: "energy-as-a-service",
     name: "Energy-as-a-Service",
-    short: "Long-term energy outcomes, without managing infrastructure.",
+    short: "Clean energy without building everything yourself",
     description:
-      "AINERGY can develop, own and operate the required energy infrastructure under a service model, so businesses can focus on their core operations.",
+      "AINERGY can develop, finance, own and operate energy infrastructure, allowing businesses to access long-term clean-energy solutions without managing the entire project lifecycle.",
     icon: "Handshake",
+    cta: "Explore EaaS",
     points: [
-      "No upfront capital required in most structures",
-      "AINERGY develops, owns and operates",
-      "Structured, long-term energy outcomes",
+      "Develop, finance, own and operate",
+      "Long-term clean-energy outcomes",
+      "Without managing the full project lifecycle",
+    ],
+  },
+  {
+    slug: "integrated",
+    name: "Integrated Energy Solutions",
+    short: "One strategy. Multiple energy assets.",
+    description:
+      "Combine Solar, Wind, Open Access, Captive, Group Captive and BESS into an energy strategy designed around your consumption profile, cost and sustainability goals.",
+    icon: "Layers",
+    cta: "Design My Energy Strategy",
+    href: "/energy-optimizer",
+    points: [
+      "Solar, Wind, OA, Captive, Group Captive and BESS",
+      "Designed around your consumption profile",
+      "Aligned to cost and sustainability goals",
     ],
   },
 ];
 
-export const CLOCK_247: Solution = {
-  slug: "247-clean-energy",
-  name: "24×7 Clean Energy",
-  short: "Moving beyond daytime solar toward round-the-clock renewables.",
-  description:
-    "Combining generation sources, storage and grid balancing to move businesses beyond daytime-only solar and closer to continuously available clean energy.",
-  icon: "Clock",
-  points: [
-    "Generation-storage-grid coordination",
-    "Reduces reliance on any single time-of-day source",
-    "A long-term direction, not a same-day guarantee",
-  ],
-};
+/** @deprecated Prefer SOLUTIONS — kept for older imports. */
+export const CLOCK_247: Solution = SOLUTIONS.find(
+  (s) => s.slug === "247-clean-energy"
+)!;
 
-export const ALL_SOLUTIONS: Solution[] = [...SOLUTIONS, CLOCK_247];
+export const ALL_SOLUTIONS: Solution[] = SOLUTIONS;
 
 export type Service = {
   slug: string;

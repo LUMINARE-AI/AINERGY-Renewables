@@ -22,6 +22,8 @@
 
 html {
   background-color: #f7f8f6;
+  /* Make desktop typography match the visual "110%" look without relying on browser zoom. */
+  font-size: 110%;
 }
 
 body {

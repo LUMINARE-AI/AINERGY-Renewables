@@ -19,12 +19,12 @@ export default function ServicesPage() {
     <>
       <section className="relative flex min-h-[55dvh] items-center overflow-hidden bg-paper-50 sm:min-h-[62dvh] lg:min-h-[68dvh]">
         <Image
-          src="/solutions.avif"
+          src="/services.png"
           alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-cover object-[50%_28%] sm:object-[50%_22%] lg:object-[50%_18%]"
           aria-hidden
         />
         <div className="bg-radial-fade pointer-events-none absolute inset-0" />
@@ -51,6 +51,11 @@ export default function ServicesPage() {
               <h2 className="mt-3 font-display text-2xl font-medium text-ink-900 sm:text-3xl">
                 What AINERGY builds and operates.
               </h2>
+              <p className="mt-4 text-base leading-relaxed text-ink-600 sm:text-lg">
+                From renewable generation to grid infrastructure, storage and
+                charging, we deliver the physical energy systems behind your
+                energy strategy.
+              </p>
             </div>
           </Reveal>
           <div className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">

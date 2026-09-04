@@ -53,7 +53,7 @@ export function Navbar() {
           : "border-b border-transparent bg-transparent"
       )}
     >
-      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
+      <nav className="mx-auto flex h-[5.5rem] max-w-7xl items-center justify-between px-6 lg:px-10">
         <Logo />
 
         <div className="hidden items-center gap-5 lg:flex">
@@ -65,7 +65,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "group relative rounded-lg px-3.5 py-2 text-[13px] font-medium tracking-[0.01em] transition-colors duration-200",
+                    "group relative rounded-lg px-3.5 py-2 text-[15px] font-medium tracking-[0.01em] transition-colors duration-200",
                     lightNav
                       ? active
                         ? "text-offwhite-100"
@@ -92,7 +92,7 @@ export function Navbar() {
           </div>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-current-500 px-5 py-2.5 text-sm font-medium text-paper-50 shadow-[0_0_0_1px_rgba(58,187,194,0.25)] transition-colors hover:bg-current-600 hover:shadow-glow"
+            className="inline-flex items-center justify-center rounded-full bg-current-500 px-5 py-2.5 text-[15px] font-medium text-paper-50 shadow-[0_0_0_1px_rgba(58,187,194,0.25)] transition-colors hover:bg-current-600 hover:shadow-glow"
           >
             Contact us
           </Link>
