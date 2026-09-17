@@ -25,15 +25,15 @@ export default function ProductsPage() {
           className="object-cover object-center"
           aria-hidden
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-paper-50/55 via-paper-50/25 to-transparent" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-paper-50/20 via-transparent to-paper-50/15" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#59AFE7]/55 via-[#59AFE7]/25 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#59AFE7]/20 via-transparent to-[#59AFE7]/15" />
         <div className="bg-radial-fade pointer-events-none absolute inset-0" />
         <Container className="relative z-10 py-28 sm:py-32 lg:py-36">
           <div className="max-w-3xl">
             <h1 className="text-balance font-display text-3xl font-medium leading-[1.15] text-ink-900 sm:text-4xl lg:text-[2.75rem]">
               Explore Our Products
             </h1>
-            <p className="mt-5 max-w-2xl rounded-2xl border border-ink-900/8 bg-paper-50/55 px-4 py-3 text-lg font-medium leading-relaxed text-ink-800 shadow-sm backdrop-blur-sm sm:px-5 sm:py-3.5">
+            <p className="mt-5 max-w-2xl rounded-2xl border border-[#59AFE7]/25 bg-[#59AFE7]/45 px-4 py-3 text-lg font-medium leading-relaxed text-ink-900 shadow-sm backdrop-blur-sm sm:px-5 sm:py-3.5">
               Three digital products that connect customers to the Energy OS —
               bill-to-strategy intelligence for C&amp;I, community solar for
               everyone else, and a planning-grade EPC estimator for
