@@ -11,11 +11,18 @@ export type ProductFaq = {
   answer: string;
 };
 
-export type Product = {
-  slug: "copilot" | "wattpe";
+type ProductListing = {
+  slug: string;
   number: string;
   name: string;
   short: string;
+  ctaLabel: string;
+  ctaHref: string;
+  ctaExternal?: boolean;
+};
+
+export type ProductPage = ProductListing & {
+  kind?: "page";
   tagline: string;
   description: string;
   challengesLead: string;
@@ -25,10 +32,17 @@ export type Product = {
   how: { title: string; body: string }[];
   heroImages: [string, string];
   faq: ProductFaq[];
-  ctaLabel: string;
-  ctaHref: string;
-  ctaExternal?: boolean;
 };
+
+export type ProductTool = ProductListing & {
+  kind: "tool";
+};
+
+export type Product = ProductPage | ProductTool;
+
+export function isProductPage(product: Product): product is ProductPage {
+  return product.kind !== "tool";
+}
 
 export const PRODUCTS: Product[] = [
   {
@@ -238,6 +252,16 @@ export const PRODUCTS: Product[] = [
     ctaLabel: "Visit WattPe",
     ctaHref: WATTPE_URL,
     ctaExternal: true,
+  },
+  {
+    slug: "epc-calculator",
+    number: "03",
+    name: "EPC Calculator",
+    short:
+      "Planning-grade solar EPC estimator — instant BOM cost for utility-scale plants, including modules, mounting, inverters, BOS, GST and ₹/Wp.",
+    kind: "tool",
+    ctaLabel: "Open calculator",
+    ctaHref: "/products/epc-calculator",
   },
 ];
 

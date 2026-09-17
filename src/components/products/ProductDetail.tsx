@@ -8,7 +8,7 @@ import { CTASection } from "@/components/CTASection";
 import { ProductRow } from "@/components/products/ProductRow";
 import { ProductFaq } from "@/components/products/ProductFaq";
 import { CopilotMockDashboard } from "@/components/products/CopilotMockDashboard";
-import { PRODUCTS, type Product } from "@/lib/productsContent";
+import { PRODUCTS, type ProductPage } from "@/lib/productsContent";
 
 function Media({
   src,
@@ -54,7 +54,7 @@ function SectionHeading({
   );
 }
 
-export function ProductDetail({ product }: { product: Product }) {
+export function ProductDetail({ product }: { product: ProductPage }) {
   const related = PRODUCTS.filter((item) => item.slug !== product.slug);
 
   return (

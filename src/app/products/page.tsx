@@ -6,9 +6,9 @@ import { ProductsListing } from "@/components/products/ProductsListing";
 import { WATTPE_URL } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Products — AI Energy Copilot & WattPe",
+  title: "Products — AI Energy Copilot, WattPe & EPC Calculator",
   description:
-    "AINERGY's digital products: AI Energy Copilot for C&I bill analysis and energy strategy, and WattPe for community solar participation.",
+    "AINERGY's digital products: AI Energy Copilot for C&I bill analysis, WattPe for community solar, and the EPC Calculator for planning-grade solar plant cost estimates.",
   alternates: { canonical: "/products" },
 };
 
@@ -32,9 +32,10 @@ export default function ProductsPage() {
               Explore Our Products
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-ink-700/85">
-              Two digital products that connect customers to the Energy OS —
-              bill-to-strategy intelligence for C&amp;I, and community solar
-              for everyone else.
+              Three digital products that connect customers to the Energy OS —
+              bill-to-strategy intelligence for C&amp;I, community solar for
+              everyone else, and a planning-grade EPC estimator for
+              utility-scale solar.
             </p>
           </div>
         </Container>

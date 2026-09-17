@@ -31,18 +31,10 @@ export function ProductRow({
     >
       <p
         className={cn(
-          "relative z-10 flex items-center gap-3 font-display text-2xl font-semibold transition-colors duration-300 group-hover:text-paper-50 sm:text-3xl lg:text-4xl",
+          "relative z-10 font-display text-2xl font-semibold transition-colors duration-300 group-hover:text-paper-50 sm:text-3xl lg:text-4xl",
           light ? "text-ink-900" : "text-offwhite-100/55"
         )}
       >
-        <span
-          className={cn(
-            "font-mono-tag text-sm font-medium tracking-wide transition-colors duration-300 group-hover:text-paper-50 sm:text-base",
-            light ? "text-current-600" : "text-current-300"
-          )}
-        >
-          {product.number}.
-        </span>
         {product.name}
       </p>
 

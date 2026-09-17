@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProductDetail } from "@/components/products/ProductDetail";
-import { PRODUCTS, getProduct } from "@/lib/productsContent";
+import { PRODUCTS, getProduct, isProductPage } from "@/lib/productsContent";
 
 export function generateStaticParams() {
-  return PRODUCTS.filter((product) => !product.ctaExternal).map((product) => ({
+  return PRODUCTS.filter(
+    (product) => isProductPage(product) && !product.ctaExternal
+  ).map((product) => ({
     slug: product.slug,
   }));
 }
@@ -16,7 +18,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const product = getProduct(slug);
-  if (!product || product.ctaExternal) return {};
+  if (!product || !isProductPage(product) || product.ctaExternal) return {};
   return {
     title: `${product.name} — Products`,
     description: product.description,
@@ -31,7 +33,7 @@ export default async function ProductDetailPage({
 }) {
   const { slug } = await params;
   const product = getProduct(slug);
-  if (!product || product.ctaExternal) notFound();
+  if (!product || !isProductPage(product) || product.ctaExternal) notFound();
 
   return <ProductDetail product={product} />;
 }
