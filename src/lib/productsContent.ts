@@ -258,7 +258,7 @@ export const PRODUCTS: Product[] = [
     number: "03",
     name: "EPC Calculator",
     short:
-      "Planning-grade solar EPC estimator — instant BOM cost for utility-scale plants, including modules, mounting, inverters, BOS, GST and ₹/Wp.",
+      "Planning-grade solar EPC estimator — instant BOM cost for utility-scale plants, with GST and ₹/Wp.",
     kind: "tool",
     ctaLabel: "Open calculator",
     ctaHref: "/products/epc-calculator",

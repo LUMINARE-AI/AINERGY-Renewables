@@ -22,7 +22,7 @@ export function ProductRow({
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
       className={cn(
-        "group relative grid overflow-hidden rounded-2xl px-5 py-8 pr-6 before:absolute before:inset-x-0 before:top-1/2 before:z-0 before:h-0 before:-translate-y-1/2 before:bg-current-500 before:transition-all before:duration-300 before:ease-out before:content-[''] hover:before:h-full sm:grid-cols-2 sm:items-center sm:gap-8 sm:px-8 sm:py-12 sm:pr-24 lg:px-10",
+        "group relative grid overflow-hidden rounded-2xl px-5 py-8 pr-6 before:absolute before:inset-x-0 before:top-1/2 before:z-0 before:h-0 before:-translate-y-1/2 before:bg-current-500 before:transition-all before:duration-300 before:ease-out before:content-[''] hover:before:h-full sm:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] sm:items-center sm:gap-8 sm:px-8 sm:py-12 sm:pr-24 lg:pl-10 lg:pr-28",
         light
           ? "border border-ink-900/10 bg-white/80 shadow-sm backdrop-blur-md hover:shadow-premium"
           : "bg-white/5"
@@ -31,7 +31,7 @@ export function ProductRow({
     >
       <p
         className={cn(
-          "relative z-10 font-display text-2xl font-semibold transition-colors duration-300 group-hover:text-paper-50 sm:text-3xl lg:text-4xl",
+          "relative z-10 min-w-0 font-display text-2xl font-semibold transition-colors duration-300 group-hover:text-paper-50 sm:text-3xl lg:text-4xl",
           light ? "text-ink-900" : "text-offwhite-100/55"
         )}
       >
@@ -40,7 +40,7 @@ export function ProductRow({
 
       <p
         className={cn(
-          "relative z-10 mt-3 max-w-xl text-sm font-medium leading-relaxed transition-colors duration-300 group-hover:text-paper-50 sm:mt-0 sm:text-base lg:text-lg",
+          "relative z-10 mt-3 min-w-0 max-w-xl text-sm font-medium leading-relaxed transition-colors duration-300 group-hover:text-paper-50 sm:mt-0 sm:pr-2 sm:text-base lg:text-lg",
           light ? "text-ink-600" : "text-offwhite-100/45"
         )}
       >

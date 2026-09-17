@@ -6,16 +6,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 
-const HIDDEN_ROUTES = [
-  "/energy-optimizer",
-  "/dashboard",
-  "/facilities",
-  "/analysis",
-  "/recommendation",
-  "/scenarios",
-  "/settings",
-];
-
 const MESSAGES = [
   "Hi, How may I help you?",
   "Want to see how much you could save on energy?",
@@ -26,12 +16,6 @@ const MESSAGES = [
 const START_DELAY_MS = 2500;
 const CYCLE_DELAY_MS = 2500;
 const TYPE_INTERVAL_MS = 55;
-
-function isHiddenRoute(pathname: string) {
-  return HIDDEN_ROUTES.some(
-    (route) => pathname === route || pathname.startsWith(`${route}/`)
-  );
-}
 
 function renderBubbleText(text: string, cursor: ReactNode) {
   const newlineIndex = text.indexOf("\n");
@@ -108,7 +92,7 @@ export function CopilotFab() {
     return () => window.clearTimeout(cycleTimer);
   }, [typing, displayed, messageIndex, currentMessage, isComplete, reducedMotion]);
 
-  if (isHiddenRoute(pathname)) return null;
+  if (pathname !== "/") return null;
 
   return (
     <Link

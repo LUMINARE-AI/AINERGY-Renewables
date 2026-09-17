@@ -28,11 +28,17 @@ export default function SolutionsPage() {
           className="object-cover object-center"
           aria-hidden
         />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-paper-50/55 via-paper-50/25 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-paper-50/20 via-transparent to-paper-50/15" />
+        <div className="bg-radial-fade pointer-events-none absolute inset-0" />
         <Container className="relative z-10 py-28 sm:py-32 lg:py-36">
-          <SectionHeader
-            title="Every layer of a modern C&I energy system"
-            description="Adopt the energy mix you need — and the infrastructure, EPC and AI that deliver it — individually or as one integrated platform."
-          />
+          <div className="max-w-3xl">
+            <SectionHeader title="Every layer of a modern C&I energy system" />
+            <p className="mt-5 max-w-2xl rounded-2xl border border-ink-900/8 bg-paper-50/55 px-4 py-3 text-lg font-medium leading-relaxed text-ink-800 shadow-sm backdrop-blur-sm sm:px-5 sm:py-3.5">
+              Adopt the energy mix you need — and the infrastructure, EPC and AI
+              that deliver it — individually or as one integrated platform.
+            </p>
+          </div>
         </Container>
       </section>
 
