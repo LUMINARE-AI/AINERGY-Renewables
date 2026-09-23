@@ -181,7 +181,7 @@ export function EpcCalculator() {
               your FastAPI host with no trailing slash, then restart the Next.js
               server. Example:{" "}
               <code className="font-mono-tag text-xs">
-                https://ainergy-renewables-backend.onrender.com
+                https://ainergy-renewables-backend-1.onrender.com
               </code>{" "}
               or local <code className="font-mono-tag text-xs">http://127.0.0.1:8000</code>.
             </p>
