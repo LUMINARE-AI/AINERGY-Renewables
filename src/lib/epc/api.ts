@@ -18,10 +18,18 @@ export class EpcApiError extends Error {
   }
 }
 
-export function getApiBaseUrl(): string | null {
-  const raw = process.env.NEXT_PUBLIC_API_URL;
+export function normalizeApiBaseUrl(raw: string | undefined | null): string | null {
   if (!raw || !raw.trim()) return null;
-  return raw.trim().replace(/\/+$/, "");
+  const cleaned = raw
+    .trim()
+    .replace(/^['"]+|['"]+$/g, "")
+    .trim()
+    .replace(/\/+$/, "");
+  return cleaned || null;
+}
+
+export function getApiBaseUrl(): string | null {
+  return normalizeApiBaseUrl(process.env.NEXT_PUBLIC_API_URL);
 }
 
 export function parseFastApiDetail(data: unknown): string | null {
