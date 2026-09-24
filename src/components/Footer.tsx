@@ -74,10 +74,10 @@ export function Footer() {
               ))}
             </ul>
             <a
-              href="mailto:contact@aienergy.in"
+              href="mailto:reach@ainergyrenewables.com"
               className="mt-4 inline-block text-sm text-ink-600 transition-colors hover:text-current-600"
             >
-              contact@aienergy.in
+              reach@ainergyrenewables.com
             </a>
           </div>
         </div>

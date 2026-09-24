@@ -105,17 +105,8 @@ export function ProductDetail({ product }: { product: ProductPage }) {
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
             {product.challenges.map((challenge, i) => (
               <Reveal key={challenge.title} delay={(i % 3) * 0.06}>
-                <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-ink-900/10 bg-paper-50 shadow-sm transition-shadow duration-300 hover:shadow-premium">
-                  <div className="relative aspect-[16/9] overflow-hidden bg-paper-200">
-                    <Image
-                      src={challenge.image}
-                      alt=""
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-5 sm:p-6">
+                <article className="flex h-full flex-col rounded-3xl border border-ink-900/10 bg-paper-50 p-5 shadow-sm transition-shadow duration-300 hover:shadow-premium sm:p-6">
+                  <div className="flex flex-1 flex-col">
                     <span className="font-mono-tag text-xs text-current-600">
                       {String(i + 1).padStart(2, "0")}
                     </span>

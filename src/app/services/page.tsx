@@ -27,13 +27,12 @@ export default function ServicesPage() {
           className="object-cover object-[50%_28%] sm:object-[50%_22%] lg:object-[50%_18%]"
           aria-hidden
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#59AFE7]/55 via-[#59AFE7]/25 to-transparent" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#59AFE7]/20 via-transparent to-[#59AFE7]/15" />
-        <div className="bg-radial-fade pointer-events-none absolute inset-0" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#59AFE7]/22 via-[#59AFE7]/8 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#59AFE7]/8 via-transparent to-[#59AFE7]/6" />
         <Container className="relative z-10 py-28 sm:py-32 lg:py-36">
           <div className="max-w-3xl">
             <SectionHeader title="From Energy Strategy to Physical Infrastructure" />
-            <p className="mt-5 max-w-2xl rounded-2xl border border-[#59AFE7]/25 bg-[#59AFE7]/45 px-4 py-3 text-lg font-medium leading-relaxed text-ink-900 shadow-sm backdrop-blur-sm sm:px-5 sm:py-3.5">
+            <p className="mt-5 max-w-2xl rounded-2xl border border-current-600 bg-current-600 px-4 py-3 text-lg font-medium leading-relaxed text-paper-50 shadow-sm sm:px-5 sm:py-3.5">
               AINERGY combines energy intelligence with engineering
               and execution capabilities.
             </p>

@@ -69,3 +69,16 @@ export function formatPct(value: number): string {
     maximumFractionDigits: 1,
   })}%`;
 }
+
+/** Compact crore figure for the estimate hero and breakdown, e.g. ₹79.2 cr. */
+export function formatCrore(amount: number, digits = 2): string {
+  const sign = amount < 0 ? "−" : "";
+  const crores = Math.abs(amount) / CRORE;
+  return `${sign}₹${indianNumber(crores, digits)} cr`;
+}
+
+/** Short rupee figure without a unit suffix, e.g. ₹40.6. */
+export function formatRupee(amount: number, digits = 1): string {
+  const sign = amount < 0 ? "−" : "";
+  return `${sign}₹${indianNumber(Math.abs(amount), digits)}`;
+}

@@ -37,7 +37,7 @@ export default function ContactPage() {
               <Mail className="mt-0.5 h-5 w-5 text-current-600" />
               <div>
                 <p className="text-sm font-medium text-ink-900">Email</p>
-                <p className="mt-1 text-sm text-ink-600">contact@aienergy.in</p>
+                <p className="mt-1 text-sm text-ink-600">reach@ainergyrenewables.com</p>
               </div>
             </div>
             <div className="flex items-start gap-4 rounded-2xl border border-ink-900/10 bg-white/80 p-6 shadow-sm backdrop-blur-md">

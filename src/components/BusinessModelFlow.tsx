@@ -1640,12 +1640,16 @@ export function BusinessModelFlow() {
               </span>
               <span className="h-px w-10 bg-forest-600/35" />
             </div>
-            <h2 className="font-display text-xl font-semibold uppercase tracking-[0.14em] text-forest-700 sm:text-2xl">
-              OUR BUSINESS MODEL
+            <p className="font-mono-tag text-xs uppercase tracking-[0.16em] text-current-600">
+              WattPe
+            </p>
+            <h2 className="mt-3 font-display text-3xl font-medium leading-tight text-ink-900 sm:text-4xl">
+              One of our best products
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-ink-700/80 sm:text-base">
-              You own a portion. Businesses use clean energy. Revenue is shared
-              with you as AINERGY Credits.
+              WattPe lets you own a portion of a solar plant. Businesses use
+              that clean energy, and a share of the revenue comes back to you
+              as AINERGY Credits.
             </p>
           </div>
         </Reveal>
