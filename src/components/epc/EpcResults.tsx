@@ -48,7 +48,7 @@ function groupLineItems(items: LineItem[], landCost: number | null) {
     buckets.set("land", landCost);
   }
 
-  const rows = BREAKDOWN.map((group) => ({
+  const rows: { id: string; label: string; amount: number }[] = BREAKDOWN.map((group) => ({
     id: group.id,
     label: group.label,
     amount: buckets.get(group.id) ?? 0,
