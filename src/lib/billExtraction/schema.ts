@@ -1,5 +1,5 @@
-// Shared shape for AI-extracted electricity bill fields, used by both the
-// /api/extract-bill route and the client-side BillUploadStep component.
+// Shared shape for the unused Next.js /api/extract-bill route.
+// The public copilot uploads bills through src/lib/api/copilotClient.ts instead.
 // Mirrors the ElectricityBillLineItem model (field/value/unit/confidence)
 // in prisma/schema.prisma so this can graduate to writing real rows later
 // without a reshape.

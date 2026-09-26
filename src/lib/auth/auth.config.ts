@@ -1,6 +1,5 @@
-// Edge-safe half of the Auth.js config — no Prisma/bcrypt here (those need
-// the Node runtime). Imported by both middleware.ts (edge) and auth.ts
-// (Node, adds the Credentials provider on top of this).
+// Request-gate half of the Auth.js config — no Prisma/bcrypt here. Imported
+// by both proxy.ts and auth.ts (which adds the Credentials provider on top).
 
 import type { NextAuthConfig } from "next-auth";
 

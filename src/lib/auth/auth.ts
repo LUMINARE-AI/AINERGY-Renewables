@@ -2,7 +2,7 @@
 // sessions). No adapter — Credentials + JWT doesn't need the standard
 // Account/Session/VerificationToken tables, so the schema stays focused on
 // this product's own domain models (User/Organization/...). Route-handler
-// side only — see auth.config.ts for the edge-safe half used by middleware.
+// side only — see auth.config.ts for the request-gate half used by proxy.ts.
 
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
