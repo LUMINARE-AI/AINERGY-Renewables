@@ -60,7 +60,7 @@ export default function ContactPage() {
               <MapPin className="mt-0.5 h-5 w-5 text-current-600" />
               <div>
                 <p className="text-sm font-medium text-ink-900">
-                  AINERGY Renewable LLP
+                  AINERGY Renewable Private Limited
                 </p>
                 <p className="mt-1 text-sm text-ink-600">
                   Registered office address to be published.

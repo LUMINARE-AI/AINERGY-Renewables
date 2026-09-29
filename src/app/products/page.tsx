@@ -3,7 +3,6 @@ import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { CTASection } from "@/components/CTASection";
 import { ProductsListing } from "@/components/products/ProductsListing";
-import { WATTPE_URL } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Products — AI Energy Copilot, WattPe & EPC Calculator",
@@ -48,8 +47,8 @@ export default function ProductsPage() {
         title="Make Your Next Energy Decision Simpler."
         primaryLabel="Upload My Bill"
         primaryHref="/energy-optimizer"
-        secondaryLabel="Visit WattPe →"
-        secondaryHref={WATTPE_URL}
+        secondaryLabel="Explore WattPe →"
+        secondaryHref="/products/wattpe"
       />
     </>
   );

@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import {
   CopilotApiError,
   createReport,
-  getHealth,
   getRecommendations,
   getStates,
 } from "@/lib/api/copilotClient";
@@ -17,7 +16,7 @@ import {
   type RecommendationsResponse,
   type StateCatalogEntry,
 } from "@/lib/copilot/types";
-import { CopilotWakeBanner, ErrorNote } from "./copilot/ApiState";
+import { CopilotWakeBanner } from "./copilot/ApiState";
 import { BillUploadStep } from "./copilot/BillUploadStep";
 import { ChatPanel } from "./copilot/ChatPanel";
 import { ProfileFollowUp } from "./copilot/ProfileFollowUp";
@@ -35,7 +34,6 @@ export function EnergyPlanner() {
   const [states, setStates] = useState<StateCatalogEntry[]>([]);
   const [statesLoading, setStatesLoading] = useState(true);
   const [statesError, setStatesError] = useState<string | null>(null);
-  const [healthError, setHealthError] = useState<string | null>(null);
   const [stage, setStage] = useState<"upload" | "questions" | "results">("upload");
   const [reviewing, setReviewing] = useState(false);
   const [session, setSession] = useState(0);
@@ -61,20 +59,9 @@ export function EnergyPlanner() {
     }
   }, []);
 
-  const checkHealth = useCallback(async () => {
-    setHealthError(null);
-    try {
-      const health = await getHealth();
-      if (!health.ok) setHealthError("The copilot is not ready.");
-    } catch (err) {
-      setHealthError(err instanceof CopilotApiError ? err.message : "Could not reach the copilot.");
-    }
-  }, []);
-
   useEffect(() => {
     void loadStates();
-    void checkHealth();
-  }, [loadStates, checkHealth]);
+  }, [loadStates]);
 
   const loadRecommendations = useCallback(async (next: EnergyProfile) => {
     setRecsLoading(true);
@@ -130,11 +117,6 @@ export function EnergyPlanner() {
   return (
     <div className={stage === "upload" ? "mx-auto max-w-5xl" : "mx-auto max-w-6xl"}>
       <CopilotWakeBanner />
-      {healthError && (
-        <div className="mb-4">
-          <ErrorNote message={healthError} onRetry={() => void checkHealth()} />
-        </div>
-      )}
 
       {stage === "upload" ? (
         <BillUploadStep

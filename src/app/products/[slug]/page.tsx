@@ -5,7 +5,8 @@ import { PRODUCTS, getProduct, isProductPage } from "@/lib/productsContent";
 
 export function generateStaticParams() {
   return PRODUCTS.filter(
-    (product) => isProductPage(product) && !product.ctaExternal
+    (product) =>
+      isProductPage(product) && !product.ctaExternal && product.slug !== "wattpe"
   ).map((product) => ({
     slug: product.slug,
   }));
@@ -18,7 +19,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const product = getProduct(slug);
-  if (!product || !isProductPage(product) || product.ctaExternal) return {};
+  if (!product || !isProductPage(product) || product.ctaExternal || slug === "wattpe") return {};
   return {
     title: `${product.name} — Products`,
     description: product.description,
@@ -33,7 +34,7 @@ export default async function ProductDetailPage({
 }) {
   const { slug } = await params;
   const product = getProduct(slug);
-  if (!product || !isProductPage(product) || product.ctaExternal) notFound();
+  if (!product || !isProductPage(product) || product.ctaExternal || slug === "wattpe") notFound();
 
   return <ProductDetail product={product} />;
 }

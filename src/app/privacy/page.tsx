@@ -4,7 +4,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How AINERGY Renewable LLP collects, uses and protects your information.",
+  description: "How AINERGY Renewable Private Limited collects, uses and protects your information.",
   alternates: { canonical: "/privacy" },
 };
 
@@ -15,7 +15,7 @@ export default function PrivacyPage() {
         <SectionHeader eyebrow="Legal" title="Privacy Policy" />
         <div className="mt-10 space-y-6 text-base leading-loose text-ink-700">
           <p>
-            AINERGY Renewable LLP (&quot;AINERGY&quot;, &quot;we&quot;,
+            AINERGY Renewable Private Limited (&quot;AINERGY&quot;, &quot;we&quot;,
             &quot;us&quot;) respects your privacy. This policy describes, in
             general terms, how information submitted through this website —
             such as contact and enquiry form details — may be collected and

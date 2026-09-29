@@ -18,6 +18,8 @@ import type {
 const REQUEST_TIMEOUT_MS = 90_000;
 const CHAT_TIMEOUT_MS = 120_000;
 const WAKE_NOTICE_AFTER_MS = 6_000;
+const API_READY_TTL_MS = 10 * 60 * 1000;
+const API_READY_KEY = "ainergy-copilot-ready-until";
 export const MAX_CHAT_MESSAGES = 40;
 export const COPILOT_WAKING_MESSAGE =
   "The system is waking up. Please wait — this usually takes under a minute.";
@@ -43,6 +45,43 @@ export class CopilotApiError extends Error {
 type WakeListener = (waking: boolean) => void;
 const wakeListeners = new Set<WakeListener>();
 let wakeDepth = 0;
+let apiReadyUntil = 0;
+
+function readReadyUntil(): number {
+  if (apiReadyUntil > Date.now()) return apiReadyUntil;
+  if (typeof window === "undefined") return 0;
+  try {
+    const stored = Number(window.sessionStorage.getItem(API_READY_KEY));
+    if (Number.isFinite(stored)) apiReadyUntil = stored;
+  } catch {
+    // Private mode can block storage.
+  }
+  return apiReadyUntil;
+}
+
+function isApiReady(): boolean {
+  return readReadyUntil() > Date.now();
+}
+
+function markApiReady() {
+  apiReadyUntil = Date.now() + API_READY_TTL_MS;
+  if (typeof window === "undefined") return;
+  try {
+    window.sessionStorage.setItem(API_READY_KEY, String(apiReadyUntil));
+  } catch {
+    // Ignore storage failures.
+  }
+}
+
+function clearApiReady() {
+  apiReadyUntil = 0;
+  if (typeof window === "undefined") return;
+  try {
+    window.sessionStorage.removeItem(API_READY_KEY);
+  } catch {
+    // Ignore storage failures.
+  }
+}
 
 function setWakeDepth(next: number) {
   wakeDepth = Math.max(0, next);
@@ -194,7 +233,7 @@ async function request<T>(path: string, init?: RequestInit, timeoutMs = REQUEST_
   const pauses = [2_000, 4_000];
   let marked = false;
   const markWaking = () => {
-    if (marked) return;
+    if (marked || isApiReady()) return;
     marked = true;
     setWakeDepth(wakeDepth + 1);
   };
@@ -203,13 +242,17 @@ async function request<T>(path: string, init?: RequestInit, timeoutMs = REQUEST_
   try {
     for (let attempt = 0; attempt <= pauses.length; attempt += 1) {
       try {
-        return await requestOnce<T>(path, init, timeoutMs);
+        const result = await requestOnce<T>(path, init, timeoutMs);
+        markApiReady();
+        return result;
       } catch (err) {
-        const giveUp = !isTransient(err) || attempt === pauses.length;
+        const transient = isTransient(err);
+        const giveUp = !transient || attempt === pauses.length;
         if (giveUp) {
-          if (err instanceof CopilotApiError && (err.waking || isTransient(err))) throw asWakeFailure(err);
+          if (err instanceof CopilotApiError && (err.waking || transient)) throw asWakeFailure(err);
           throw err;
         }
+        clearApiReady();
         markWaking();
         await delay(pauses[attempt]);
       }

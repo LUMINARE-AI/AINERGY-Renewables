@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     "AI energy optimization",
     "24x7 renewable energy",
   ],
-  authors: [{ name: "AINERGY Renewable LLP" }],
+  authors: [{ name: "AINERGY Renewable Private Limited" }],
   openGraph: {
     type: "website",
     locale: "en_IN",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "AINERGY Renewable LLP",
+  name: "AINERGY Renewable Private Limited",
   alternateName: "AINERGY",
   url: SITE_URL,
   description:

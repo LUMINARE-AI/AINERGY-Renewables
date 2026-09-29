@@ -61,11 +61,6 @@ const nextConfig: NextConfig = {
         destination: "/solutions",
         permanent: true,
       },
-      {
-        source: "/products/wattpe",
-        destination: "https://watt-pe-two.vercel.app/",
-        permanent: false,
-      },
     ];
   },
 };

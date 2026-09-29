@@ -7,7 +7,7 @@ import { CTASection } from "@/components/CTASection";
 import { FoundersSection } from "@/components/FoundersSection";
 
 export const metadata: Metadata = {
-  title: "About — AINERGY Renewable LLP",
+  title: "About — AINERGY Renewable Private Limited",
   description:
     "AINERGY combines infrastructure, energy, AI and data to help businesses move from fragmented energy decisions to an intelligent energy ecosystem.",
   alternates: { canonical: "/about" },

@@ -24,8 +24,6 @@ export const LEGAL_LINKS: NavLink[] = [
   { label: "Disclaimer", href: "/disclaimer" },
 ];
 
-export const WATTPE_URL = "https://watt-pe-two.vercel.app/";
-
 export type InfrastructureService = {
   name: string;
   short: string;

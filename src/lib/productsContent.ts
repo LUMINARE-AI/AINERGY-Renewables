@@ -1,5 +1,3 @@
-import { WATTPE_URL } from "@/lib/data";
-
 export type ProductChallenge = {
   title: string;
   body: string;
@@ -249,9 +247,8 @@ export const PRODUCTS: Product[] = [
           "Apartment residents, renters and small businesses — not large HT C&I consumers evaluating Open Access or Captive.",
       },
     ],
-    ctaLabel: "Visit WattPe",
-    ctaHref: WATTPE_URL,
-    ctaExternal: true,
+    ctaLabel: "Explore WattPe",
+    ctaHref: "/products/wattpe",
   },
   {
     slug: "epc-calculator",

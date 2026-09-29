@@ -12,7 +12,7 @@ export function Footer() {
           <div>
             <Logo />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-600">
-              AINERGY Renewable LLP designs, develops and operates renewable-energy
+              AINERGY Renewable Private Limited designs, develops and operates renewable-energy
               infrastructure and intelligent energy solutions for Commercial &amp;
               Industrial businesses.
             </p>
@@ -84,10 +84,10 @@ export function Footer() {
 
         <div className="mt-8 flex flex-col gap-3 border-t border-ink-900/8 pt-5 text-xs text-ink-500 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} AINERGY Renewable LLP. All rights
+            © {new Date().getFullYear()} AINERGY Renewable Private Limited. All rights
             reserved.
           </p>
-          <p>Registered as a Limited Liability Partnership in India.</p>
+          <p>Clean energy, owned and operated.</p>
         </div>
       </Container>
     </footer>

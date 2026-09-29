@@ -1,7 +1,7 @@
 import { Hero } from "@/components/Hero";
 import { MetricStrip } from "@/components/MetricStrip";
 import { WhyAinergy } from "@/components/WhyAinergy";
-import { BusinessModelFlow } from "@/components/BusinessModelFlow";
+import { AinergyValueFlow } from "@/components/AinergyValueFlow";
 import { AISection } from "@/components/AISection";
 import { CTASection } from "@/components/CTASection";
 
@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <Hero />
       <MetricStrip />
-      <BusinessModelFlow />
+      <AinergyValueFlow />
       <WhyAinergy />
       <AISection />
       <CTASection

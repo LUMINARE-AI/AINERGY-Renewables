@@ -4,7 +4,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
-  description: "Terms governing the use of the AINERGY Renewable LLP website.",
+  description: "Terms governing the use of the AINERGY Renewable Private Limited website.",
   alternates: { canonical: "/terms" },
 };
 
@@ -15,7 +15,7 @@ export default function TermsPage() {
         <SectionHeader eyebrow="Legal" title="Terms of Use" />
         <div className="mt-10 space-y-6 text-base leading-loose text-ink-700">
           <p>
-            This website is operated by AINERGY Renewable LLP. By accessing
+            This website is operated by AINERGY Renewable Private Limited. By accessing
             or using this website, you agree to use it only for lawful
             purposes and in a manner that does not infringe the rights of, or
             restrict or inhibit the use of, this website by any third party.

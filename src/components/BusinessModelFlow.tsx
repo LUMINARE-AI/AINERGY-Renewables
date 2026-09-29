@@ -1586,7 +1586,7 @@ function useInView(ref: React.RefObject<HTMLElement | null>) {
   return isInView;
 }
 
-export function BusinessModelFlow() {
+export function BusinessModelFlow({ showIntro = true }: { showIntro?: boolean }) {
   const [hovered, setHovered] = useState<string | null>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [networkActive, setNetworkActive] = useState(false);
@@ -1630,6 +1630,7 @@ export function BusinessModelFlow() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_55%,rgba(58,187,194,0.07),transparent_70%)]" />
       <div className="pointer-events-none absolute inset-x-0 top-1/2 h-[420px] -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,rgba(8,121,127,0.04),transparent_65%)]" />
       <Container className="relative">
+        {showIntro ? (
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
             <div className="mx-auto mb-5 flex items-center justify-center gap-3">
@@ -1644,7 +1645,7 @@ export function BusinessModelFlow() {
               WattPe
             </p>
             <h2 className="mt-3 font-display text-3xl font-medium leading-tight text-ink-900 sm:text-4xl">
-              One of our best products
+              How WattPe works
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-ink-700/80 sm:text-base">
               WattPe lets you own a portion of a solar plant. Businesses use
@@ -1653,8 +1654,9 @@ export function BusinessModelFlow() {
             </p>
           </div>
         </Reveal>
+        ) : null}
 
-        <Reveal delay={0.08} className="mt-12 lg:mt-14">
+        <Reveal delay={showIntro ? 0.08 : 0} className={showIntro ? "mt-12 lg:mt-14" : undefined}>
           <DesktopFlow
             hovered={hovered}
             setHovered={setHovered}
