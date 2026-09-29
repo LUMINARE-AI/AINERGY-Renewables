@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Sun,
   Wind,
@@ -11,6 +12,7 @@ import {
   FileText,
   Car,
   Zap,
+  ArrowLeft,
   Sparkles,
   MousePointerClick,
   User,
@@ -1624,29 +1626,27 @@ export function BusinessModelFlow({ showIntro = true }: { showIntro?: boolean })
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-paper-50 pt-12 pb-12 lg:pt-16 lg:pb-16"
+      className="relative overflow-hidden bg-paper-50 pt-[5.75rem] pb-12 sm:pt-24 lg:pb-16"
     >
       <div className="bg-radial-fade pointer-events-none absolute inset-0" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_55%,rgba(58,187,194,0.07),transparent_70%)]" />
       <div className="pointer-events-none absolute inset-x-0 top-1/2 h-[420px] -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,rgba(8,121,127,0.04),transparent_65%)]" />
       <Container className="relative">
+        <Link
+          href="/products"
+          className="mb-1 inline-flex items-center gap-1.5 text-sm text-ink-600 transition-colors hover:text-current-600"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" /> Our Products
+        </Link>
         {showIntro ? (
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
-            <div className="mx-auto mb-5 flex items-center justify-center gap-3">
-              <span className="h-px w-10 bg-forest-600/35" />
-              <span className="relative flex h-2 w-2 items-center justify-center">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-current-400/30 motion-reduce:animate-none" />
-                <span className="relative h-1.5 w-1.5 rounded-full bg-forest-600" />
-              </span>
-              <span className="h-px w-10 bg-forest-600/35" />
-            </div>
             <p className="font-mono-tag text-xs uppercase tracking-[0.16em] text-current-600">
               WattPe
             </p>
-            <h2 className="mt-3 font-display text-3xl font-medium leading-tight text-ink-900 sm:text-4xl">
+            <h1 className="mt-3 font-display text-3xl font-medium leading-tight text-ink-900 sm:text-4xl">
               How WattPe works
-            </h2>
+            </h1>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-ink-700/80 sm:text-base">
               WattPe lets you own a portion of a solar plant. Businesses use
               that clean energy, and a share of the revenue comes back to you

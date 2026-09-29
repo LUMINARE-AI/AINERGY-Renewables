@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { StepIndex } from "@/components/ui/StepIndex";
 import { Reveal } from "@/components/shared/Reveal";
 import { CTASection } from "@/components/CTASection";
 import { ProductRow } from "@/components/products/ProductRow";
@@ -59,7 +60,7 @@ export function ProductDetail({ product }: { product: ProductPage }) {
 
   return (
     <>
-      <section className="relative bg-paper-50 pb-14 pt-32 sm:pb-16 sm:pt-36 lg:pt-40">
+      <section className="relative bg-paper-50 pb-6 pt-32 sm:pb-8 sm:pt-36 lg:pt-40">
         <div className="bg-radial-fade pointer-events-none absolute inset-0" />
         <Container className="relative">
           <Link
@@ -93,7 +94,7 @@ export function ProductDetail({ product }: { product: ProductPage }) {
         </Container>
       </section>
 
-      <section className="bg-paper-100/60 py-16 sm:py-20 lg:py-24">
+      <section className="bg-paper-100/60 py-8 sm:py-10 lg:py-12">
         <Container>
           <Reveal>
             <SectionHeading
@@ -107,9 +108,7 @@ export function ProductDetail({ product }: { product: ProductPage }) {
               <Reveal key={challenge.title} delay={(i % 3) * 0.06}>
                 <article className="flex h-full flex-col rounded-3xl border border-ink-900/10 bg-paper-50 p-5 shadow-sm transition-shadow duration-300 hover:shadow-premium sm:p-6">
                   <div className="flex flex-1 flex-col">
-                    <span className="font-mono-tag text-xs text-current-600">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
+                    <StepIndex n={i + 1} />
                     <h3 className="mt-3 font-display text-lg font-medium text-ink-900">
                       {challenge.title}
                     </h3>
@@ -124,7 +123,7 @@ export function ProductDetail({ product }: { product: ProductPage }) {
         </Container>
       </section>
 
-      <section className="relative overflow-hidden bg-paper-50 py-16 sm:py-20 lg:py-24">
+      <section className="relative overflow-hidden bg-paper-50 py-8 sm:py-10 lg:py-12">
         <Container>
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
             <Reveal>
@@ -132,9 +131,7 @@ export function ProductDetail({ product }: { product: ProductPage }) {
               <ol className="mt-8 space-y-5">
                 {product.how.map((step, i) => (
                   <li key={step.title} className="flex gap-4">
-                    <span className="font-mono-tag mt-0.5 shrink-0 text-xs text-current-600">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
+                    <StepIndex n={i + 1} size="sm" />
                     <div>
                       <p className="font-medium text-ink-900">{step.title}</p>
                       <p className="mt-1 text-sm leading-relaxed text-ink-700/80">
@@ -160,7 +157,7 @@ export function ProductDetail({ product }: { product: ProductPage }) {
         </Container>
       </section>
 
-      <section className="bg-paper-50 py-16 sm:py-20 lg:py-24">
+      <section className="bg-paper-50 pt-8 pb-16 sm:pt-10 sm:pb-20 lg:pt-12 lg:pb-24">
         <Container>
           <Reveal>
             <SectionHeading

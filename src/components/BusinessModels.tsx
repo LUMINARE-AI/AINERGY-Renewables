@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { StepIndex } from "@/components/ui/StepIndex";
 import { Reveal } from "@/components/shared/Reveal";
 import { BUSINESS_MODELS } from "@/lib/data";
 
@@ -17,9 +18,7 @@ export function BusinessModels() {
           {BUSINESS_MODELS.map((model, i) => (
             <Reveal key={model.name} delay={i * 0.06}>
               <div className="group flex h-full flex-col rounded-2xl border border-ink-900/10 bg-paper-100/60 p-6 transition-colors hover:border-current-500/30 hover:bg-paper-50">
-                <span className="font-mono-tag text-xs text-current-600">
-                  0{i + 1}
-                </span>
+                <StepIndex n={i + 1} />
                 <h3 className="mt-3 font-display text-lg font-medium text-ink-900">
                   {model.name}
                 </h3>

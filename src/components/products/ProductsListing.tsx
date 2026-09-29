@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/Container";
 
 export function ProductsListing() {
   return (
-    <section className="relative overflow-hidden bg-paper-50 pt-16 pb-16 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-28">
+    <section className="relative overflow-hidden bg-paper-50 pt-6 pb-16 sm:pt-8 sm:pb-24 lg:pt-10 lg:pb-28">
       <Image
         src="/HomeBG.avif"
         alt=""
@@ -28,7 +28,7 @@ export function ProductsListing() {
 
       <Container className="relative z-10">
         <Reveal>
-          <h2 className="max-w-3xl font-display text-3xl font-medium leading-tight text-ink-900 sm:text-5xl lg:text-6xl lg:leading-[1.1]">
+          <h2 className="max-w-3xl font-display text-2xl font-medium leading-tight text-ink-900 sm:text-4xl lg:text-5xl lg:leading-[1.1]">
             Digital Products{" "}
             <span className="mt-1 block font-accent text-[1.08em] font-normal not-italic text-current-600">
               for Energy Decisions

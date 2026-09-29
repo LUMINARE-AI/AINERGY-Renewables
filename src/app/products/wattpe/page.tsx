@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowLeft, Building2, Home, Store, Warehouse } from "lucide-react";
+import { Building2, Home, Store, Warehouse } from "lucide-react";
 import { Container } from "@/components/ui/Container";
+import { Button } from "@/components/ui/Button";
+import { StepIndex } from "@/components/ui/StepIndex";
 import { Reveal } from "@/components/shared/Reveal";
 import { CTASection } from "@/components/CTASection";
 import { BusinessModelFlow } from "@/components/BusinessModelFlow";
@@ -33,35 +34,9 @@ export default function WattPePage() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-paper-50 pb-16 pt-32 sm:pb-20 sm:pt-36 lg:pb-24 lg:pt-40">
-        <div className="bg-radial-fade pointer-events-none absolute inset-0" />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_80%_20%,rgba(58,187,194,0.12),transparent_60%)]" />
-        <Container className="relative">
-          <Link
-            href="/products"
-            className="inline-flex items-center gap-1.5 text-sm text-ink-600 transition-colors hover:text-current-600"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" /> Our Products
-          </Link>
-
-          <div className="mt-8 max-w-3xl">
-            <p className="font-mono-tag text-xs uppercase tracking-[0.16em] text-current-600">
-              Community energy
-            </p>
-            <h1 className="mt-3 text-balance font-display text-4xl font-medium leading-[1.08] text-ink-900 sm:text-5xl lg:text-[3.6rem]">
-              WattPe
-            </h1>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-700/90 sm:text-lg">
-              Community energy beyond the rooftop — solar participation for
-              residents, renters and small businesses.
-            </p>
-          </div>
-        </Container>
-      </section>
-
       <BusinessModelFlow />
 
-      <section className="bg-paper-100/60 py-16 sm:py-20 lg:py-24">
+      <section className="bg-paper-100/60 py-8 sm:py-10 lg:py-12">
         <Container>
           <Reveal>
             <p className="font-mono-tag text-xs uppercase tracking-[0.16em] text-current-600">
@@ -99,7 +74,7 @@ export default function WattPePage() {
         </Container>
       </section>
 
-      <section className="bg-paper-50 py-16 sm:py-20 lg:py-24">
+      <section className="bg-paper-50 pt-8 pb-16 sm:pt-10 sm:pb-20 lg:pt-12 lg:pb-24">
         <Container>
           <Reveal>
             <h2 className="max-w-3xl font-display text-3xl font-medium leading-tight text-ink-900 sm:text-4xl lg:text-[2.75rem]">
@@ -111,9 +86,7 @@ export default function WattPePage() {
             {IDEA.map((step, i) => (
               <Reveal key={step} delay={i * 0.06}>
                 <article className="flex h-full flex-col rounded-3xl border border-ink-900/10 bg-white/80 p-5 shadow-sm sm:p-6">
-                  <span className="font-mono-tag text-xs text-current-600">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
+                  <StepIndex n={i + 1} />
                   <p className="mt-4 font-display text-lg font-medium leading-snug text-ink-900 sm:text-xl">
                     {step}
                   </p>
@@ -121,6 +94,38 @@ export default function WattPePage() {
                 </Reveal>
               ))}
           </div>
+
+          <Reveal delay={0.12}>
+            <div className="relative mt-10 overflow-hidden rounded-3xl bg-current-500 px-6 py-8 shadow-glow sm:mt-12 sm:px-10 sm:py-10">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -right-10 -top-16 h-48 w-48 rounded-full bg-white/10 blur-2xl"
+              />
+              <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
+                <div className="max-w-xl">
+                  <p className="font-mono-tag text-[11px] uppercase tracking-[0.16em] text-paper-50/80">
+                    Community solar
+                  </p>
+                  <h3 className="mt-3 font-display text-2xl font-medium leading-snug text-paper-50 sm:text-3xl">
+                    Join community solar.
+                  </h3>
+                  <p className="mt-3 text-base leading-relaxed text-paper-50/90 sm:text-lg">
+                    Participate in a shared solar plant without hosting it yourself.
+                    Reserve your share on WattPe and earn credits as that clean
+                    energy is used.
+                  </p>
+                </div>
+                <Button
+                  href="https://watt-pe.vercel.app/"
+                  external
+                  icon
+                  className="shrink-0 self-start !bg-paper-50 !text-current-700 !shadow-none hover:!bg-white hover:!text-current-700 sm:mr-12 sm:self-center"
+                >
+                  Visit WattPe
+                </Button>
+              </div>
+            </div>
+          </Reveal>
         </Container>
       </section>
 

@@ -13,7 +13,9 @@ export const NAV_LINKS: NavLink[] = [
 export const FOOTER_LINKS: NavLink[] = [
   { label: "Solutions", href: "/solutions" },
   { label: "Services", href: "/services" },
-  { label: "Products", href: "/products" },
+  { label: "AI Energy Copilot", href: "/products/copilot" },
+  { label: "WattPe", href: "/products/wattpe" },
+  { label: "EPC Calculator", href: "/products/epc-calculator" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
