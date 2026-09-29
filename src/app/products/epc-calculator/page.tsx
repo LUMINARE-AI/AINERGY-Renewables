@@ -4,6 +4,8 @@ import { ArrowLeft } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { CTASection } from "@/components/CTASection";
 import { EpcCalculator } from "@/components/epc/EpcCalculator";
+import { ProductRow } from "@/components/products/ProductRow";
+import { PRODUCTS } from "@/lib/productsContent";
 
 export const metadata: Metadata = {
   title: "EPC Calculator — Planning-grade solar EPC estimate",
@@ -13,6 +15,8 @@ export const metadata: Metadata = {
 };
 
 export default function EpcCalculatorPage() {
+  const related = PRODUCTS.filter((item) => item.slug !== "epc-calculator");
+
   return (
     <>
       <section className="relative overflow-hidden bg-paper-50 pb-16 pt-28 lg:pb-20 lg:pt-32">
@@ -69,6 +73,19 @@ export default function EpcCalculatorPage() {
 
           <div className="mt-6">
             <EpcCalculator />
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-paper-50 pb-16 sm:pb-20">
+        <Container>
+          <h2 className="font-display text-xl font-medium text-ink-900 sm:text-2xl">
+            More products
+          </h2>
+          <div className="mt-8 space-y-4">
+            {related.map((item) => (
+              <ProductRow key={item.slug} product={item} />
+            ))}
           </div>
         </Container>
       </section>
