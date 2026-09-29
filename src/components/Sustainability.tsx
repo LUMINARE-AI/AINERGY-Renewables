@@ -12,7 +12,7 @@ const METRICS = [
 
 export function Sustainability() {
   return (
-    <section className="relative overflow-hidden bg-paper-100 py-24 lg:py-32">
+    <section className="relative overflow-hidden bg-paper-100 py-16 lg:py-24">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-forest-500/[0.06] via-transparent to-transparent" />
       <Container className="relative">
         <SectionHeader

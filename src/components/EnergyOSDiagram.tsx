@@ -77,7 +77,7 @@ function OrbitDiagram() {
 
 export function EnergyOSDiagram() {
   return (
-    <section className="surface-dark relative overflow-hidden bg-ink-950 py-24 lg:py-32">
+    <section className="surface-dark relative overflow-hidden bg-ink-950 py-16 lg:py-24">
       <div className="bg-radial-fade-dark pointer-events-none absolute inset-0" />
       <Container className="relative">
         <SectionHeader

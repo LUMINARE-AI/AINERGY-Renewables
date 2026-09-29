@@ -83,7 +83,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="relative overflow-hidden bg-paper-50 pt-8 pb-16 sm:pt-10 sm:pb-24 lg:pt-12 lg:pb-32">
+      <section className="relative overflow-hidden bg-paper-50 pt-8 pb-16 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-20">
         <div className="bg-radial-fade pointer-events-none absolute inset-0 opacity-60" />
         <Container className="relative px-5 sm:px-6">
           <Reveal>

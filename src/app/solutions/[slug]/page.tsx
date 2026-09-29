@@ -115,7 +115,7 @@ export default async function SolutionDetailPage({
         </Container>
       </section>
 
-      <section className="surface-dark relative overflow-hidden bg-ink-950 py-16 sm:py-24 lg:py-32">
+      <section className="surface-dark relative overflow-hidden bg-ink-950 py-14 sm:py-16 lg:py-20">
         <div className="bg-radial-fade-dark pointer-events-none absolute inset-0" />
         <Container className="relative">
           <h2 className="font-display text-xl font-medium text-offwhite-100 sm:text-2xl">

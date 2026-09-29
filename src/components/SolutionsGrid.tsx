@@ -11,7 +11,7 @@ export function SolutionsGrid() {
   const delivery = SERVICES.slice(0, 3);
 
   return (
-    <section className="bg-paper-100/50 py-20 sm:py-24 lg:py-32">
+    <section className="bg-paper-100/50 py-14 sm:py-16 lg:py-20">
       <Container>
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <SectionHeader

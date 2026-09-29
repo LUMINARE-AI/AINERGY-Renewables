@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function EpcCalculatorPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-paper-50 pb-24 pt-28 lg:pb-32 lg:pt-32">
+      <section className="relative overflow-hidden bg-paper-50 pb-16 pt-28 lg:pb-20 lg:pt-32">
         <div className="bg-radial-fade pointer-events-none absolute inset-0" />
         <div className="paper-grain" />
         <div

@@ -40,7 +40,7 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      <section className="relative overflow-hidden bg-paper-50 pt-8 pb-16 sm:pt-10 sm:pb-20 lg:pt-12 lg:pb-28">
+      <section className="relative overflow-hidden bg-paper-50 pt-8 pb-12 sm:pt-10 sm:pb-14 lg:pt-12 lg:pb-16">
         <div className="bg-radial-fade pointer-events-none absolute inset-0 opacity-40" />
         <Container className="relative">
           <Reveal>

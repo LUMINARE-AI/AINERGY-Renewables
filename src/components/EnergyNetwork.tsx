@@ -13,7 +13,7 @@ const NODES = [
 
 export function EnergyNetwork() {
   return (
-    <section className="relative overflow-hidden bg-paper-100 py-24 lg:py-32">
+    <section className="relative overflow-hidden bg-paper-100 py-16 lg:py-24">
       <div className="bg-radial-fade pointer-events-none absolute inset-0" />
       <Container className="relative">
         <SectionHeader

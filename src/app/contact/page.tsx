@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <section className="relative overflow-hidden bg-paper-50 pb-24 pt-32 sm:pb-28 sm:pt-36 lg:pt-44">
+    <section className="relative overflow-hidden bg-paper-50 pb-16 pt-32 sm:pb-20 sm:pt-36 lg:pt-44">
       <div className="bg-radial-fade pointer-events-none absolute inset-0" />
       <div
         aria-hidden

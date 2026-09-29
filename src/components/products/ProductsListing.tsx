@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/Container";
 
 export function ProductsListing() {
   return (
-    <section className="relative overflow-hidden bg-paper-50 pt-6 pb-16 sm:pt-8 sm:pb-24 lg:pt-10 lg:pb-28">
+    <section className="relative overflow-hidden bg-paper-50 pt-6 pb-12 sm:pt-8 sm:pb-16 lg:pt-10 lg:pb-20">
       <Image
         src="/HomeBG.avif"
         alt=""

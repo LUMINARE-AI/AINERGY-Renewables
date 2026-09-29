@@ -6,7 +6,7 @@ import { BUSINESS_MODELS } from "@/lib/data";
 
 export function BusinessModels() {
   return (
-    <section className="bg-paper-50 py-24 lg:py-32">
+    <section className="bg-paper-50 py-16 lg:py-24">
       <Container>
         <SectionHeader
           eyebrow="Business Models"

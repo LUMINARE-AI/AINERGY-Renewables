@@ -41,7 +41,7 @@ export default function SolutionsPage() {
         </Container>
       </section>
 
-      <section className="relative overflow-hidden bg-paper-50 pb-16 pt-14 sm:pb-20 sm:pt-16 lg:pb-24">
+      <section className="relative overflow-hidden bg-paper-50 pb-8 pt-14 sm:pb-10 sm:pt-16 lg:pb-12">
         <div className="bg-radial-fade pointer-events-none absolute inset-0" />
         <Container className="relative">
           <Reveal>
