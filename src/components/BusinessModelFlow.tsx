@@ -1448,11 +1448,11 @@ function MobileFlow({
         </div>
       </div>
 
-      <p className="mt-3 text-center text-xs text-ink-500">
+      <FlowDetailPanel hovered={hovered} className="mx-auto mt-2 max-w-sm" />
+
+      <p className="mt-2 text-center text-xs text-ink-500">
         Scroll horizontally to explore the full flow
       </p>
-
-      <FlowDetailPanel hovered={hovered} className="mx-auto mt-4 max-w-sm" />
     </div>
   );
 }

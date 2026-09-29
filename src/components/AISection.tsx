@@ -15,7 +15,7 @@ const INPUTS = [
 
 export function AISection() {
   return (
-    <section className="relative overflow-hidden bg-paper-50 py-16 lg:py-24">
+    <section className="relative overflow-hidden bg-paper-50 pt-16 pb-8 lg:pt-24 lg:pb-12">
       <Image
         src="/intelligence.avif"
         alt=""

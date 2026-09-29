@@ -103,7 +103,7 @@ export function AinergyValueFlow() {
 
   return (
     <section
-      className="relative bg-paper-50 pt-12 pb-14 lg:pt-16 lg:pb-20"
+      className="relative bg-paper-50 pt-12 pb-6 lg:pt-16 lg:pb-8"
       id="value-flow"
     >
       <div className="pointer-events-none absolute inset-x-0 top-16 h-72 bg-[radial-gradient(ellipse_at_center,rgba(42,154,145,0.10),transparent_68%)]" />
@@ -237,7 +237,7 @@ export function AinergyValueFlow() {
                 })}
               </ol>
 
-              {[0, 1.7, 3.4, 5.1].map((delay) => (
+              {[0, 2.5, 5, 7.5].map((delay) => (
                 <span
                   key={delay}
                   aria-hidden
@@ -269,9 +269,9 @@ export function AinergyValueFlow() {
                     markerEnd="url(#avf-return-arrow)"
                     className="avf-arc"
                   />
-                  {["0s", "-2.7s", "-5.4s"].map((begin) => (
+                  {["0s", "-4s", "-8s"].map((begin) => (
                     <circle key={begin} r="3.2" fill="#3ABBC2">
-                      <animateMotion dur="8s" begin={begin} repeatCount="indefinite" path={RETURN_PATH} />
+                      <animateMotion dur="12s" begin={begin} repeatCount="indefinite" path={RETURN_PATH} />
                     </circle>
                   ))}
                 </svg>
@@ -316,7 +316,7 @@ export function AinergyValueFlow() {
       <style>{`
         .avf-pulse {
           left: calc(100% / 14);
-          animation: avf-travel 6.8s linear infinite;
+          animation: avf-travel 10s linear infinite;
         }
         .avf-gold > span:last-child {
           animation: avf-glow 2.6s ease-in-out infinite;
