@@ -8,6 +8,7 @@ import {
   X,
   Sparkles,
   AlertTriangle,
+  CheckCircle2,
   ArrowRight,
   Gauge,
   IndianRupee,
@@ -69,6 +70,12 @@ function stateChoices(states: StateCatalogEntry[], current: string | null | unde
   const names = states.map((entry) => entry.state);
   if (current && !names.includes(current)) names.push(current);
   return names;
+}
+
+const AI_EXTRACT_SUCCESS = "Successfully extracted the fields from your bill using AI.";
+
+function isAiExtractNote(warning: string): boolean {
+  return /extracted using ai/i.test(warning) && /bill text/i.test(warning);
 }
 
 function fieldsToEdit(extraction: BillExtractionResult): (keyof EnergyProfile)[] {
@@ -305,6 +312,8 @@ export function BillUploadStep({
   }
 
   const visibleFields = extraction ? fieldsToEdit({ ...extraction, profile: draft }) : [];
+  const successNotes = extraction?.warnings.filter(isAiExtractNote) ?? [];
+  const cautionNotes = extraction?.warnings.filter((warning) => !isAiExtractNote(warning)) ?? [];
   const activeFieldIdx = status === "reading" ? scanMsgIdx % EXTRACT_FIELDS.length : -1;
 
   return (
@@ -492,9 +501,16 @@ export function BillUploadStep({
               </p>
             )}
 
-            {extraction.warnings.length > 0 && (
+            {successNotes.length > 0 && (
+              <div className="flex items-start gap-2.5 rounded-xl border border-forest-400/35 bg-forest-400/10 p-4 text-xs leading-relaxed text-ink-700">
+                <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-forest-600" />
+                {AI_EXTRACT_SUCCESS}
+              </div>
+            )}
+
+            {cautionNotes.length > 0 && (
               <div className="space-y-2">
-                {extraction.warnings.map((warning) => (
+                {cautionNotes.map((warning) => (
                   <div
                     key={warning}
                     className="flex items-start gap-2.5 rounded-xl border border-current-500/25 bg-current-400/5 p-4 text-xs leading-relaxed text-ink-700"
