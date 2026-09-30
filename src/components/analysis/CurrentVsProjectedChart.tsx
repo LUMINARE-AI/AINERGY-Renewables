@@ -15,10 +15,10 @@ export function CurrentVsProjectedChart({ rows }: { rows: Row[] }) {
   const max = Math.max(...rows.flatMap((r) => [r.currentAnnualCostRs, r.projectedAnnualCostRs]), 1);
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-graphite-900/50 p-6 lg:p-8">
-      <div className="flex items-center justify-between">
+    <div className="rounded-2xl border border-white/10 bg-graphite-900/50 p-4 sm:p-6 lg:p-8">
+      <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm font-medium text-offwhite-100">Current vs. projected annual cost</p>
-        <div className="flex items-center gap-4 text-xs text-offwhite-300/60">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-offwhite-300/60">
           <span className="flex items-center gap-1.5">
             <span className="h-2 w-2 rounded-full bg-offwhite-300/40" /> Current (grid)
           </span>

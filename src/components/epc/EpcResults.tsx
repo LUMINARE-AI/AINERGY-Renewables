@@ -114,7 +114,7 @@ export function EpcSummary({
           )}
         </div>
         {estimate ? (
-          <dl className="grid grid-cols-3 gap-4 sm:gap-6">
+          <dl className="grid grid-cols-1 gap-3 min-[480px]:grid-cols-3 min-[480px]:gap-4 sm:gap-6">
             <Stat label="Per Wp" value={formatRupee(estimate.rs_per_wp_dc.base, 1)} />
             <Stat
               label="Per MW DC"

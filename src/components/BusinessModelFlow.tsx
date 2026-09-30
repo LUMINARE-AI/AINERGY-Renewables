@@ -1259,11 +1259,10 @@ function MobileFlow({
 
   return (
     <div className="lg:hidden">
-      <div className="thin-scroll overflow-x-auto">
-        <div className="mx-auto flex w-full max-w-[720px] justify-center px-4">
+      <div className="thin-scroll w-full min-w-0 overflow-x-auto">
           <svg
             viewBox="0 0 720 280"
-            className="h-auto w-full max-w-[780px] bm-flow-svg"
+            className="bm-flow-svg mx-auto h-auto w-[720px] min-w-[720px] max-w-none"
             aria-hidden="true"
           >
           <FlowDefs />
@@ -1445,13 +1444,12 @@ function MobileFlow({
             running={runAnimation && isInView}
           />
           </svg>
-        </div>
       </div>
 
       <FlowDetailPanel hovered={hovered} className="mx-auto mt-2 max-w-sm" />
 
       <p className="mt-2 text-center text-xs text-ink-500">
-        Scroll horizontally to explore the full flow
+        Swipe sideways, then tap a stage.
       </p>
     </div>
   );
@@ -1480,7 +1478,7 @@ function FlowDetailPanel({
               <MousePointerClick className="h-4 w-4" strokeWidth={1.75} />
             </span>
             <p className="text-sm leading-snug text-ink-600">
-              <span className="font-medium text-forest-700">Hover any stage</span>
+              <span className="font-medium text-forest-700">Hover or tap any stage</span>
               <span className="text-ink-500"> to explore how clean energy flows through our model</span>
             </p>
           </div>

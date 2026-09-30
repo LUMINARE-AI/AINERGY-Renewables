@@ -7,6 +7,8 @@ export function SectionHeader({
   align = "left",
   className,
   titleClassName,
+  eyebrowClassName,
+  descriptionClassName,
   tone = "light",
 }: {
   eyebrow?: string;
@@ -15,6 +17,8 @@ export function SectionHeader({
   align?: "left" | "center";
   className?: string;
   titleClassName?: string;
+  eyebrowClassName?: string;
+  descriptionClassName?: string;
   tone?: "light" | "dark";
 }) {
   return (
@@ -28,8 +32,9 @@ export function SectionHeader({
       {eyebrow && (
         <span
           className={cn(
-            "font-mono-tag mb-4 inline-block text-xs uppercase",
-            tone === "dark" ? "text-current-300" : "text-current-600"
+            "font-mono-tag mb-4 inline-block max-w-full text-xs uppercase",
+            tone === "dark" ? "text-current-300" : "text-current-600",
+            eyebrowClassName
           )}
         >
           {eyebrow}
@@ -48,7 +53,8 @@ export function SectionHeader({
         <p
           className={cn(
             "mt-5 text-balance text-lg leading-relaxed",
-            tone === "dark" ? "text-offwhite-300/70" : "text-ink-700/85"
+            tone === "dark" ? "text-offwhite-300/70" : "text-ink-700/85",
+            descriptionClassName
           )}
         >
           {description}

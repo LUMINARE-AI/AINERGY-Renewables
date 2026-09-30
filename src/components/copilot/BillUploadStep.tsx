@@ -309,7 +309,7 @@ export function BillUploadStep({
 
   return (
     <div className="overflow-hidden rounded-3xl border border-ink-900/10 bg-paper-50/80 shadow-premium backdrop-blur-sm">
-      <div className="flex items-start justify-between gap-4 border-b border-ink-900/8 px-6 py-5 lg:px-8">
+      <div className="flex flex-col items-start gap-3 border-b border-ink-900/8 px-6 py-5 sm:flex-row sm:justify-between sm:gap-4 lg:px-8">
         <div className="min-w-0">
           <div className="flex items-center gap-2.5">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-current-gradient text-paper-50 shadow-glow">
@@ -328,7 +328,7 @@ export function BillUploadStep({
         <button
           type="button"
           onClick={onSkip}
-          className="shrink-0 whitespace-nowrap pt-1 text-xs font-medium text-ink-600 underline decoration-ink-300 underline-offset-4 hover:text-current-600"
+          className="min-h-11 shrink-0 self-start pt-1 text-xs font-medium text-ink-600 underline decoration-ink-300 underline-offset-4 hover:text-current-600"
         >
           Skip, enter manually
         </button>

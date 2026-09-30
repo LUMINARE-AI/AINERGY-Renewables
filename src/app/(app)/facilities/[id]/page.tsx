@@ -200,7 +200,7 @@ export default async function FacilityDetailPage({ params }: { params: Promise<{
         {outcomes && recommendation && (
           <>
             <div>
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <h2 className="font-display text-xl font-medium text-offwhite-100">Scenario comparison</h2>
                 <form action={boundSaveAnalysis}>
                   <button type="submit" className={secondaryButtonClass}>

@@ -16,8 +16,8 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
 
   return (
     <AppSessionProvider>
-      <div className="surface-dark min-h-screen bg-graphite-950 pt-20">
-        <div className="sticky top-0 z-40 border-b border-white/10 bg-graphite-950/80 backdrop-blur-xl">
+      <div className="surface-dark min-h-screen bg-graphite-950 pt-[5.5rem]">
+        <div className="sticky top-[5.5rem] z-40 border-b border-white/10 bg-graphite-950/80 backdrop-blur-xl">
           <Container className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-8">
               <Link href="/dashboard" className="flex items-center gap-2">
@@ -45,6 +45,17 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
               <span className="hidden h-4 w-px bg-white/10 sm:inline-block" aria-hidden="true" />
               <SignOutButton />
             </div>
+          </Container>
+          <Container className="flex w-full gap-1 pb-2 sm:hidden">
+            {IN_APP_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="flex min-h-11 flex-1 items-center justify-center rounded-lg text-sm text-offwhite-300/80 transition-colors hover:bg-white/5 hover:text-offwhite-100"
+              >
+                {link.label}
+              </Link>
+            ))}
           </Container>
         </div>
         {children}

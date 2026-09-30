@@ -22,7 +22,7 @@ function renderBubbleText(text: string, cursor: ReactNode) {
 
   if (newlineIndex === -1) {
     return (
-      <span className="whitespace-nowrap">
+      <span className="whitespace-normal">
         {text}
         {cursor}
       </span>
@@ -34,8 +34,8 @@ function renderBubbleText(text: string, cursor: ReactNode) {
 
   return (
     <span className="inline-flex flex-col items-start">
-      <span className="whitespace-nowrap">{firstLine}</span>
-      <span className="whitespace-nowrap">
+      <span className="whitespace-normal">{firstLine}</span>
+      <span className="whitespace-normal">
         {secondLine}
         {cursor}
       </span>

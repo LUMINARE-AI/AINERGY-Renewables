@@ -56,7 +56,7 @@ export default function EpcCalculatorPage() {
                   Modules, structure, power equipment and evacuation. The figure updates as you set capacity, technology and scope.
                 </p>
               </div>
-              <div className="grid grid-cols-3 border-t border-ink-900/8 bg-paper-50/80 lg:grid-cols-1 lg:border-l lg:border-t-0">
+              <div className="grid grid-cols-1 divide-y divide-ink-900/8 border-t border-ink-900/8 bg-paper-50/80 sm:grid-cols-3 sm:divide-y-0 lg:grid-cols-1 lg:divide-y lg:border-l lg:border-t-0">
                 {[
                   ["Live", "Changes as you edit"],
                   ["Ex-GST", "GST shown beside the total"],

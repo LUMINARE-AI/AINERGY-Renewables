@@ -67,13 +67,13 @@ export function ChatPanel({ profile }: { profile: EnergyProfile }) {
   }
 
   return (
-    <aside className="flex h-[32rem] flex-col rounded-3xl border border-ink-900/10 bg-paper-50/90 shadow-premium lg:sticky lg:top-24">
+    <aside className="flex h-[min(32rem,70dvh)] min-w-0 flex-col rounded-3xl border border-ink-900/10 bg-paper-50/90 shadow-premium lg:sticky lg:top-24">
       <div className="border-b border-ink-900/8 px-5 py-4">
         <p className="font-mono-tag text-[10px] uppercase text-current-600">Chat</p>
         <h2 className="mt-1 font-display text-xl text-ink-900">Ask the copilot</h2>
       </div>
 
-      <div className="flex-1 space-y-4 overflow-y-auto px-5 py-4">
+      <div className="min-w-0 flex-1 space-y-4 overflow-y-auto overflow-x-auto px-5 py-4">
         {messages.length === 0 && !loading && (
           <EmptyNote message="Ask about open access, captive, or the bill you just shared." />
         )}

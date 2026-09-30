@@ -112,13 +112,69 @@ export function AinergyValueFlow() {
         <SectionHeader
           align="center"
           eyebrow="How AINERGY creates value"
+          eyebrowClassName="!mb-2 text-balance !tracking-[0.08em] sm:!mb-4 sm:!tracking-[0.14em]"
           title="From site to scale."
-          titleClassName="!text-2xl sm:!text-[1.85rem] lg:!text-[2.25rem]"
+          titleClassName="!text-[1.65rem] !leading-[1.15] sm:!text-[1.85rem] lg:!text-[2.25rem]"
           description="Developing, owning and operating intelligent clean-energy infrastructure for business."
+          descriptionClassName="!mt-2 !text-pretty !text-sm !leading-snug sm:!mt-5 sm:!text-lg sm:!leading-relaxed"
         />
 
         <div className="relative mt-9 lg:mt-11">
-          <div className="overflow-x-auto pt-3 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <p className="mb-3 text-center text-sm leading-snug text-ink-500 md:hidden">
+            <span className="font-semibold text-forest-800">Tap a stage</span> to explore how
+            clean energy flows through our model
+          </p>
+          <ol className="space-y-2 md:hidden">
+            {STEPS.map((item, i) => {
+              const gold = item.accent === "gold";
+              const open = hovered === i;
+              return (
+                <li
+                  key={item.id}
+                  className={cn(
+                    "overflow-hidden rounded-2xl border bg-white",
+                    gold ? "border-gold-400/40" : "border-ink-900/10"
+                  )}
+                >
+                  <button
+                    type="button"
+                    className="flex min-h-11 w-full items-center gap-3 px-4 py-3 text-left"
+                    aria-expanded={open}
+                    onClick={() => setHovered(open ? null : i)}
+                  >
+                    <span
+                      className={cn(
+                        "flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-semibold text-white",
+                        gold ? "bg-gold-400" : "bg-forest-600"
+                      )}
+                    >
+                      {item.number}
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span
+                        className={cn(
+                          "block text-sm font-semibold uppercase tracking-[0.08em]",
+                          gold ? "text-gold-600" : "text-forest-800"
+                        )}
+                      >
+                        {item.title}
+                      </span>
+                      <span className="mt-0.5 block text-xs leading-snug text-ink-500">
+                        {item.lines.join(" · ")}
+                      </span>
+                    </span>
+                  </button>
+                  {open && (
+                    <p className="border-t border-ink-900/8 px-4 py-3 text-sm leading-relaxed text-ink-700">
+                      {item.detail}
+                    </p>
+                  )}
+                </li>
+              );
+            })}
+          </ol>
+
+          <div className="hidden overflow-x-auto pt-3 pb-1 [scrollbar-width:none] md:block [&::-webkit-scrollbar]:hidden">
             <div className="avf-stage relative min-w-[760px] [--node:4.25rem] md:min-w-0 md:[--node:4.85rem] xl:[--node:5.6rem]">
               <ol className="grid grid-cols-7">
                 {STEPS.map((item, i) => {
@@ -283,7 +339,7 @@ export function AinergyValueFlow() {
           </div>
         </div>
 
-        <div className="mx-auto mt-3 max-w-xl" aria-live="polite">
+        <div className="mx-auto mt-3 hidden max-w-xl md:block" aria-live="polite">
           {step ? (
             <div
               key={step.id}
