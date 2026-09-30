@@ -25,7 +25,7 @@ import type {
   ScopeOption,
   StateOption,
 } from "@/lib/epc/types";
-import { EpcBreakdown, EpcDetails, EpcSummary } from "./EpcResults";
+import { EpcAssumptions, EpcBreakdown, EpcDetails, EpcSummary } from "./EpcResults";
 
 const DEBOUNCE_MS = 400;
 const WAKING_MS = 3000;
@@ -230,13 +230,10 @@ export function EpcCalculator() {
 
   return (
     <div className="space-y-4">
-      <EpcSummary estimate={estimate} loading={loading} waking={waking} />
-
-      <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
-        <form
-          onSubmit={handleSubmit}
-          className="rounded-2xl border border-ink-900/10 bg-white px-5 py-6 shadow-sm sm:px-7 sm:py-7"
-        >
+      <form
+        onSubmit={handleSubmit}
+        className="w-full rounded-2xl border border-ink-900/10 bg-white px-5 py-6 shadow-sm sm:px-7 sm:py-7"
+      >
           <div className="flex items-baseline justify-between gap-3">
             <p className="font-mono-tag text-[0.65rem] uppercase tracking-[0.16em] text-current-600">
               Plant
@@ -295,21 +292,20 @@ export function EpcCalculator() {
           />
 
           <div className="mt-6 space-y-5">
-            <div>
-              <Segmented
-                label="Module type"
-                value={form.module_type}
-                options={MODULE_OPTIONS}
-                onChange={(value) => update("module_type", value)}
-              />
-              <p className="mt-2 text-xs leading-relaxed text-ink-500">
-                {form.module_type === "dcr"
-                  ? "Genuine DCR: ALMM List-II Indian cells. The single biggest cost driver."
-                  : "Non-DCR modules are usually cheaper. Confirm eligibility before you lock a budget."}
-              </p>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)_minmax(0,1fr)]">
+              <div>
+                <Segmented
+                  label="Module type"
+                  value={form.module_type}
+                  options={MODULE_OPTIONS}
+                  onChange={(value) => update("module_type", value)}
+                />
+                <p className="mt-2 text-xs leading-relaxed text-ink-500">
+                  {form.module_type === "dcr"
+                    ? "ALMM List-II Indian cells."
+                    : "Usually cheaper. Check eligibility."}
+                </p>
+              </div>
               <Segmented
                 label="Mounting"
                 value={form.mounting_type}
@@ -409,12 +405,21 @@ export function EpcCalculator() {
               {error}
             </p>
           ) : null}
-        </form>
+      </form>
 
-        <EpcBreakdown estimate={estimate} />
+      <EpcSummary estimate={estimate} loading={loading} waking={waking} />
+      <div
+        className={cn(
+          "grid gap-4",
+          estimate && "md:grid-cols-[minmax(0,1.25fr)_minmax(0,0.85fr)]"
+        )}
+      >
+        {estimate ? <EpcDetails estimate={estimate} /> : null}
+        <div className="flex h-full flex-col gap-4">
+          <EpcBreakdown estimate={estimate} />
+          {estimate ? <EpcAssumptions estimate={estimate} /> : null}
+        </div>
       </div>
-
-      {estimate ? <EpcDetails estimate={estimate} /> : null}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import {
   formatCrore,
   formatMw,
+  formatPct,
   formatRatio,
   formatRupee,
 } from "@/lib/epc/format";
@@ -190,59 +191,121 @@ export function EpcBreakdown({ estimate }: { estimate: EstimateResponse | null }
 
 export function EpcDetails({ estimate }: { estimate: EstimateResponse }) {
   const items = estimate.line_items;
+  if (items.length === 0) return null;
 
   return (
-    <div className="rounded-2xl border border-ink-900/10 bg-white px-5 py-6 shadow-sm sm:px-7">
-      {items.length > 0 ? (
-        <div className="overflow-x-auto">
-          <p className="font-mono-tag text-[0.65rem] uppercase tracking-[0.16em] text-current-600">
-            Bill of materials
-          </p>
-          <table className="mt-3 w-full min-w-[28rem] text-left text-sm">
-            <thead>
-              <tr className="border-b border-ink-900/10 text-xs text-ink-400">
-                <th className="pb-2 pr-3 font-medium">Item</th>
-                <th className="pb-2 pr-3 text-right font-medium">₹ / Wp</th>
-                <th className="pb-2 text-right font-medium">Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              {items.map((item) => (
-                <tr key={item.key} className="border-b border-ink-900/6">
-                  <td className="py-2.5 pr-3 text-ink-800">{item.label}</td>
-                  <td className="py-2.5 pr-3 text-right tabular-nums text-ink-500">
-                    {formatRupee(item.rs_per_wp_dc, 2)}
-                  </td>
-                  <td className="py-2.5 text-right tabular-nums font-medium text-ink-900">
-                    {formatCrore(item.amount_inr, 2)}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      ) : null}
-
-      <div className="mt-6 grid gap-6 border-t border-ink-900/8 pt-5 sm:grid-cols-2">
-        <div>
-          <p className="text-xs uppercase tracking-[0.08em] text-ink-400">Assumptions</p>
-          <p className="mt-2 text-sm text-ink-800">
-            DC {formatMw(estimate.capacity_dc_mw).replace(" MW", " MWp")} / AC{" "}
-            {formatMw(estimate.capacity_ac_mw)} at DC:AC {formatRatio(estimate.resolved_dc_ac_ratio)}.
-          </p>
-          {estimate.assumptions.length > 0 ? (
-            <ul className="mt-2 space-y-1 text-sm leading-relaxed text-ink-600">
-              {estimate.assumptions.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          ) : null}
-        </div>
-        <p className="text-sm leading-relaxed text-ink-500">
-          {estimate.disclaimer ||
-            "Planning-grade only. A firm line-item number needs a benchmarked proposal."}
+    <div className="flex h-full flex-col rounded-2xl border border-ink-900/10 bg-white px-5 py-6 shadow-sm sm:px-7">
+      <div className="overflow-x-auto">
+        <p className="font-mono-tag text-[0.65rem] uppercase tracking-[0.16em] text-current-600">
+          Bill of materials
         </p>
+        <table className="mt-3 w-full min-w-[22rem] text-left text-sm md:min-w-0">
+          <thead>
+            <tr className="border-b border-ink-900/10 text-xs text-ink-400">
+              <th className="pb-2 pr-3 font-medium">Item</th>
+              <th className="pb-2 pr-3 text-right font-medium">₹ / Wp</th>
+              <th className="pb-2 text-right font-medium">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {items.map((item) => (
+              <tr key={item.key} className="border-b border-ink-900/6">
+                <td className="py-2.5 pr-3 text-ink-800">{item.label}</td>
+                <td className="py-2.5 pr-3 text-right tabular-nums text-ink-500">
+                  {formatRupee(item.rs_per_wp_dc, 2)}
+                </td>
+                <td className="py-2.5 text-right tabular-nums font-medium text-ink-900">
+                  {formatCrore(item.amount_inr, 2)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
+      <PlantNotes estimate={estimate} items={items} />
+    </div>
+  );
+}
+
+function PlantNotes({
+  estimate,
+  items,
+}: {
+  estimate: EstimateResponse;
+  items: LineItem[];
+}) {
+  const bill = items.reduce((sum, item) => sum + item.amount_inr, 0);
+  const largest = items.reduce((top, item) => (item.amount_inr > top.amount_inr ? item : top));
+  const share = bill > 0 ? Math.round((largest.amount_inr / bill) * 100) : 0;
+  const rupeeOnPlant = estimate.capacity_dc_mw * 1_000_000;
+
+  const notes = [
+    {
+      label: "Largest line",
+      value: `${share}%`,
+      detail: `${largest.label} is the biggest share of this bill.`,
+    },
+    {
+      label: "₹1 / Wp",
+      value: formatCrore(rupeeOnPlant, 2),
+      detail: "What one extra rupee per watt adds on this DC capacity.",
+    },
+    {
+      label: "GST",
+      value: formatCrore(estimate.gst_amount_inr.base, 2),
+      detail: `${formatPct(estimate.blended_gst_rate_pct)} blended, added on the ex-GST bill.`,
+    },
+    {
+      label: "Per MW AC",
+      value: formatCrore(estimate.cr_per_mw_ac.base * 1_00_00_000, 2),
+      detail: "Ex-GST plant cost for each megawatt of AC capacity.",
+    },
+  ];
+
+  return (
+    <div className="mt-6 flex min-h-0 flex-1 flex-col border-t border-ink-900/8 pt-5">
+      <p className="font-mono-tag text-[0.65rem] uppercase tracking-[0.16em] text-current-600">
+        On this plant
+      </p>
+      <div className="mt-4 grid flex-1 grid-cols-2 gap-3">
+        {notes.map((note) => (
+          <div
+            key={note.label}
+            className="flex flex-col justify-center rounded-xl bg-paper-50 px-4 py-4"
+          >
+            <p className="text-[0.65rem] uppercase tracking-[0.08em] text-ink-400">{note.label}</p>
+            <p className="mt-1.5 font-display text-xl font-medium tracking-tight text-ink-900">
+              {note.value}
+            </p>
+            <p className="mt-1 text-xs leading-relaxed text-ink-500">{note.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function EpcAssumptions({ estimate }: { estimate: EstimateResponse }) {
+  return (
+    <div className="h-full flex-1 rounded-2xl border border-ink-900/10 bg-white px-5 py-6 shadow-sm sm:px-7">
+      <p className="font-mono-tag text-[0.65rem] uppercase tracking-[0.16em] text-current-600">
+        Assumptions
+      </p>
+      <p className="mt-3 text-sm text-ink-800">
+        DC {formatMw(estimate.capacity_dc_mw).replace(" MW", " MWp")} / AC{" "}
+        {formatMw(estimate.capacity_ac_mw)} at DC:AC {formatRatio(estimate.resolved_dc_ac_ratio)}.
+      </p>
+      {estimate.assumptions.length > 0 ? (
+        <ul className="mt-2 space-y-1 text-sm leading-relaxed text-ink-600">
+          {estimate.assumptions.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      ) : null}
+      <p className="mt-4 border-t border-ink-900/8 pt-4 text-sm leading-relaxed text-ink-500">
+        {estimate.disclaimer ||
+          "Planning-grade only. A firm line-item number needs a benchmarked proposal."}
+      </p>
     </div>
   );
 }
