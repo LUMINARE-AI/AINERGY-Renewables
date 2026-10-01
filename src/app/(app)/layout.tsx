@@ -1,9 +1,14 @@
+import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { requireSession } from "@/lib/auth/session";
 import { SignOutButton } from "@/components/auth/SignOutButton";
 import { AppSessionProvider } from "@/components/auth/AppSessionProvider";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 const IN_APP_LINKS = [
   { label: "Dashboard", href: "/dashboard" },
